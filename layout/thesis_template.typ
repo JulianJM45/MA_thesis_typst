@@ -57,7 +57,7 @@
   transparency_ai_tools_layout(transparency_ai_tools)
 
   print_page_break(print: is_print)
-  
+
   acknowledgement_layout(acknowledgement)
 
   print_page_break(print: is_print)
@@ -72,11 +72,11 @@
   )
 
   set text(
-    font: fonts.body, 
-    size: 12pt, 
+    font: fonts.body,
+    size: 12pt,
     lang: "en"
   )
-  
+
   show math.equation: set text(weight: 400)
 
   // --- Headings ---
@@ -107,7 +107,7 @@
 
   // --- Figures ---
   show figure: set text(size: 0.85em)
-  
+
   // --- Table of Contents ---
   show outline.entry.where(level: 1): it => {
     v(15pt, weak: true)
@@ -120,8 +120,8 @@
     },
     indent: 2em
   )
-  
-  
+
+
   v(2.4fr)
   pagebreak()
 
@@ -130,6 +130,24 @@
   set page(numbering: "1")
   counter(page).update(1)
   set par(justify: true, first-line-indent: 2em)
+
+  // --- Numbering settings for headings and equations ---
+  set heading(numbering: "1.")
+  show heading.where(level:1): it => {
+    counter(math.equation).update(0)
+    it
+  }
+  set math.equation(numbering: n => {
+    numbering("(1.1)", counter(heading).get().first(), n)
+    // if you want change the number of number of displayed section numbers, modify it this way:
+    /*
+    let count = counter(heading).get()
+    let h1 = count.first()
+    let h2 = count.at(1, default: 0)
+    numbering("(1.1.1)", h1, h2, n)
+    */
+  })
+  // mention equations by adding <a> after the equation and recall it with @
 
   body
 
@@ -165,4 +183,5 @@
 
   pagebreak()
   bibliography("/thesis.yml")
+  // bibliography("/thesis.bib")
 }

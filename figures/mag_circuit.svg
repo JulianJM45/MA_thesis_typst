@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="125.91579mm"
+   height="126.58253mm"
+   viewBox="0 0 125.91579 126.58254"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mag_circuit.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.82136056"
+     inkscape:cx="-103.48683"
+     inkscape:cy="267.84826"
+     inkscape:window-width="1920"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Strips4_1"
+       preserveAspectRatio="xMidYMid"
+       id="pattern9"
+       patternTransform="scale(2)" />
+    <pattern
+       inkscape:collect="always"
+       patternUnits="userSpaceOnUse"
+       width="1.25"
+       height="1"
+       patternTransform="translate(0,0) scale(2,2)"
+       preserveAspectRatio="xMidYMid"
+       id="Strips4_1"
+       style="fill:#000000"
+       inkscape:stockid="Stripes 13 (4:1)"
+       inkscape:isstock="true"
+       inkscape:label="Stripes 13 (4:1)">
+      <rect
+         style="stroke:none"
+         x="0"
+         y="-0.5"
+         width="1"
+         height="2"
+         id="rect203" />
+    </pattern>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40,-28.165314)">
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect1"
+       width="100"
+       height="40"
+       x="40"
+       y="40"
+       inkscape:label="rect1" />
+    <rect
+       style="fill:#d4aa00;stroke-width:0.234486"
+       id="rect3"
+       width="100"
+       height="50"
+       x="40"
+       y="85" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.438761"
+       id="rect2"
+       width="60"
+       height="55"
+       x="60"
+       y="60" />
+    <rect
+       style="fill:url(#pattern9);fill-opacity:1;stroke-width:0.267295"
+       id="rect4"
+       width="54"
+       height="55"
+       x="63"
+       y="98" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#333333;stroke-width:0.264583"
+       x="107.26867"
+       y="36.400478"
+       id="text9"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';stroke-width:0.264583"
+         x="107.26867"
+         y="36.400478">rail</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#333333;stroke-width:0.264583"
+       x="141.41425"
+       y="104.36951"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         style="font-size:11.2889px;stroke-width:0.264583"
+         x="141.41425"
+         y="104.36951">core  </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#333333;stroke-width:0.264583"
+       x="117.89888"
+       y="152.36659"
+       id="text11"><tspan
+         sodipodi:role="line"
+         id="tspan11"
+         style="stroke-width:0.264583"
+         x="117.89888"
+         y="152.36659">winding</tspan></text>
+  </g>
+</svg>

@@ -13,4 +13,91 @@ mustermann2020design:
   author: Max Mustermann
   genre: Master Thesis
   publisher: Technical University of Munich
-  date: 2020 
+  date: 2020
+
+demtroeder2:
+  type: book
+  title: "Experimentalphysik 2: Elektrizität und Optik"
+  author:
+    - Demtröder, W.
+  date: 2018
+  publisher: Springer Berlin Heidelberg
+  series: Springer-Lehrbuch
+  isbn: 9783662557907
+  url: https://books.google.de/books?id=Ub9ODwAAQBAJ
+
+mag_circuit:
+  type: article
+  title: "Modeling of Coupled Electric and Magnetic Circuits in Electromagnetic Suspension Vehicles"
+  author:
+    - Schiefer, Paul
+    - Kleikemper, Oliver
+    - Holzapfel, Florian
+  journal: IEEE Transactions on Transportation Electrification
+  date: 2025
+  volume: 11
+  number: 1
+  pages: 648-655
+  keywords:
+    [
+      Magnetic flux,
+      Magnetic levitation,
+      Saturation magnetization,
+      Magnetic cores,
+      Mathematical models,
+      Rails,
+      Magnetic circuits,
+      Eddy currents,
+      electrodynamics,
+      equivalent circuits,
+      magnetic levitation,
+    ]
+  doi: 10.1109/TTE.2024.3394156
+
+yamamura1975:
+  type: article
+  title: "Analysis of speed characteristics of attracting magnet for magnetic levitation of vehicles"
+  author:
+    - Yamamura, S.
+    - Ito, T.
+  journal: IEEE Transactions on Magnetics
+  date: 1975
+  volume: 11
+  number: 5
+  pages: 1504-1507
+  keywords:
+    [
+      Magnetic levitation,
+      Magnetic analysis,
+      Vehicles,
+      Rails,
+      Magnetic fields,
+      Eddy currents,
+      Drag,
+      Electromagnetic analysis,
+      Electromagnetic forces,
+      Equations,
+    ]
+  doi: 10.1109/TMAG.1975.1058850
+
+oersted1820:
+  type: article
+  title: "Experimenta circa effectum conflictus electrici in acum magneticam"
+  author:
+    - Ørsted, Hans Christian
+  journal: Bibliothek for Physik og Chemie
+  volume: 1
+  pages: 273-276
+  date: 1820
+  language: Latin
+
+Likharev2022SkinEffect:
+  type: web
+  title: "6.3: Quasistatic Approximation, and the Skin Effect"
+  author:
+    - Likharev, Konstantin K.
+  booktitle: "Essential Graduate Physics ‐ Classical Electrodynamics"
+  series: Physics LibreTexts
+  date: 2022
+  url: https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Essential_Graduate_Physics_-_Classical_Electrodynamics_(Likharev)/06%3A_Electromagnetism/6.03%3A_Quasistatic_Approximation_and_the_Skin_Effect
+  note: "CC BY‐NC‐SA 4.0 license, accessed 2025‐09‐19"
