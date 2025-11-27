@@ -38,20 +38,6 @@ mag_circuit:
   volume: 11
   number: 1
   pages: 648-655
-  keywords:
-    [
-      Magnetic flux,
-      Magnetic levitation,
-      Saturation magnetization,
-      Magnetic cores,
-      Mathematical models,
-      Rails,
-      Magnetic circuits,
-      Eddy currents,
-      electrodynamics,
-      equivalent circuits,
-      magnetic levitation,
-    ]
   doi: 10.1109/TTE.2024.3394156
 
 yamamura1975:
@@ -65,19 +51,6 @@ yamamura1975:
   volume: 11
   number: 5
   pages: 1504-1507
-  keywords:
-    [
-      Magnetic levitation,
-      Magnetic analysis,
-      Vehicles,
-      Rails,
-      Magnetic fields,
-      Eddy currents,
-      Drag,
-      Electromagnetic analysis,
-      Electromagnetic forces,
-      Equations,
-    ]
   doi: 10.1109/TMAG.1975.1058850
 
 oersted1820:
@@ -101,3 +74,88 @@ Likharev2022SkinEffect:
   date: 2022
   url: https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Essential_Graduate_Physics_-_Classical_Electrodynamics_(Likharev)/06%3A_Electromagnetism/6.03%3A_Quasistatic_Approximation_and_the_Skin_Effect
   note: "CC BY‐NC‐SA 4.0 license, accessed 2025‐09‐19"
+
+sinha1987electromagnetic:
+  type: book
+  title: "Electromagnetic Suspension: Dynamics & Control"
+  author: P.K. Sinha
+  isbn: 9780863410635
+  lccn: 87206699
+  series: IEE control engineering series
+  url: https://books.google.de/books?id=DRdtKenSW1UC
+  date: 1987
+  publisher: Institution of Engineering & Technology
+
+brandt1997elektrodynamik:
+  type: book
+  title: "Elektrodynamik"
+  author:
+    - Brandt, Siegmund
+    - Dahmen, Hans Dieter
+  date: 1997
+  publisher: Springer Berlin Heidelberg
+  doi: 10.1007/978-3-662-06972-1
+
+kriezis1992eddy:
+  type: article
+  title: "Eddy currents: theory and applications"
+  author:
+    - Kriezis, E. E.
+    - Tsiboukis, T. D.
+    - Panas, S. M.
+    - Tegopoulos, J. A.
+  journal: Proceedings of the IEEE
+  volume: 80
+  number: 10
+  pages: 1559-1589
+  date: 1992
+  doi: 10.1109/5.168666
+
+biro1999edge:
+  type: article
+  title: "Edge element formulations of eddy current problems"
+  author: Oszkár Bíró
+  journal: Computer Methods in Applied Mechanics and Engineering
+  volume: 169
+  number: 3–4
+  pages: 391–405
+  date: 1999
+  doi: 10.1016/S0045-7825(98)00165-0
+  url: https://www.sciencedirect.com/science/article/pii/S0045782598001650
+
+kuczmann2008finite:
+  type: book
+  title: "The Finite Element Method in Magnetics"
+  author:
+    - Kuczmann, Miklos
+    - Iványi, Amália
+  isbn: 9789630586498
+  doi: 10.13140/2.1.3104.1927
+  date: 2008
+
+jackson1998classical:
+  type: book
+  title: "Classical Electrodynamics"
+  author: John D. Jackson
+  date: 1998
+  publisher: John Wiley & Sons
+  isbn: 047130932X
+
+feynman1963lectures:
+  type: book
+  title: "The Feynman Lectures on Physics"
+  author:
+    - Feynman, Richard P.
+    - Leighton, Robert B.
+    - Sands, Matthew
+  date: 1963
+  publisher: Addison-Wesley
+
+woodson1968:
+  type: book
+  title: "Electromechanical Dynamics: Part II: Fields, Forces, and Motion"
+  author:
+    - Woodson, Herbert H.
+    - Melcher, James R.
+  date: 1968
+  publisher: John Wiley & Sons, Inc.

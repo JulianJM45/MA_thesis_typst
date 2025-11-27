@@ -8,6 +8,7 @@
 #import "/layout/fonts.typ": *
 #import "/utils/diagram.typ": in-outline
 
+
 #let thesis(
   title: "",
   titleGerman: "",
@@ -138,15 +139,9 @@
     it
   }
   set math.equation(numbering: n => {
-    numbering("(1.1)", counter(heading).get().first(), n)
-    // if you want change the number of number of displayed section numbers, modify it this way:
-    /*
-    let count = counter(heading).get()
-    let h1 = count.first()
-    let h2 = count.at(1, default: 0)
-    numbering("(1.1.1)", h1, h2, n)
-    */
-  })
+    numbering("(1.1)", counter(heading).get().first(), n)},
+    supplement: []
+  )
   // mention equations by adding <a> after the equation and recall it with @
 
   body

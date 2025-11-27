@@ -1,0 +1,70 @@
+[project]
+name = "ma_thesis"
+entrypoint = "main.typ"
+version = "0.1.0"
+
+[compiler]
+root = "."
+font-paths = ["fonts/"]
+input = "main.typ"
+output = "main.pdf"
+
+[tool]
+[tool.typst]
+compile-on-save = true
+watch = true
+
+[lsp]
+root-patterns = ["typst.toml", ".git", "main.typ"]
+semantic-tokens = true
+inlay-hints = true
+completion = true
+hover = true
+goto-definition = true
+find-references = true
+document-symbols = true
+workspace-symbols = true
+code-actions = true
+diagnostics = true
+formatting = true
+
+[export]
+format = "pdf"
+open = false
+
+# Bibliography configuration
+[bibliography]
+# path = "thesis.bib"
+path = "/thesis.yml"
+style = "ieee"
+
+# Font configuration
+[fonts]
+system = true
+embedded = true
+paths = ["fonts/"]
+
+# Package management
+[packages]
+preview = true
+local = "."
+
+# Development settings
+[dev]
+hot-reload = true
+show-warnings = true
+show-hints = true
+
+# Output settings
+[output]
+pdf = "main.pdf"
+format = "pdf"
+quality = "high"
+embed-fonts = true
+
+# Editor integration
+[editor]
+tab-size = 2
+insert-spaces = true
+trim-trailing-whitespace = true
+insert-final-newline = true

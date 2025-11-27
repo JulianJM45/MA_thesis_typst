@@ -1,5 +1,7 @@
 #import "/utils/todo.typ": TODO
 
+#import "/utils/citations.typ": citations-context
+
 = Requirements
 #TODO[
   This chapter follows the Requirements Analysis Document Template in @bruegge2004object. Important: Make sure that the whole chapter is independent of the chosen technology and development platform. The idea is that you illustrate concepts, taxonomies and relationships of the application domain independent of the solution domain! Cite @bruegge2004object several times in this chapter.
@@ -25,8 +27,8 @@
 #TODO[
   List and describe all functional requirements of your system. Also mention requirements that you were not able to realize. The short title should be in the form “verb objective”
 
-  - FR1 Short Title: Short Description. 
-  - FR2 Short Title: Short Description. 
+  - FR1 Short Title: Short Description.
+  - FR2 Short Title: Short Description.
   - FR3 Short Title: Short Description.
 ]
 
@@ -34,8 +36,8 @@
 #TODO[
   List and describe all quality attributes of your system. All your quality attributes should fall into the URPS categories mentioned in @bruegge2004object. Also mention requirements that you were not able to realize.
 
-  - QA1 Category: Short Description. 
-  - QA2 Category: Short Description. 
+  - QA1 Category: Short Description.
+  - QA2 Category: Short Description.
   - QA3 Category: Short Description.
 
 ]
@@ -45,8 +47,8 @@
 #TODO[
   List and describe all pseudo requirements of your system. Also mention requirements that you were not able to realize.
 
-  - C1 Category: Short Description. 
-  - C2 Category: Short Description. 
+  - C1 Category: Short Description.
+  - C2 Category: Short Description.
   - C3 Category: Short Description.
 
 ]

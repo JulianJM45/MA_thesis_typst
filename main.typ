@@ -20,12 +20,20 @@
 )
 
 #include "/content/introduction.typ"
+
 #include "/content/theory.typ"
 #include "/content/ed_models.typ"
-
+#include "/content/simulation.typ"
 // #include "/content/background.typ"
 // #include "/content/related_work.typ"
 // #include "/content/requirements.typ"
 // #include "/content/system_design.typ"
 // #include "/content/evaluation.typ"
 // #include "/content/summary.typ"
+
+
+
+// bibliography is now on the wrong place (but here necessary for zed lsp)
+// comment it here and uncomment it in thesis_template later !
+// #pagebreak()
+// #bibliography("/thesis.yml")

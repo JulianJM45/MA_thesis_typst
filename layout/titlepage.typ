@@ -13,7 +13,7 @@
 ) = {
   // Quality checks
   assert(degree in ("Bachelor", "Master"), message: "The degree must be either 'Bachelor' or 'Master'")
-  
+
   set page(
     margin: (left: 20mm, right: 20mm, top: 30mm, bottom: 30mm),
     numbering: none,
@@ -21,14 +21,14 @@
   )
 
   set text(
-    font: fonts.body, 
-    size: 12pt, 
+    font: fonts.body,
+    size: 12pt,
     lang: "en"
   )
 
   set par(leading: 0.5em)
 
-  
+
   // --- Title Page ---
   v(1cm)
   align(center, image("/figures/tum_logo.png", width: 26%))
@@ -37,16 +37,16 @@
   align(center, text(font: fonts.sans, 2em, weight: 700, "Technical University of Munich"))
 
   v(5mm)
-  align(center, text(font: fonts.sans, 1.5em, weight: 100, "School of Computation, Information and Technology \n -- Informatics --"))
-  
+  align(center, text(font: fonts.sans, 1.5em, weight: 100, "School of Natural Science \n -- Physics --"))
+
   v(15mm)
 
   align(center, text(font: fonts.sans, 1.3em, weight: 100, degree + "’s Thesis in " + program))
   v(8mm)
-  
+
 
   align(center, text(font: fonts.sans, 2em, weight: 700, title))
-  
+
 
   align(center, text(font: fonts.sans, 2em, weight: 500, titleGerman))
 
