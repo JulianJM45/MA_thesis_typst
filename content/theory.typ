@@ -93,6 +93,7 @@ $curl ( curl vb(A) ) = grad ( div vb(A) ) - laplacian vb(A)$ one gets again a Po
 $ laplacian vb(A) = - mu_0 vb(J) $<Poisson-eq_magnetic>
 
 === Time-Dependent $vb(A)-phi$ Potential
+<A-phi_potential>
 The electrostatic field $vb(E)$ is free from curls, therefore it can be expressed by a scalar Potential as shown in @electrostatic-potential. But the third Maxwell equation @maxwell_E2 shows that time-dependent electrical fields are not free from curls.\
 On the other hand, the magnetic field $vb(B)$ is free from sources also in the time-dependent case, why here a time-dependent vector potential can be introduced, analogous to @magnetic-vector-potential.
 $ vb(B)(t,vb(r))=curl vb(A)(t,vb(r)) $
@@ -100,8 +101,8 @@ This can be inserted into equation @maxwell_E2 and we see that the expression $v
 $ curl (vb(E) + pdv(vb(A), t)) = 0 $
 Now there can be again a scalar potential $phi(t)$ be introduced, which is now time-dependent.
 $ vb(E)(t,vb(r)) + pdv(vb(A), t)(t,vb(r)) = -grad phi(t,vb(r)) $
-For a known vector potential $vb(A)$ and scalar potential $phi$, the electric field is given as:
-$ vb(E)(t,vb(r)) = -grad phi(t,vb(r)) + pdv(vb(A), t)(t,vb(r)) $
+For a known vector potential $vb(A)$ and scalar potential $phi$, the electric field is given as @feynman1963lectures:
+$ vb(E)(t,vb(r)) = -grad phi(t,vb(r)) - pdv(vb(A), t)(t,vb(r)) $
 
 === The $vb(T)-Omega$ Potential
 We introduce another formulation for the electromagnetic Potentials, where we have an electric vector potential $vb(T)$ and a mangetic scalar potential $Omega$.
@@ -134,17 +135,26 @@ given in the Coulomb law @demtroeder2:
 $ vb(F)_C = frac(1, 4 pi epsilon.alt_0) frac(Q_1 Q_2, r^2) vb(r) $
 This force can be explained by the electric Field $vb(E)$ which is
 generated from both charges @demtroeder2:
-$ vb(E) = frac(Q, 4 pi epsilon.alt_0 r^2) vb(r) $ The general
-electric force on one charge in an electric field $q$ is given by
-@demtroeder2: $ vb(F)_E = q dot.op vb(E) $
-
+$ vb(E) = frac(Q, 4 pi epsilon.alt_0 r^2) vb(r) $ The general electric force on one charge in an electric field $q$ is given by @demtroeder2:
+$ vb(F)_E = q dot.op vb(E) $<electric_force>
 
 === Lorentz force
 <lorentz-force>
 Charged particles can not only experience a force when they are in an electric field but also in a magnetic field $B$ when they are moving. This Lorentz force is given by the following term @demtroeder2:
-$ vb(F)_L = q dot.op \( vb(v) times vb(B) \) $
+$ vb(F)_L = q dot.op \( vb(v) times vb(B) \) $<lorentz_force>
 Together with the electric force we can write the general Lorentz force as:
 $ vb(F) = q dot.op \( vb(E) + vb(v) times vb(B) \) $<general_lf>
+
+
+=== Ohm's Law
+Forces on electrons leads to an electric current. The current density $vb(J)$ is proportional to the _force per unit charge_, $vb(f)=vb(F)/q$ @griffiths2017:
+$ vb(J)= sigma vb(f) $
+Since we deal with both, the electric force @electric_force and the magnetic force @lorentz_force as combined in the general Lorentz force @general_lf, we get for the current density the generalized Ohm's law:
+$ vb(J)= sigma \( vb(E) + vb(v) times vb(B) \) $<general_ohms_law>
+Often, but not in our case, the velocity is small enough that the electric force dominates. Then it is called the Ohm's law:
+$ vb(J)= sigma vb(E) $<ohms_law>
+But in this thesis we will usually use the generalized Ohm's law @general_ohms_law, since we deal with not negligible B fields and velocities.
+
 
 == Magnetic field of an electric current
 <magnetic-field-of-an-electric-current>

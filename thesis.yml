@@ -159,3 +159,29 @@ woodson1968:
     - Melcher, James R.
   date: 1968
   publisher: John Wiley & Sons, Inc.
+
+griffiths2017:
+  type: book
+  title: "Introduction to Electrodynamics"
+  author:
+    - Griffiths, David J.
+  date: 2017
+  publisher: Cambridge University Press
+  edition: 4th
+  isbn: 9781108420419
+
+ansys_maxwell_initialmeshsettings:
+  type: Web
+  title: "Specifying Initial Mesh Settings"
+  author: ANSYS, Inc.
+  publisher: ANSYS Help
+  date: 2025 # approximate current version of the online doc, adjust if needed
+  url: https://ansyshelp.ansys.com/public/Views/Secured/Electronics/v242/en/Subsystems/Maxwell/Content/SpecifyingInitialMeshSettings.htm
+
+ansys_A-phi:
+  type: Web
+  title: "A-Phi Formulation in Maxwell 3d (Transient)"
+  author: ANSYS, Inc.
+  publisher: ANSYS Help
+  date: 2025 # approximate current version of the online doc, adjust if needed
+  url: https://ansyshelp.ansys.com/public/Views/Secured/Electronics/v242/en/Subsystems/Maxwell/Content/APhiFormulationinMaxwell3DTransient.htm
