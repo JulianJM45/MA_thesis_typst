@@ -42,7 +42,7 @@ the free current density. The term $pdv(vb(D), t)$ is called the displacement cu
 The connection between the magnetic flux density and the magnetic field is given as:
 $ vb(B) = mu_0 \( vb(H) + vb(M) \) $<material_equation>
 where $vb(M)$ is the magnetization of the material. In a linear regime this can be approximated as:
-$ vb(B) = mu_0 mu_r vb(H) $
+$ vb(B) = mu_0 mu_r vb(H) = mu vb(H) $<linearized_material_equation>
 where $mu_r$ is the relative permeability of the material. \
 Similarly, the connection between the electric flux density and the
 electric field is given as:
@@ -105,7 +105,20 @@ For a known vector potential $vb(A)$ and scalar potential $phi$, the electric fi
 $ vb(E)(t,vb(r)) = -grad phi(t,vb(r)) - pdv(vb(A), t)(t,vb(r)) $
 
 === The $vb(T)-Omega$ Potential
-We introduce another formulation for the electromagnetic Potentials, where we have an electric vector potential $vb(T)$ and a mangetic scalar potential $Omega$.
+We introduce another formulation for the electromagnetic potentials, where we have an electric vector potential $vb(T)$ and a mangetic scalar potential $Omega$.\
+\
+*The magnetic scalar potential*\
+In current-free regions, where $vb(J)+pdv(vb(D),t)=0$, the curl of the mangetic field is zero aswell:
+$ curl vb(H) = 0 $
+This allows us to express there the magnetic field as a divergence of a scalar potential $Omega$ @silvester1996:
+$ vb(H) = -grad Omega $
+Together with the second Maxwell equation @maxwell_B1 and the material equation @linearized_material_equation, we can write:
+$ div (mu grad Omega) = 0 $
+This is somewhat like a nonlinear generalization of Laplace's equation.
+
+
+
+\
 The magnetic field is splitted into two parts, a rotational part and a nonrotational part $vb(H)_m$ @kuczmann2008finite:
 $ vb(H) = vb(T) + vb(H)_m $
 This rotational part is the vector potential $vb(T)$ and its curl equal to the electric current:

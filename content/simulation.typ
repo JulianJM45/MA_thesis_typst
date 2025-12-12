@@ -49,7 +49,42 @@ In the same way the above equations are inserted into the second Maxwell equatio
 $ div (-sigma dv(vb(A),t) -sigma grad phi - dv(,t)(epsilon grad phi))=0 $
 $ curl 1/mu curl vb(A)=-sigma dv(vb(A),t) - sigma grad phi -dv(,t)(epsilon grad phi) + curl vb(H)_c $
 
+=== Comparison of T-Omega and A-Phi Solver
+Following comparison table is taken from the Ansys Maxwell documentation @ansys_solver-comparison:
 
+
+#figure(
+  table(
+    columns: (1fr, 1fr),
+    align: (left, left),
+    stroke: 0.5pt,
+    inset: 8pt,
+
+    table.header(
+      [*T-Omega*],
+      [*A-Phi*],
+    ),
+
+    [Solves second-order elements for magnetic B field],
+    [Solves second-order F for electrical E field, and solves first-order A for magnetic B field. (In order to account the difference in the order of elements solved, increasing the mesh density in A-Phi should help achieve the same B field results as T-Omega.)],
+
+    [Computational efficient for electric machines applications],
+    [Computational efficient and flexible for ECAD PCB and electronics applications],
+
+    [Does not support multi-terminals with mixed excitation types on the same conduction path],
+    [Supports multi-terminals with mixed excitation types on the same conduction path],
+
+    [Ignores displacement current],
+    [Can consider capacitive effects (displacement current)],
+
+    [Supports all advanced material modeling],
+    [Limited advanced material modeling capabilities],
+
+    [Easy handling of motion due to only scalar potential for the motion coupling],
+    [Does not support motion],
+  ),
+  caption: [Comparison of T-Omega and A-Phi formulations]
+)
 
 == Yamamura Model
 

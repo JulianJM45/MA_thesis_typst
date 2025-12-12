@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          fetch-depth: '0'
+          fetch-depth: "0"
           lfs: true
 
       - name: Cache Fonts
@@ -33,7 +33,7 @@ jobs:
           fc-cache -f -v  # Refresh font cache
 
       - uses: typst-community/setup-typst@v4
-      - run: typst compile thesis.typ thesis.pdf
+      - run: typst compile main.typ main.pdf
       - run: typst compile proposal.typ proposal.pdf
       - run: typst compile registration_certificate.typ registration_certificate.pdf
       - run: typst compile feedbacklog.typ feedbacklog.pdf

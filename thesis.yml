@@ -170,18 +170,35 @@ griffiths2017:
   edition: 4th
   isbn: 9781108420419
 
+silvester1996:
+  type: book
+  title: "Finite elements for electrical engineers"
+  author:
+    - Silvester, Peter P.
+    - Ferrari, Ronald L.
+  date: 1996
+  publisher: Cambridge University Press
+
 ansys_maxwell_initialmeshsettings:
   type: Web
   title: "Specifying Initial Mesh Settings"
   author: ANSYS, Inc.
   publisher: ANSYS Help
   date: 2025 # approximate current version of the online doc, adjust if needed
-  url: https://ansyshelp.ansys.com/public/Views/Secured/Electronics/v242/en/Subsystems/Maxwell/Content/SpecifyingInitialMeshSettings.htm
+  url: https://ansyshelp.ansys.com/public//Views/Secured/Electronics/v252/en/Subsystems/Maxwell/Maxwell.htm#Mesh/SpecifyingInitialMeshSettings.htm?Highlight=Specifying%20Initial%20Mesh%20Settings
 
 ansys_A-phi:
   type: Web
-  title: "A-Phi Formulation in Maxwell 3d (Transient)"
+  title: "3D Transient A-Phi Formulation"
   author: ANSYS, Inc.
   publisher: ANSYS Help
   date: 2025 # approximate current version of the online doc, adjust if needed
-  url: https://ansyshelp.ansys.com/public/Views/Secured/Electronics/v242/en/Subsystems/Maxwell/Content/APhiFormulationinMaxwell3DTransient.htm
+  url: https://ansyshelp.ansys.com/public//Views/Secured/Electronics/v252/en/Subsystems/Maxwell/Maxwell.htm#Maxwell/APhiFormulationinMaxwell3DTransient.htm?TocPath=Maxwell%2520Help%257CMaxwell%25203D%2520Technical%2520Notes%257C3D%2520Transient%2520Solver%257C_____5
+
+ansys_solver-comparison:
+  type: Web
+  title: "Comparison of T-Omega and A-Phi Solvers"
+  author: ANSYS, Inc.
+  publisher: ANSYS Help
+  date: 2025 # approximate current version of the online doc, adjust if needed
+  url: https://ansyshelp.ansys.com/public//Views/Secured/Electronics/v252/en/Subsystems/Maxwell/Maxwell.htm#Maxwell/3DTransientSolutionAPhiFormulation.htm?TocPath=Maxwell%2520Help%257CSpecifying%2520the%2520Solver%2520Type%257CTransient%2520Solver%257C_____1
