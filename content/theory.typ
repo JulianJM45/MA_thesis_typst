@@ -42,7 +42,7 @@ the free current density. The term $pdv(vb(D), t)$ is called the displacement cu
 The connection between the magnetic flux density and the magnetic field is given as:
 $ vb(B) = mu_0 \( vb(H) + vb(M) \) $<material_equation>
 where $vb(M)$ is the magnetization of the material. In a linear regime this can be approximated as:
-$ vb(B) = mu_0 mu_r vb(H) $
+$ vb(B) = mu_0 mu_r vb(H) = mu vb(H) $<linearized_material_equation>
 where $mu_r$ is the relative permeability of the material. \
 Similarly, the connection between the electric flux density and the
 electric field is given as:
@@ -105,15 +105,39 @@ For a known vector potential $vb(A)$ and scalar potential $phi$, the electric fi
 $ vb(E)(t,vb(r)) = -grad phi(t,vb(r)) - pdv(vb(A), t)(t,vb(r)) $
 
 === The $vb(T)-Omega$ Potential
-We introduce another formulation for the electromagnetic Potentials, where we have an electric vector potential $vb(T)$ and a mangetic scalar potential $Omega$.
-The magnetic field is splitted into two parts, a rotational part and a nonrotational part $vb(H)_m$ @kuczmann2008finite:
-$ vb(H) = vb(T) + vb(H)_m $
-This rotational part is the vector potential $vb(T)$ and its curl equal to the electric current:
-$ curl vb(T) = vb(J) $
-The nonrotational part $vb(H)_m$ can be derived from the magnetic scalar potential $Omega$:
-$ vb(H)_m = -grad Omega $
-So the magnetic field can be written as:
-$ vb(H) = vb(T) - grad Omega $<T-Omega_potential>
+We introduce another formulation for the electromagnetic potentials, where we have an electric vector potential $vb(T)$ and a mangetic scalar potential $Omega$.\
+\
+*The magnetic scalar potential*\
+In current-free regions, where $vb(J)+pdv(vb(D),t)=0$, the curl of the mangetic field is zero aswell:
+$ curl vb(H) = 0 $
+This allows us to express there the magnetic field as a divergence of a scalar potential $Omega_t$ @silvester1996:
+$ vb(H) = -grad Omega_t $
+Together with the second Maxwell equation @maxwell_B1 and the material equation @linearized_material_equation, we can write:
+$ div (mu grad Omega_t) = 0 $
+This is somewhat like a nonlinear generalization of Laplace's equation.
+We call $Omega_t$ the total magnetic scalar potential.
+
+
+*Carpenter-Noether potentials*\
+In regions that have electric currents the mangetic field cannot be expressed by a scalar potential anymore due to its rotationality (see Maxwell's fourth equation @maxwell_B2). But Carpenter and Noether had the idea of a change of variable to define a closely related potential that is also valid where currents flow. So Carpenter defined a vector quantity $vb(T)$ such that:
+$ curl vb(T) = vb(J) + pdv(vb(D),t) $
+Note that Carpenter uses $vb(H)_c$ instead of $vb(T)$ and we will neglect the displacement current term $pdv(vb(D),t)$ as discussed later in @displacement-current.
+The quantity $vb(T)$ is not the magnetic field $vb(H)$ though, since it is not subject to any boundary conditions nor it is solenoidal (it's divergence is not necessarily zero). It is also not absolutely defined like the mangetic vector potential $vb(A)$, as it can be scaled in the same way with an arbitrary scalar function $f$ (see @magnetic-vector-potential).
+$ curl vb(T) = curl (vb(T)+grad f) $
+The magnetic field $vb(H)$ and the vector potential $vb(T)$ have the same current density as source, therefore their curl is the same:
+$ curl (vb(H) - vb(T)) = 0 $
+Their difference is obviously irrotational:
+$ vb(H) - vb(T) = grad Omega_r $
+Here we call $Omega_r$ the reduced mangetic scalar potential.\
+To find the differential equation for $Omega_r$ we multiply with the local permeability $mu$ and take the divergence of both sides:
+$ div (mu(vb(H)-vb(T))) = div (mu grad Omega_r) $
+Since $mu vb(H)=vb(B)$ and Maxwell's second equation @maxwell_B1 the $vb(H)$ term must vanish. We get a nonlinear scalar Poisson equation:
+$ div (mu grad Omega_r) = - div (mu T) $\
+The vector potential $vb(T)$ can be derived from the Biot-Savart law in  @biot-savart-law:
+$ vb(T)(vb(r)) = frac(1, 4 pi) integral frac(vb(J)(vb(r)') times ( vb(r) - vb(r)'), |vb(r) - vb(r)'|^3) dd(r, 3)' $
+\
+The magnetic field, which we splitted into two parts, a rotational part $vb(T)$ and a nonrotational part $-grad Omega_r$, can now be composed together again @kuczmann2008finite:
+$ vb(H) = vb(T) - grad Omega_r $<T-Omega_potential>
 
 
 
@@ -147,6 +171,7 @@ $ vb(F) = q dot.op \( vb(E) + vb(v) times vb(B) \) $<general_lf>
 
 
 === Ohm's Law
+<chapter:ohms_law>
 Forces on electrons leads to an electric current. The current density $vb(J)$ is proportional to the _force per unit charge_, $vb(f)=vb(F)/q$ @griffiths2017:
 $ vb(J)= sigma vb(f) $
 Since we deal with both, the electric force @electric_force and the magnetic force @lorentz_force as combined in the general Lorentz force @general_lf, we get for the current density the generalized Ohm's law:
@@ -160,12 +185,11 @@ But in this thesis we will usually use the generalized Ohm's law @general_ohms_l
 <magnetic-field-of-an-electric-current>
 === Ampere's law
 <amperes-law>
-In his experiment 1820, Hans Christian Ørsted discovered that a
-current-carrying wire generates a magnetic field @oersted1820. This can
-be described by the Ampere's law @demtroeder2
-$ integral.cont vb(B) dot.op dd(vb(s)) = mu_0 I $ However, this
-equation is only helpful for electric cables or coils. For an arbitrary
-current density we need to introduce the magnetic vector potential.
+In his experiment 1820, Hans Christian Ørsted discovered that a current-carrying wire generates a magnetic field @oersted1820. This can be described by the Ampere's law @demtroeder2
+$ integral.cont vb(B) dot.op dd(vb(s)) = mu_0 I $
+From this equation the fourth Maxwell equation @maxwell_B2 can be derived (without the displacement current) using Stokes theorem.
+\
+However, this equation is only helpful for electric cables or coils. For an arbitrary current density we need to introduce the magnetic vector potential.
 
 
 === Biot-Savart law

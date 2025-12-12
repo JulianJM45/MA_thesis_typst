@@ -108,6 +108,7 @@
 
   // --- Figures ---
   show figure: set text(size: 0.85em)
+  set figure(placement: auto)
 
   // --- Table of Contents ---
   show outline.entry.where(level: 1): it => {

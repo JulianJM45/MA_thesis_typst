@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="65.009628mm"
+   width="89.110306mm"
    height="110.62661mm"
-   viewBox="0 0 65.00963 110.62662"
+   viewBox="0 0 89.11031 110.62662"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    sodipodi:docname="yamamura_simplified.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.3313483"
-     inkscape:cx="435.64858"
-     inkscape:cy="274.90928"
-     inkscape:window-width="1920"
+     inkscape:zoom="0.74170735"
+     inkscape:cx="56.626107"
+     inkscape:cy="-18.201249"
+     inkscape:window-width="1290"
      inkscape:window-height="1015"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:window-x="20"
+     inkscape:window-y="20"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g1" />
   <defs
      id="defs1">
     <marker
@@ -114,26 +114,66 @@
          sodipodi:nodetypes="ccc"
          id="path1" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="marker7-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path7-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker7-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path7-5" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-131.1276,-141.37126)">
+     transform="translate(-140.20206,-141.37126)">
     <rect
        style="fill:#d4aa00;stroke-width:0.148302"
        id="rect3"
        width="100"
        height="20"
        x="141.37126"
-       y="-169.28587"
+       y="-202.46101"
        transform="rotate(90)" />
     <rect
        style="fill:#ffffff;stroke-width:0.22602"
        id="rect2"
        width="20"
        height="70"
-       x="149.28587"
+       x="182.46101"
        y="156.37126" />
     <rect
        style="fill:#808080;stroke-width:0.144918"
@@ -141,7 +181,7 @@
        width="60"
        height="20"
        x="161.37126"
-       y="-169.28587"
+       y="-202.46101"
        inkscape:label="rect1"
        transform="rotate(90)" />
   </g>
@@ -149,73 +189,124 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     transform="translate(-91.127599,-113.20595)">
+     transform="translate(-100.20206,-113.20595)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#333333;stroke-width:0.264583"
-       x="130.29868"
+       x="163.47382"
        y="158.19109"
        id="text9"><tspan
          sodipodi:role="line"
          id="tspan9"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';stroke-width:0.264583"
-         x="130.29868"
+         x="163.47382"
          y="158.19109">rail</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#333333;stroke-width:0.264583"
-       x="131.63568"
+       x="164.81082"
        y="209.75583"
        id="text10"><tspan
          sodipodi:role="line"
          style="font-size:11.2889px;stroke-width:0.264583"
-         x="131.63568"
+         x="164.81082"
          y="209.75583"
          id="tspan1">core  </tspan></text>
     <text
        xml:space="preserve"
        style="font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
-       x="98.243027"
+       x="131.41817"
        y="198.97726"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
          style="fill:#000000;stroke-width:0.264583"
-         x="98.243027"
+         x="131.41817"
          y="198.97726">g</tspan></text>
     <path
        style="fill:#000000;stroke:#000000;stroke-width:0.265;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#marker3)"
-       d="m 108.60925,193.16609 v 5.07657"
+       d="m 141.7844,193.16609 v 5.07657"
        id="path2" />
     <path
        style="fill:#000000;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5);marker-end:url(#marker5)"
-       d="m 106.51879,133.39705 v 59.89262"
+       d="m 139.69394,133.39705 v 59.89262"
        id="path4" />
     <text
        xml:space="preserve"
        style="font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
-       x="90.659065"
+       x="123.83421"
        y="163.9344"
        id="text5"><tspan
          sodipodi:role="line"
          id="tspan5"
          style="stroke:none;stroke-width:0.265"
-         x="90.659065"
+         x="123.83421"
          y="163.9344">2d</tspan></text>
     <path
        style="fill:#000000;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5);marker-end:url(#marker7)"
-       d="m 109.16367,214.34705 h 20.18015"
+       d="m 142.33882,214.34705 h 20.18015"
        id="path6" />
     <text
        xml:space="preserve"
        style="font-size:11.2889px;font-family:'Adwaita Sans';-inkscape-font-specification:'Adwaita Sans';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
-       x="114.22377"
+       x="147.39891"
        y="223.74437"
        id="text7"><tspan
          sodipodi:role="line"
          id="tspan7"
          style="stroke:none;stroke-width:0.265"
-         x="114.22377"
+         x="147.39891"
          y="223.74437">2a</tspan></text>
+    <g
+       id="g1"
+       transform="translate(-0.71344397,4.637386)">
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7-3)"
+         d="m 103.42265,210.46005 h 19.75207"
+         id="path6-63" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7-7)"
+         d="M 106.30185,213.58373 V 193.83198"
+         id="path6-6" />
+      <circle
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.4;stroke-dasharray:none;stroke-opacity:1"
+         id="path8"
+         cx="106.32265"
+         cy="210.48105"
+         r="1.8775165" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="124.37878"
+         y="212.48875"
+         id="text8"><tspan
+           sodipodi:role="line"
+           id="tspan8"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+           x="124.37878"
+           y="212.48875">z</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="104.34698"
+         y="190.98427"
+         id="text9-2"><tspan
+           sodipodi:role="line"
+           id="tspan9-0"
+           style="font-size:7.76111px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+           x="104.34698"
+           y="190.98427">y</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="100.73326"
+         y="216.75252"
+         id="text10-6"><tspan
+           sodipodi:role="line"
+           id="tspan10"
+           style="font-size:7.76111px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+           x="100.73326"
+           y="216.75252">x</tspan></text>
+    </g>
   </g>
 </svg>
