@@ -114,10 +114,10 @@ The dimensions  of the yoke and the rail are given in $unit("mm")$ in the follow
   align: horizon,
 
   table.header([*Component*], [*Size*], [*Value*]),
-  table.cell(rowspan: 3)[*yoke*],
+  table.cell(rowspan: 1)[*yoke*],
   [yoke_x], [135],
-  [yoke_y], [x],
-  [yoke_z], [x],
+  // [yoke_y], [x],
+  // [yoke_z], [x],
   table.cell(rowspan: 3)[*rail*],
   [rail_x], [245],
   [rail_y], [10],
@@ -133,6 +133,21 @@ There are several steps to prepare the simulation:
 5. Analyze the simulation setup
 
 In a first simulation, we create the geometry in the dimensions described above and assign a velocity to the rail of $qti("100000", "mm/s")$ which is $qti("100", "m/s")$.
+Since the mesh density is about $qti("1", "mm")$ and the velocity is $qti("100", "m/s")$, a time step of $qti("1e-5", "s")$ is choosen.
+Former tests have shown that after around 20-30 time steps a steady state is reached so that the eddy currents are stable. To get more confident about this we chose in this run 90 time steps.
+
+#figure(
+  image("../figures/simulation/eddy_currents_long.png", width: 100%),
+  caption: [Depiction of the eddy currents in the Yamamura model at speed of $qti("100", "m/s")$. The rail is moving from left to right. Top view.]
+)<eddy_currents_long>
+#figure(
+  image("../figures/simulation/yam_long_force_x.svg", width: 100%),
+  caption: [Breaking force of the Yamamura model at speed of $qti("100", "m/s")$ over time to observe the steady state.]
+)<yam_long_force_x>
+#figure(
+  image("../figures/simulation/B_profile_yam_long.svg", width: 100%),
+  caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
+)<B_profile_yam_long>
 
 #pagebreak()
 == TUM Hyperloop Model
