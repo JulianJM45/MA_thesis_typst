@@ -194,9 +194,7 @@ However, this equation is only helpful for electric cables or coils. For an arbi
 
 === Biot-Savart law
 <biot-savart-law>
-The magnetic vector potential $vb(A)$ can be calculated by a given
-current density - analogous to the Coulomb potential for the electric
-field. We start with the fourth Maxwell equation:
+The magnetic vector potential $vb(A)$ can be calculated by a given current density - analogous to the Coulomb potential for the electric field. We start with the fourth Maxwell equation:
 $ curl vb(B) = mu_0 vb(J) $
 Using the definition of the magnetic vector potential $vb(B) = curl vb(A)$ we can rewrite this equation as:
 $ curl \( curl vb(A) \) = mu_0 vb(J) $
@@ -204,26 +202,18 @@ Expanding the left-hand side using the vector identity
 $ curl \( curl vb(A) \) = grad \( div vb(A) \) - laplacian vb(A) $<vec_identity_double_curl>
 we get:
 $ grad \( div vb(A) \) - laplacian vb(A) = mu_0 vb(J) $
-Since we are considering stationary fields, we can assume that
-$div vb(A) = 0$. This simplifies the equation to:
-$ - laplacian vb(A) = mu_0 vb(J) $ This is a Poisson equation for
-the magnetic vector potential $vb(A)$, which can be solved
-analogously to the Poisson equation for the electric potential
-$phi.alt$. The solution can be expressed in terms of the current density
-$vb(J)$ and the distance $r$ from the source point as:
+Since we are considering stationary fields, we can assume that $div vb(A) = 0$. This simplifies the equation to:
+$ - laplacian vb(A) = mu_0 vb(J) $
+This is a Poisson equation for the magnetic vector potential $vb(A)$, which can be solved analogously to the Poisson equation for the electric potential $phi.alt$. The solution can be expressed in terms of the current density $vb(J)$ and the distance $r$ from the source point as:
 $ vb(A) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' $
 where $vb(r)'$ is the position vector of the source point. \
-Now the magnetic vector potential $vb(A)$ can be used to calculate
-the magnetic field $vb(B)$ using the definition
-$vb(B) = curl vb(A)$. This gives:
-$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' $
-here it must be noted that the differentiation is respect to the
-coordinates of the observation point $vb(r)$ whereas the integration
-is respect to the coordinates of the source point $vb(r)'$. It can be
-simplified width the identity
+Now the magnetic vector potential $vb(A)$ can be used to calculate the magnetic field $vb(B)$ using the definition $vb(B) = curl vb(A)$. This gives:
+$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' $
+here it must be noted that the differentiation is in respect to the coordinates of the observation point $vb(r)$ whereas the integration is in respect to the coordinates of the source point $vb(r)'$.
+It can be simplified width the identity
 $\| vb(r) - vb(r)' \| = sqrt(\( vb(r) - vb(r)' \)^2) = sqrt(\( x - x' \)^2 + \( y - y' \)^2 + \( z - z' \)^2)$
 to:
-$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \) times \( vb(r) - vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' $
+$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \) times \( vb(r) - vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' $<biot-savart>
 
 == Time variant fields
 <time-variant-fields>
