@@ -141,6 +141,17 @@ This model was written in python by the author to calculate some magnetic profil
   image("../figures/models/Yamamura_org.svg", width:100%)
 )<fig:magnetic_profiles_yam_org>
 
+
+#figure(caption: [$sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$],
+  grid(columns: 2,
+  column-gutter: 1em,
+  row-gutter: 0.5em,
+  [#image("../figures/models/Yam_org_long_dist.svg", width: 100%)],
+  [#image("../figures/models/Yam_org_lat_dist.svg", width: 100%)],
+  [Magnetic field profile along x-axis for different y-slices],[Magnetic field profile along y-axis for different x-slices]
+  )
+)<fig:yam_org_long_dist>
+
  *Force equations*\
 <force-equations>
 The attracting force of the magnet is given by
@@ -149,13 +160,35 @@ For a static magnetic this results in $ F_a^0 = 2 / mu_0 a L B_0^2 $
 Substituting equation @eq:magnetic_field_solution the losses due to eddy
 current are now incorporated in the force equation
 $ F_a = F_a^0 sum_(n = 1)^oo c_n^2 f (n) $ with
-$ f (n) = & #h(0.5em) frac(1, 2 L) \( L + frac(beta_n', alpha_n) (2 + beta_n ') (1 - exp - alpha_n L) \
-  & + frac(alpha_n', beta_n) (2 - alpha_n ') \( 1 - exp beta_n L + 2 frac(alpha_n' beta_n', alpha_n + beta_n) (exp - alpha_n L - exp beta_n L) $
-where $alpha_n = frac(alpha_n, alpha_n - beta_n)$ and
-$beta_n = frac(beta_n, alpha_n - beta_n)$. \
+$ f (n) = & #h(0.5em) frac(1, 2 L) [ L + frac(beta_n ', alpha_n) (2 + beta_n ') (1 - exp(-alpha_n L)) \
+  & + frac(alpha_n ', beta_n) (2 - alpha_n ') ( 1 - exp(beta_n L)) + 2 frac(alpha_n ' beta_n ', alpha_n + beta_n) (exp(-alpha_n L) - exp(beta_n L)) ] $
+where
+$alpha_n ' = frac(alpha_n, alpha_n - beta_n)$
+and
+$beta_n ' = frac(beta_n, alpha_n - beta_n)$. \
 The breaking force is given by
 $ F_b & = frac(g, d mu_0) integral_(- oo)^oo d x integral_0^(2 d) d z integral_a^a d y (b_e frac(partial b_i, partial x) + 1 / 2 frac(partial b_i^2, partial x))\
- & = F_a^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp beta_n L - 1) + beta_n ' (exp - alpha_n L - 1))) $
+ & = F_a^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp(beta_n L) - 1) + beta_n ' (exp(-alpha_n L) - 1))) $
+
+#figure(caption: [Lift force reduction for different lengths (left) and rail wdiths (right). \ $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$],
+  grid(columns: 2,
+  column-gutter: 1em,
+  row-gutter: 0.5em,
+  [#image("../figures/models/Yam_org_lift_f_length.svg", width: 100%)],
+  [#image("../figures/models/Yam_org_lift_f_width.svg", width: 100%)],
+  [],[]
+  )
+)<fig:yam_org_lift_f>
+
+#figure(caption: [Drag force reduction for different lengths in comparision to $F_a^0$(left) and to the lift force (right). \ $sigma=qty("1e7","S/m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$],
+  grid(columns: 2,
+  column-gutter: 1em,
+  row-gutter: 0.5em,
+  [#image("../figures/models/Yam_org_drag_f_length.svg", width: 100%)],
+  [#image("../figures/models/Yam_org_lift-drag_f_length.svg", width: 100%)],
+  [],[]
+  )
+)<fig:yam_org_drag_f>
 
 
 == Adaption of Yamamura Model
