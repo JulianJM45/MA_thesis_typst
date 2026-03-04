@@ -2,6 +2,7 @@
 
 #import "@preview/physica:0.9.6": *
 #import "@preview/unify:0.7.1": *
+#import "@preview/codedis:0.3.0": code
 
 #let qti(value, unit) = qty(value, unit, per:"/")
 
@@ -109,7 +110,8 @@ As discussed in @section:Motion the computational cost for the Yamamura model is
   caption: [Depiction of the yamura model recreated in Ansys Maxwell.]
 )<yamamura_recreated>
 The dimensions  of the yoke and the rail are given in $unit("mm")$ in the following table:
-#table(
+#figure(
+table(
   columns: (auto, auto, auto),
   align: horizon,
 
@@ -121,8 +123,12 @@ The dimensions  of the yoke and the rail are given in $unit("mm")$ in the follow
   table.cell(rowspan: 3)[*rail*],
   [rail_x], [245],
   [rail_y], [10],
-  [rail_z], [1]
-)
+  [rail_z], [1],
+  table.cell(rowspan: 1)[*airgap*],
+  [air_z], [1],
+),
+caption:[Geometry of the yoke and the rail in the Yamamura model. The dimensions are given in $unit("mm")$.]
+)<table:yam_v100_mx>
 \
 *Simulation preparation*\
 There are several steps to prepare the simulation:
@@ -134,20 +140,105 @@ There are several steps to prepare the simulation:
 
 In a first simulation, we create the geometry in the dimensions described above and assign a velocity to the rail of $qti("100000", "mm/s")$ which is $qti("100", "m/s")$.
 Since the mesh density is about $qti("1", "mm")$ and the velocity is $qti("100", "m/s")$, a time step of $qti("1e-5", "s")$ is choosen.
-Former tests have shown that after around 20-30 time steps a steady state is reached so that the eddy currents are stable. To get more confident about this we chose in this run 90 time steps.
-
+Former tests have shown that after around 20-30 time steps a steady state is reached so that the eddy currents are stable. To get more confident about this we chose in this run 90 time steps.\
+In @eddy_currents_long we can see the eddy currents in the rail. They are basicaly only at the front and back end of the magnet. In our frame the electrons move at positive x direction and the mangetic field points inside the plane, so they get diverted inside the magnet area to negative y direction. Outside the magnet area the electrons move back to the positive y edge of the rail due to the electric fields created by the charge displacement. This leads to a closed current loop which is here clockwise at the front end and counter-clockwise at the back end of the magnet.\
 #figure(
   image("../figures/simulation/eddy_currents_long.png", width: 100%),
   caption: [Depiction of the eddy currents in the Yamamura model at speed of $qti("100", "m/s")$. The rail is moving from left to right. Top view.]
 )<eddy_currents_long>
+The braking force over time is depicted in @yam_long_force_x. Since we deal here with a transient simulation, the force is not constant but changes over time to find its equilibrium. We can see that after around $qty("50", "us")$ (50 time steps) the force is stable, which confirms that we reached our equilibrium with the 90 time steps. The breaking force is around $qty("400", "mN")$ and has negative values because it points against the direction of motion.\
 #figure(
   image("../figures/simulation/yam_long_force_x.svg", width: 100%),
   caption: [Breaking force of the Yamamura model at speed of $qti("100", "m/s")$ over time to observe the steady state.]
 )<yam_long_force_x>
+We can put in the geometry parameters of the simulation to the Yamamura model which yields a breaking force of around $qty("3.83", "N")$ which is one magnitude larger than the one obtained in the simulation.\
+In @B_profile_yam_long we can see the magnetic field profile in the airgap at zero speed and at $qti("100", "m/s")$. We can see that at the front end of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the back end of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the front region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the back region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.
 #figure(
-  image("../figures/simulation/B_profile_yam_long.svg", width: 100%),
+  image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%),
   caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
 )<B_profile_yam_long>
+We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The
+
+#figure(
+  grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
+  [#image("../figures/simulation/B_profile_yam_mx_v100_small.svg", width: 100%)],
+  [#image("../figures/simulation/Yam_analytical_y10_small.svg", width: 100%)],
+  [(a)],[(b)],
+  ),
+  caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$.]
+)<B_profile_yam_mx_analy_comparison>
+#pagebreak()
+== Simualtion with Ansys Mechanical
+The simulation with the Ansys Maxwell software is very inefficient for several reasons. The main reason is that with Ansys Maxwell we can only conduct a transient setup for our problem, even if we are interested only in a steady state solution. This requires on one hand a more complex solution, but also a larger geometry for the rail. Since the fine mesh must be distributed over the whole rail volume by Ansys Maxwell restrictions, this leads to a very inefficient use of fine mesh as described in @section:Motion. Ansys Maxwell is also not optimzed for parallel computing, so all of the calculatins run on one thread. This leads to very long computation time, namely around three weeks for a model with geometries as described in @table:yam_v100_mx. Therefore a diffrent approach is tested with Ansys Maxwell software and an unconvential solver type for this problem, namely a steady-state thermal solver.
+
+=== Description of the setup
+The whole setup is embedded in the Ansys Workbench software, where the geometry is created in Ansys Discovery and then imported to Ansys Mechanical.
+==== Geometry
+#let geo_code = read("../code/yamamura_geo.py")
+The setup is built with Ansys Discovery Software via PyAnsys Geometry. There are five bodies created in the model, the rail, the yoke, the coil, the (fine meshed) airgap and a region box surrounding the whole model.
+The airgap body is actually not the whole airgap between rail and yoke but only a small stripe in it, along which we want to observe the magnetic field with high resolution.
+Here one has to be aware to not overlap the different bodies, this is done e.g. by cutting out the bodies from the region.
+#code(geo_code, lines:(182,182), line-numbers:false)
+\
+For a succesfull meshing, all bodies must be combined using a shared topology.
+#code(geo_code, lines:(198,198), line-numbers:false)
+
+==== Material Data
+The model consists of three different materials taken from the General_Materials library of Ansys: Air, Copper Alloy and Gray Cast Iron. The material properties are given in the following @table:materials.
+
+#figure(
+table(
+  columns: (auto, auto, auto),
+  align: horizon,
+
+  table.header([*Material*], [*Isotropic Resistivity ($unit("O m")$)*], [*Isotropic Relative Permeability*]),
+  [Air], [-], [1],
+  [Copper Alloy], [$num("1.694e-8") $], [1],
+  [Gray Cast Iron], [$num("9.6e-8")$], [10000]
+),
+caption:[Material properties of the different materials used in the Ansys Mechanical simulation. The values for the isotropic relative permeability are dimensionless.]
+)<table:materials>
+Since we are using a Steady-State Thermal solver, we need to assign an arbitrary value for _Isotropic Thermal Conductivity_ to each material. This value is absolutly irrelevant for the solution, but is need for the Ansys solver to start the Simulation.
+==== Meshing
+All components except the region box get a finer mesh. The coil and the yoke body are assigned with a _Body Mesh Sizing_ of $qty("1.5", "mm")$. Additionaly the yoke is assigned with a _Patch Conforming Method_ that demands a mesh of _Tetrahedrons_ instead of _Hexahedrons_ which is the default for the other bodies.
+The airgap body is assigned with a _Body Mesh Sizing_ of $qty("0.1", "mm")$ to ensure a high resolution of the magnetic field in this region.
+For the rail we apply three mesh sizing methods along the edges: Along the x-edge we assing a _Edge Mesh Sizing_ of $qty("0.4", "mm")$, along the y-edge we assign a _Edge Mesh Sizing_ of $qty("0.5", "mm")$ and along the z-edge we assign a _Edge Mesh Sizing_ of $qty("0.1", "mm")$, the latter both with a bias that makes the mesh finer on the surfaces and coarser in the middle of the rail.
+
+==== Additional preparations
+To apply a current on the coil, we need to define a _Element Orientation_ with the y-coordinate along the current direction.\
+It is often convienient and for the _APDL_ script necessary to define a _Named Selection_ for bodies, surfaces and edges where we want to assign on a velocity, a current, a mesh or an _Element Orientation_.\
+
+==== _APDL_ script
+#let apdl_code = read("../code/apdl.script.txt")
+In the Ansys Mechanical software, we can write an _APDL_ script to define the physics of the problem. Since we have a steady-state thermal solver (because there is not an equivilant solver for electromagnetic problems) we need now to convert thermal elements to electromagnetic elements. Using arguments we can also easily apply a velocity to the rail and a current to the coil. The script is shown in the following:
+#code(apdl_code, lang: "apdl", lines:(13,66), line-numbers:false)
+
+=== Evaluation of the results
+For retrieving the magnetic field in the airgap we define a surface parallel to the rail in the airgap. On this surface we can then export the magnetic field values and evaluate them.
+Since the surface includes all values of the plane through the whole region, we need to cut at first at x and y coordinates to get the values inside the airgap.
+We can illustrate the result in a 2D color plot which is depicted for
+
+#figure(
+  image("../figures/simulation/ColorMapB_2Dprofile_yam_mc_v0.png", width: 100%),
+  caption: [Magnetic field 2D airgap profile of the Yamamura model at zero speed.]
+)<B_2Dprofile_yam_mc_y10>
+
+#figure(
+  image("../figures/simulation/ColorMapdeltaB_2Dprofile_yam_mc_v100.png", width: 100%),
+  caption: [Induced magnetic field 2D airgap profile of the Yamamura model at speed of $qti("100","m/s")$.]
+)<B_2Dprofile_yam_mc_y10>
+
+=== Comparision to Ansys Maxwell
+To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the airgap to the one obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the front end the induced field points against the applied field which leads to a reduction
+#figure(
+  grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
+  [#image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%)],
+  [#image("../figures/simulation/B_profile_yam_mc_v100.svg", width: 100%)],
+  [(a)],[(b)],
+  ),
+  caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$.]
+)<B_profile_yam_y10_comparison>
+
 
 #pagebreak()
 == TUM Hyperloop Model

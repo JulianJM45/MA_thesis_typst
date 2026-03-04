@@ -1,6 +1,6 @@
 // Enter your thesis data here:
-#let titleEnglish = "(Title English)"
-#let titleGerman = "(Title German)"
+#let titleEnglish = "Velocity Dependence of Eddy Currents in Electromagnetic Levitation Systems"
+#let titleGerman = "Geschwindigkeitsabhängige Wirbelströme in elektromagnetischen Schwebesystemen"
 #let degree = "Master"
 #let program = "Applied and Engineering Physics"
 #let supervisor = "PD Dr. Matthias Althammer"

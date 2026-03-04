@@ -1,0 +1,66 @@
+!   Commands inserted into this file will be executed just prior to the ANSYS SOLVE command.
+!   These commands may supersede command settings set by Workbench.
+
+!   Active UNIT system in Workbench when this object was created:  Metric (m, kg, N, s, V, A)
+!   NOTE:  Any data that requires units (such as mass) is assumed to be in the consistent solver unit system.
+!                See Solving Units in the help system for more information.
+
+
+! components needed:
+! Az0_face
+! rail_body
+
+/prep7
+esel,s,ename,,291    ! change all thermal elements to EM
+*get,enum,elem,,count
+*dowhile,enum
+  *get,etyp,elem,elnext(0),attr,type
+  et,etyp,237
+  esel,u,type,,etyp
+  *get,enum,elem,,count
+*enddo
+
+esel,s,ename,,279    ! change all thermal elements to EM
+*get,enum,elem,,count
+*dowhile,enum
+  *get,etyp,elem,elnext(0),attr,type
+  et,etyp,236
+  esel,u,type,,etyp
+  *get,enum,elem,,count
+*enddo
+
+cmsel,s,rail_body
+*get,enum,elem,,count
+*dowhile,enum
+  *get,etyp,elem,elnext(0),attr,type
+  keyo,etyp,1,1
+!  keyo,etyp,2,2
+  esel,u,type,,etyp
+  *get,enum,elem,,count
+*enddo
+
+cmsel,s,Az0_face
+d,all,az
+
+cmsel,s,rail_body
+nsle
+bf,all,velo,arg1,
+d,ndnext(0),volt
+
+alls
+bfe,coil_body,js,,,arg2
+
+etlis
+
+fini
+
+/ass,rst,file,rth
+!/ass,rmg,file,rth
+
+/solu
+! anty....
+outres,all,all
+cnvt,amps,,,,1
+cnvt,csg,1e-3,,,
+pivc,off
+save,save,db
