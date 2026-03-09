@@ -208,7 +208,7 @@ This is a Poisson equation for the magnetic vector potential $vb(A)$, which can 
 $ vb(A) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' $
 where $vb(r)'$ is the position vector of the source point. \
 Now the magnetic vector potential $vb(A)$ can be used to calculate the magnetic field $vb(B)$ using the definition $vb(B) = curl vb(A)$. This gives:
-$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' $
+$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' $<biot-savart-curl>
 here it must be noted that the differentiation is in respect to the coordinates of the observation point $vb(r)$ whereas the integration is in respect to the coordinates of the source point $vb(r)'$.
 It can be simplified width the identity
 $\| vb(r) - vb(r)' \| = sqrt(\( vb(r) - vb(r)' \)^2) = sqrt(\( x - x' \)^2 + \( y - y' \)^2 + \( z - z' \)^2)$
