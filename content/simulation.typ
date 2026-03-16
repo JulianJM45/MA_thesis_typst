@@ -7,9 +7,19 @@
 #let qti(value, unit) = qty(value, unit, per:"/")
 
 = Simulation
-The Simulation for this thesis is conducted using Ansys Maxwell 2025 R2 (Ansys Inc., USA) software.
+The Simulation for this thesis is conducted using two different softwares: Ansys Maxwell 2025 R2 (Ansys Inc., USA) and Ansys Mecha 2025 R2 (Ansys Inc., USA).
 
-== Meshing
+== Ansys Maxwell
+Since Ansys Maxwell is designed for electromagnetic simulations, it is the most intuitive choice for our problem. In the following sections we will discuss the different steps to prepare the simulation and the different options available in Ansys Maxwell for each step.
+
+=== Solver Type
+There are several solver types available in Maxwell like _Magnetostatic_, _Electrostatic_, _Eddy Current_ and so on. The only relevant in our use case is the _Transient_ one, since it includes movement. \
+For a transient solution Maxwell offers two formulation, the $vb(T)-Omega$ formulation and the $vb(A)-Phi$ formulation. But here is only with the $vb(T)-Omega$ formulation motion allowed by Maxwell's software. Therefore the $vb(A)-Phi$ formulation solver of Maxwell is not relevant for this study.\
+The $vb(T)-Omega$ formulation is also the default option for the _Transient_ solver, where the order of the magnetic scalar potential $Omega$ is 2 and the order of the electric vector potential $vb(T)$ is 1 @ansys_3D_transient_solver.
+Maxwell uses for motion problems a fixed coordinate system for the Maxwell's equations in the moving part aswell as in the stationary part of the model. That means that the motion term is completly eliminated so there is no $vb(v) times vb(B)$ term for the electric current. Instead in the stationary frame the magnetic field is changing, where now the third Maxwell equation @maxwell_E2 can be applied. A combination of third and forth Maxwell equation @maxwell_H2 aswell of Ohm's law @ohms_law results in following differential equation:
+$ curl 1/sigma curl vb(H) + pdv(vb(B),t) = 0 $
+Togheter with Maxwell's second equation @maxwell_B1 this set of two equations yields the physical description of the problem.
+=== Meshing
 There are different types of meshing in Ansys to apply to a solid. At first, it makes automatically an initial mesh, which is then refined by the user in certain regions. \
 For the initial mesh the methods are @ansys_maxwell_initialmeshsettings:
 - Auto (default): automatically selects the mesher, mostly TAU
@@ -26,7 +36,7 @@ Maxwell does also automatically adapt the vicinity of fine meshed areas.
 
 
 
-== Motion
+=== Motion
 <section:Motion>
 Maxwell 3D's _Transient_ solution type offers the option to add motion to an object. This is done by defining a motion band, which is box wrapped around the object that should move. It is important to note that there is only one object allowed inside the motion band. If your object consists of several parts, e.g. a yoke and coil which should move togheter, you must wrap them inside a inner band which is then moving inside the motion band.\
 Unfortunately, there is a catch with the mesh of the moving band: in contrast to other objects, which can have different mesh densitys (e.g. only dense mesh at one surface), Ansys applys always the highest density of the motion band to the whole band as a length-based mesh inside an object. I.e. when we have only a small region of interest, like the airgap between magnet and rail, where we need a high density mesh, this high density mesh is not only applied the the region of the moving band which is in the airgap but to the whole moving band. That increases computational costs dramatically.\
@@ -34,13 +44,6 @@ There a basicly two options to conduct the motion, either to move the magnet (yo
 Another option is to build Yamamura's alternavtive model @fig:yamamura_simplified. This allows even a smaller moving band volume since the rail is condsiderably smaller in y-direction.
 
 
-== Solver Type
-There are several solver types available in Maxwell like _Magnetostatic_, _Electrostatic_, _Eddy Current_ and so on. The only relevant in our use case is the _Transient_ one, since it includes movement. \
-For a transient solution Maxwell offers two formulation, the $vb(T)-Omega$ formulation and the $vb(A)-Phi$ formulation. But here is only with the $vb(T)-Omega$ formulation motion allowed by Maxwell's software. Therefore the $vb(A)-Phi$ formulation solver of Maxwell is not relevant for this study.\
-The $vb(T)-Omega$ formulation is also the default option for the _Transient_ solver, where the order of the magnetic scalar potential $Omega$ is 2 and the order of the electric vector potential $vb(T)$ is 1 @ansys_3D_transient_solver.
-Maxwell uses for motion problems a fixed coordinate system for the Maxwell's equations in the moving part aswell as in the stationary part of the model. That means that the motion term is completly eliminated so there is no $vb(v) times vb(B)$ term for the electric current. Instead in the stationary frame the magnetic field is changing, where now the third Maxwell equation @maxwell_E2 can be applied. A combination of third and forth Maxwell equation @maxwell_H2 aswell of Ohm's law @ohms_law results in following differential equation:
-$ curl 1/sigma curl vb(H) + pdv(vb(B),t) = 0 $
-Togheter with Maxwell's second equation @maxwell_B1 this set of two equations yields the physical description of the problem.
 
 /*
 === $vb(A)-Phi$ Formulation in Maxwell 3D (Transient)
@@ -103,7 +106,7 @@ Following comparison table is taken from the Ansys Maxwell documentation @ansys_
   caption: [Comparison of T-Omega and A-Phi formulations]
 )
 */
-== Yamamura Model
+=== Yamamura Model on Ansys Maxwell
 As discussed in @section:Motion the computational cost for the Yamamura model is significantly lower than that of the  conventional model, since the rail and thus the moving band can have condsiderably smaller volumes. This is why the model is recreated in Ansys Maxwell as shown in @yamamura_recreated.
 #figure(
   image("../figures/simulation/yamamura_y10.png", width: 100%),
@@ -217,7 +220,7 @@ It is often convienient and for the _APDL_ script necessary to define a _Named S
 In the Ansys Mechanical software, we can write an _APDL_ script to define the physics of the problem. Since we have a steady-state thermal solver (because there is not an equivilant solver for electromagnetic problems) we need now to convert thermal elements to electromagnetic elements. Using arguments we can also easily apply a velocity to the rail and a current to the coil. The script is shown in the following:
 #code(apdl_code, lang: "apdl", lines:(13,66), line-numbers:false)
 
-=== Evaluation of the results
+=== Yamamura Model on Ansys Mechanical
 In a first step we can look at the eddy currents in the rail. In @ec_yam_mc_y10 we can see that they are basicaly only at the nose and tail of the magnet. In our frame the electrons move at positive x direction and the mangetic field points inside the plane, so they get diverted inside the magnet area to negative y direction (positive current density $vb(J)$ points in the opposite direction, i.e. in positive y direction). We notice that the currents are not perfectly symmetric but highest at the rail edges and quenched in x-direction.
 #figure(
   image("../figures/simulation/yam_ec.png", width: 100%),
@@ -275,8 +278,9 @@ caption: [LND and HTP for several velocities in the Yamamura model with a rail w
   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$.]
 )<Forces_yam_x135y10>
 
-=== Comparision to Ansys Maxwell
-To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the airgap to the one obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field. The values of the magnetic field are also quite similar, with a LND of 4.68% in Ansys Mechanical and 6.50% in Ansys Maxwell and a HTP of 2.99% in Ansys Mechanical and 5.41% in Ansys Maxwell at a speed of $qti("100", "m/s")$. The differences can be explained by the different meshing and solver types used in both simulations.
+== Comparision Ansys Maxwell and Ansys Mechanical
+To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the airgap to the one obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field.
+
 #figure(
   grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
   [#image("../figures/simulation/B_profile_yam_mx_small.svg", width: 100%)],
@@ -285,6 +289,58 @@ To verify the results of the Ansys Mechanical simulation, we can compare the mag
   ),
   caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
 )<B_profile_yam_y10_comparison>
+
+To get a better insight into the differences between the two simulations, we can also compare the change of the magnetic field which is shown in @deltaB_profile_yam_y10_comparison.
+
+#figure(
+  grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
+  [#image("../figures/simulation/deltaB_profile_yam_mx_small.svg", width: 100%)],
+  [#image("../figures/simulation/deltaB_profile_yam_mc_small.svg", width: 100%)],
+  [(a)],[(b)],
+  ),
+  caption: [Comparision between the change of magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
+)<deltaB_profile_yam_y10_comparison>
+
+The values of the change in the magnetic field are in the same order of magnitude, with a LND of 4.68% in Ansys Mechanical and 6.50% in Ansys Maxwell and a HTP of 2.99% in Ansys Mechanical and 5.41% in Ansys Maxwell at a speed of $qti("100", "m/s")$. The differences can be explained by the different meshing and solver types used in both simulations.\
+We can also compare the resulting braking force. For the Maxwell simulation we can see that the transient plot in @yam_long_force_x converges to a braking force of around $qty("400", "mN")$ at $qti("100", "m/s")$, whereas the Ansys Mechanical simulation yields a braking force of around $qty("340", "mN")$ at the same speed (@Forces_yam_x135y10).\
+In @DeltaB_2Dprofile_yam_mc_y10 we can see, that the resolution of the Mechanical simulation is much higher than the one of the Maxwell simulation, which can be explined by the higher mesh density at crucial areas. Therefore the Mechanical simulation is more trustworthy and will be used for the following simulations.
+
+
+
+
+
+
+
+#pagebreak()
+== Yamamura Model
+
+=== Velocity dependency
+// #figure(
+//   image("../figures/simulation/F_yam_x140y15.svg", width: 100%),
+//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("140", "mm")$, yoke width: $qti("15", "mm")$.]
+// )<F_yam_x140y15>
+
+
+// #figure(
+//   image("../figures/simulation/F_yam_x140y20.svg", width: 100%),
+//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("140", "mm")$, yoke width: $qti("20", "mm")$.]
+// )<F_yam_x140y20>
+
+=== Rail width dependency
+#figure(
+  image("../figures/simulation/F_yam_ysweep.svg", width: 100%),
+  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Rail length: $qti("140", "mm")$.]
+)<F_yam_ysweep>
+
+
+#figure(
+  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
+  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Rail length: $qti("140", "mm")$.]
+)
+
+=== Rail lenght dependency ?
+
+
 
 
 #pagebreak()
