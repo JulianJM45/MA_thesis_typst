@@ -144,28 +144,27 @@ There are several steps to prepare the simulation:
 In a first simulation, we create the geometry in the dimensions described above and assign a velocity to the rail of $qti("100000", "mm/s")$ which is $qti("100", "m/s")$.
 Since the mesh density is about $qti("1", "mm")$ and the velocity is $qti("100", "m/s")$, a time step of $qti("1e-5", "s")$ is choosen.
 Former tests have shown that after around 20-30 time steps a steady state is reached so that the eddy currents are stable. To get more confident about this we chose in this run 90 time steps.\
-In @eddy_currents_long we can see the eddy currents in the rail. They are basicaly only at the nose and tail of the magnet. In our frame the electrons move at positive x direction and the mangetic field points inside the plane, so they get diverted inside the magnet area to negative y direction. Outside the magnet area the electrons move back to the positive y edge of the rail due to the electric fields created by the charge displacement. This leads to a closed current loop which is here clockwise at the nose and counter-clockwise at the tail of the magnet.\
 #figure(
   image("../figures/simulation/eddy_currents_long.png", width: 100%),
   caption: [Depiction of the eddy currents in the Yamamura model at speed of $qti("100", "m/s")$. The rail is moving from left to right. Top view.]
 )<eddy_currents_long>
-The braking force over time is depicted in @yam_long_force_x. Since we deal here with a transient simulation, the force is not constant but changes over time to find its equilibrium. We can see that after around $qty("50", "us")$ (50 time steps) the force is stable, which confirms that we reached our equilibrium with the 90 time steps. The breaking force is around $qty("400", "mN")$ and has negative values because it points against the direction of motion.\
+In @eddy_currents_long we can see the eddy currents in the rail. They are basicaly only at the nose and tail of the magnet. In our frame the electrons move at positive x direction and the mangetic field points inside the plane, so they get diverted inside the magnet area to negative y direction. Outside the magnet area the electrons move back to the positive y edge of the rail due to the electric fields created by the charge displacement. This leads to a closed current loop which is here clockwise at the nose and counter-clockwise at the tail of the magnet.\
 #figure(
   image("../figures/simulation/yam_long_force_x.svg", width: 100%),
   caption: [Breaking force of the Yamamura model at speed of $qti("100", "m/s")$ over time to observe the steady state.]
 )<yam_long_force_x>
+The braking force over time is depicted in @yam_long_force_x. Since we deal here with a transient simulation, the force is not constant but changes over time to find its equilibrium. We can see that after around $qty("500", "us")$ (50 time steps) the force is stable, which confirms that we reached our equilibrium with the 90 time steps. The breaking force is around $qty("400", "mN")$ and has negative values because it points against the direction of motion.\
 We can put in the geometry parameters of the simulation to the Yamamura model which yields a breaking force of around $qty("3.83", "N")$ which is one magnitude larger than the one obtained in the simulation.\
-In @B_profile_yam_long we can see the magnetic field profile in the airgap at zero speed and at $qti("100", "m/s")$. We can see that at the nose of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the nose region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the nose region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.
 #figure(
   image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%),
   caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
 )<B_profile_yam_long>
+In @B_profile_yam_long we can see the magnetic field profile in the airgap at zero speed and at $qti("100", "m/s")$. We can see that at the nose of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the nose region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the tail region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.\
+To get a better insight into the change of the magnetic field, we can plot the difference between the magnetic field at $qti("100", "m/s")$ and the magnetic field at zero speed, which is shown in @deltaB_profile_yam_mx_y10.
 #figure(
   image("../figures/simulation/deltaB_profile_yam_mx.svg", width: 100%),
   caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$.]
-)
-We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The
-
+)<deltaB_profile_yam_mx_y10>
 #figure(
   grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
   [#image("../figures/simulation/B_profile_yam_mx_v100_small.svg", width: 100%)],
@@ -174,6 +173,9 @@ We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one
   ),
   caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$.]
 )<B_profile_yam_mx_analy_comparison>
+We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The profiles show a different form, whereas the simulation has a drop of magnetic field at the nose and a peak at the tail, the Yamamura model shows a complete shift of the magnetic field profile in x-direction towards the tail.
+
+
 #pagebreak()
 == Simualtion with Ansys Mechanical
 The simulation with the Ansys Maxwell software is very inefficient for several reasons. The main reason is that with Ansys Maxwell we can only conduct a transient setup for our problem, even if we are interested only in a steady state solution. This requires on one hand a more complex solution, but also a larger geometry for the rail. Since the fine mesh must be distributed over the whole rail volume by Ansys Maxwell restrictions, this leads to a very inefficient use of fine mesh as described in @section:Motion. Ansys Maxwell is also not optimzed for parallel computing, so all of the calculatins run on one thread. This leads to very long computation time, namely around three weeks for a model with geometries as described in @table:yam_v100_mx. Therefore a diffrent approach is tested with Ansys Maxwell software and an unconvential solver type for this problem, namely a steady-state thermal solver.
@@ -237,46 +239,26 @@ We can illustrate the result in a 2D color plot which is depicted for zero speed
   caption: [Magnetic field 2D airgap profile of the Yamamura model at zero speed.]
 )<B_2Dprofile_yam_mc_y10>
 
-For higher velocities we choose not to plot the absolute value of the magnetic field but the change of the magnetic field compared to the zero speed case, which corresponds to the induced part of the magnetic field. In @DeltaB_2Dprofile_yam_mc_y10 we can see that at the nose we have a large reduction of the magnetic field of around $qty("30", "mT")$ and at the tail we have an increase of around $qty("20", "mT")$.
-The value of the induced field also depends on the y coordinate, here we observe that they are highest at the middle of the rail and vanish towards the edges. This agrees with our previous considerations in @chapter:general_considerations.
-
 #figure(
   image("../figures/simulation/ColorMapdeltaB_2Dprofile_yam_mc_v100.png", width: 100%),
   caption: [Induced magnetic field 2D airgap profile of the Yamamura model at speed of $qti("100","m/s")$.]
 )<DeltaB_2Dprofile_yam_mc_y10>
 
-To get more insight into the magnitude of the induced currents and their spacial distribution along the x-axis, we can plot the magnetic field along the x-axis in the airgap at different velocities. The profile is calculated for several velocities, and then depicted in @B_profile_yam_mc_y10.
-We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a  lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the B-profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). The velocity dependence is shown in @table:LND_HTP_yam_mc_y10, where we can see that the LND and HTP increase with increasing velocity.
-#figure(
-table(
-  columns: (auto, auto, auto),
-  align: horizon,
-  table.header([*Velocity in $m/s$*], [*LND in mT (%)*], [*HTP in mT (%)*]),
-  [30], [15.37 (2.49%)], [8.55 (1.39%)],
-  [60], [21.94 (3.56%)], [13.02 (2.11%)],
-  [100], [28.89 (4.68%)], [18.42 (2.99%)],
-  [200], [43.60 (7.07%)], [31.45 (5.10%)],
-  [300], [57.09 (9.25%)], [44.46 (7.21%)]
-),
-caption: [LND and HTP for several velocities in the Yamamura model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("617", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the airgap at different velocities.]
-)<table:LND_HTP_yam_mc_y10>
+For higher velocities we choose not to plot the absolute value of the magnetic field but the change of the magnetic field compared to the zero speed case, which corresponds to the induced part of the magnetic field. In @DeltaB_2Dprofile_yam_mc_y10 we can see that at the nose we have a large reduction of the magnetic field of around $qty("30", "mT")$ and at the tail we have an increase of around $qty("20", "mT")$.
+The value of the induced field also depends on the y coordinate, here we observe that they are highest at the middle of the rail and vanish towards the edges. This agrees with our previous considerations in @chapter:general_considerations.
 
-
-
+To get more insight into the magnitude of the induced currents and their spacial distribution along the x-axis, we can plot the magnetic field along the x-axis in the airgap. A simulation with the same geometries and velocities as in @B_profile_yam_long is depicted in @B_profile_yam_mc_y10.
 #figure(
   image("../figures/simulation/B_profile_yam_mc.svg", width: 100%),
-  caption: [Magnetic field profile of the Yamamura model along the x-axis in the airgap at several velocities. Simulated with Ansys Mechanical. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
+  caption: [Magnetic field profile of the Yamamura model along the x-axis in the airgap at velocity $v=qti("100", "m/s")$. Simulated with Ansys Mechanical. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
 )<B_profile_yam_mc_y10>
+We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a  lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the B-profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). To visualize the change of the magnetic field more clearly, we can plot the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc.
 
 #figure(
   image("../figures/simulation/deltaB_profile_yam_mc.svg", width: 100%),
-  caption: [Magnetic field profile of the Yamamura model along the x-axis in the airgap at several velocities. Simulated with Ansys Mechanical. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$ ]
-)<deltaB_2Dprofile_yam_mc_v100>
+  caption: [Change of magnetic field profile of the Yamamura model along the x-axis in the airgap at $v=qti("100", "m/s")$. Simulated with Ansys Mechanical. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$ ]
+)<deltaB_profile_yam_mc>
 
-#figure(
-  image("../figures/simulation/Forces_yam_x135y10.svg", width: 100%),
-  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$.]
-)<Forces_yam_x135y10>
 
 == Comparision Ansys Maxwell and Ansys Mechanical
 To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the airgap to the one obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field.
@@ -287,7 +269,7 @@ To verify the results of the Ansys Mechanical simulation, we can compare the mag
   [#image("../figures/simulation/B_profile_yam_mc_small.svg", width: 100%)],
   [(a)],[(b)],
   ),
-  caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
+  caption: [Comparision between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
 )<B_profile_yam_y10_comparison>
 
 To get a better insight into the differences between the two simulations, we can also compare the change of the magnetic field which is shown in @deltaB_profile_yam_y10_comparison.
@@ -298,7 +280,7 @@ To get a better insight into the differences between the two simulations, we can
   [#image("../figures/simulation/deltaB_profile_yam_mc_small.svg", width: 100%)],
   [(a)],[(b)],
   ),
-  caption: [Comparision between the change of magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Rail length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
+  caption: [Comparision between the change of magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
 )<deltaB_profile_yam_y10_comparison>
 
 The values of the change in the magnetic field are in the same order of magnitude, with a LND of 4.68% in Ansys Mechanical and 6.50% in Ansys Maxwell and a HTP of 2.99% in Ansys Mechanical and 5.41% in Ansys Maxwell at a speed of $qti("100", "m/s")$. The differences can be explained by the different meshing and solver types used in both simulations.\
@@ -313,29 +295,66 @@ In @DeltaB_2Dprofile_yam_mc_y10 we can see, that the resolution of the Mechanica
 
 #pagebreak()
 == Yamamura Model
+As the simulation with Ansys Mechanical turned out to be way more efficient than the one with Ansys Maxwell, we will now use it to investigate different parameters of the Yamamura model. At first we will look at the velocity dependency of the model, then we will investigate the influence of the rail/yoke width and finally we will look at the influence of the yoke length.
+Unless stated otherwise, following parameters will be used:
+- velocity: $qti("100", "m/s")$
+- yoke/rail width: $qti("10", "mm")$
+- yoke length: $qti("140", "mm")$
 
 === Velocity dependency
+For the velocity dependency we run the simulation for several velocities from $qti("0", "m/s")$ to $qti("300", "m/s")$. The resulting induced field profiles along the x-axis in the airgap are shown in @deltaB_profile_yam_mc_vsweep for representative velocities.
+#figure(
+  image("../figures/simulation/deltaB_profile_yam_mc_vsweep.svg", width: 100%),
+  caption:[Change in magnetic field profile of the Yamamura model along the x-axis in the airgap at different velocities. Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)<deltaB_profile_yam_mc_vsweep>
+We see that with increasing velocity the induced field becomes stronger, which is expected since the eddy currents are stronger at higher velocities. The amplitudes of the nose dip aswell as of the tail peak increase with increasing velocity. We observe along the length of the magnet a rest induced field which vanishes slowly towards the end of the magnet, which also grows with increasing velocity. The values of the LND and HTP for all velocities are given in @table:LND_HTP_yam_mc_y10.
+
+#figure(
+table(
+  columns: (auto, auto, auto),
+  align: horizon,
+  table.header([*Velocity in $m/s$*], [*LND in mT (%)*], [*HTP in mT (%)*]),
+  [30], [15.37 (2.49%)], [8.55 (1.39%)],
+  [60], [21.94 (3.56%)], [13.02 (2.11%)],
+  [100], [28.89 (4.68%)], [18.42 (2.99%)],
+  [200], [43.60 (7.07%)], [31.45 (5.10%)],
+  [300], [57.09 (9.25%)], [44.46 (7.21%)]
+),
+caption: [LND and HTP for several velocities in the Yamamura model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("617", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the airgap at different velocities.]
+)<table:LND_HTP_yam_mc_y10>
+
+// #figure(
+//   image("../figures/simulation/B_profile_yam_mc_vsweep.svg", width: 100%),
+//   caption:[]
+// )<B_profile_yam_mc_vsweep>
+
+#figure(
+  image("../figures/simulation/F_yam_vsweep.svg", width: 100%),
+  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)<Forces_yam_x135y10>
 // #figure(
 //   image("../figures/simulation/F_yam_x140y15.svg", width: 100%),
-//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("140", "mm")$, yoke width: $qti("15", "mm")$.]
+//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("15", "mm")$.]
 // )<F_yam_x140y15>
 
 
 // #figure(
 //   image("../figures/simulation/F_yam_x140y20.svg", width: 100%),
-//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Rail length: $qti("140", "mm")$, yoke width: $qti("20", "mm")$.]
+//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("20", "mm")$.]
 // )<F_yam_x140y20>
 
+#pagebreak()
 === Rail width dependency
+hi
 #figure(
   image("../figures/simulation/F_yam_ysweep.svg", width: 100%),
-  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Rail length: $qti("140", "mm")$.]
+  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
 )<F_yam_ysweep>
 
 
 #figure(
   image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
-  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Rail length: $qti("140", "mm")$.]
+  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
 )
 
 === Rail lenght dependency ?
