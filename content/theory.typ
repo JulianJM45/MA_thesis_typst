@@ -293,8 +293,8 @@ applied field, the magnetic field gets suppressed when penetrating the
 conductor. This effect is more pronounced at higher frequencies as
 induced eddy currents increase with frequency. So the skin depth $delta$
 decreases with increasing frequency $omega$:
-$ delta = sqrt(frac(2, omega mu sigma)) $ where $mu$ is the magnetic
-permeability and $sigma$ is the electrical conductivity of the
+$ delta = sqrt(frac(2, omega mu sigma)) $<skin_depth>
+where $mu$ is the magnetic permeability and $sigma$ is the electrical conductivity of the
 conductor.
 
 

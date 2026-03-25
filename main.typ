@@ -17,7 +17,7 @@
   // abstract_en: include "/content/abstract_en.typ",
   // abstract_de: include "/content/abstract_de.typ",
   // acknowledgement: include "/content/acknowledgement.typ",
-  // transparency_ai_tools: include "/content/transparency_ai_tools.typ",
+  transparency_ai_tools: include "/content/transparency_ai_tools.typ",
 )
 
 #include "/content/introduction.typ"
@@ -31,10 +31,3 @@
 // #include "/content/system_design.typ"
 // #include "/content/evaluation.typ"
 // #include "/content/summary.typ"
-
-
-
-// bibliography is now on the wrong place (but here necessary for zed lsp)
-// comment it here and uncomment it in thesis_template later !
-// #pagebreak()
-// #bibliography("/thesis.yml")
