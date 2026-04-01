@@ -83,17 +83,19 @@
   // --- Headings ---
   show heading: set block(below: 0.85em, above: 1.75em)
   show heading: set text(font: fonts.body)
-  set heading(numbering: "1.1")
+  set heading(numbering: "1.1", supplement: [section])
   // Reference first-level headings as "chapters"
   show ref: it => {
     let el = it.element
     if el != none and el.func() == heading and el.level == 1 {
+      let num = counter(heading).at(el.location())
       link(
         el.location(),
-        [Chapter #numbering(
-          el.numbering,
-          ..counter(heading).at(el.location())
-        )]
+        // [chapter #numbering(
+        //   el.numbering,
+        //   ..counter(heading).at(el.location())
+        // )]
+        [chapter #numbering("1", ..num)]
       )
     } else {
       it

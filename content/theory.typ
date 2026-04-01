@@ -253,7 +253,7 @@ $ curl vb(E) = -pdv(vb(B), t) $
 == Eddy Currents
 <eddy-currents>
 Currents that are induced in extended conductors are called eddy currents. They are dependent on the time derivative of the magnetic field $dv(vb(B), t)$ as well as the spatial electrical resistance $R \( x \, y \, z \)$ of the conductor @demtroeder2.\
-In this section, we start with the neglect of the displacement current; then we will discuss the different formulations of eddy current problems, which are based on the Maxwell equations and their potentials. We will also discuss the skin effect, which describes the self-shielding of a conductor from an alternating magnetic field.
+In this section, we start with the neglection of the displacement current; then we will discuss the different formulations of eddy current problems, which are based on the Maxwell equations and their potentials. We will also discuss the skin effect, which describes the self-shielding of a conductor from an alternating magnetic field.
 
 === Neglect of the displacement current
 <displacement-current>

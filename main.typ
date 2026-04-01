@@ -30,4 +30,4 @@
 // #include "/content/requirements.typ"
 // #include "/content/system_design.typ"
 // #include "/content/evaluation.typ"
-// #include "/content/summary.typ"
+#include "/content/summary.typ"

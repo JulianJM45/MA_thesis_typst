@@ -6,7 +6,7 @@
 
 #let qti(value, unit) = qty(value, unit, per:"/")
 
-= Simulation
+= Simulation<chapter:simulation>
 The Simulation for this thesis is conducted using two different softwares: Ansys Maxwell 2025 R2 (Ansys Inc., USA) and Ansys Mecha 2025 R2 (Ansys Inc., USA).
 
 == Ansys Maxwell
@@ -345,6 +345,10 @@ caption: [LND and HTP for several velocities in the Yamamura model with a rail w
 
 #pagebreak()
 === Rail width dependency
+#figure(
+  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
+  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
+)
 hi
 #figure(
   image("../figures/simulation/F_yam_ysweep.svg", width: 100%),
@@ -352,10 +356,6 @@ hi
 )<F_yam_ysweep>
 
 
-#figure(
-  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
-  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
-)
 
 === Rail lenght dependency ?
 

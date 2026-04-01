@@ -1,6 +1,6 @@
 #import "/utils/todo.typ": TODO
 
-= Summary
+= Summary<chapter:summary>
 #TODO[
   This chapter includes the status of your thesis, a conclusion and an outlook about future work.
 ]
