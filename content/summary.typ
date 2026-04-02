@@ -26,6 +26,11 @@
 ]
 
 == Future Work
+- simulation with laminated rails
+- simulation with u shaped rails
+- simulation with non-uniform b field in the direction of motion (less db/dx)
+- numeric implementation of the rail-frame model
+
 #TODO[
   Tell us the next steps (that you would do if you have more time). Be creative, visionary and open-minded here.
 ]
