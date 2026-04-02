@@ -37,4 +37,7 @@ What You Need to Do
 
 // In preparing this thesis, I utilized Grammarly for grammar and style correction across the Abstract, Introduction, and Conclusion sections, ensuring clarity and coherence in my writing. I used DeepL to enhance language quality and translate parts of the Literature Review. I used ChatGPT to generate initial drafts and expand on ideas in the Introduction and Discussion sections, providing valuable suggestions and examples. Additionally, I used GitHub Copilot to generate code snippets for the developed functionality and code snippets in the Methodology section. I have carefully checked all texts created with these tools to ensure that they are correct and make sense.
 
-I used GitHub Copilot (agent) to assist in drafting by completing sentences and to support the review process. All final content was checked and approved by me.
+I used GitHub Copilot (Claude Sonnet LLM model) to assist in drafting by completing sentences, translating, and to support the review process.
+
+
+All final content was checked and approved by me.

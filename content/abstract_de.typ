@@ -1,1 +1,6 @@
-Note: Insert the German translation of the English abstract here.
+In dieser Arbeit werden die induzierten Wirbelströme in der Schiene eines homogenen elektromagnetischen Schwebesystems (EMS) untersucht.
+Von besonderem Interesse ist hierbei das induzierte Magnetfeld, das durch die Wirbelströme erzeugt wird, genauer gesagt dessen Profil in Bewegungsrichtung in Abhängigkeit von der Geschwindigkeit des Fahrzeugs und der Geometrie der Schiene. Die daraus resultierenden Kräfte sind grundlegend für die Stabilität und Effizienz des Schwebesystems, insbesondere bei hohen Geschwindigkeiten, wie sie im Hyperloop angestrebt werden.
+
+Dazu werden, nachdem die theoretischen Grundlagen des Elektromagnetismus vorgestellt wurden, verschiedene analytische Modelle zur Beschreibung der Wirbelströme und ihrer Auswirkungen auf das Magnetfeld abgeleitet. Anschließend werden die Wirbelströme mit der Finite-Elemente-Methode (FEM) unter Verwendung zweier Simulationssoftware (Ansys Maxwell und Ansys Mechanical) für verschiedene Geometrien und Geschwindigkeiten simuliert und miteinander verglichen.
+
+Die gewonnenen Erkenntnisse tragen zum Verständnis der Wirbelstromphänomene in homogenen EMS-Systemen bei und liefern qualitative und quantitative Informationen über die Auswirkungen auf das Schwebeverhalten und die beeinträchtigte Effizienz durch Bremswirkungen. Daraus ergeben sich mögliche Ansätze zur Reduzierung der Wirbelströme, um die Leistung von EMS-basierten Transportsystemen zu verbessern.
