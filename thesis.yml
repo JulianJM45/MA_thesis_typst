@@ -6,6 +6,23 @@ mustermann2020design:
   publisher: Technical University of Munich
   date: 2020
 
+schmid2021:
+  type: article
+  title: "Static and Dynamic Modeling of the Electromagnets of the Maglev Vehicle Transrapid"
+  author:
+    - Schmid, Patrick
+    - Schneider, Georg
+    - Dignath, Florian
+    - Liang, Xin
+    - Eberhard, Peter
+  journal: IEEE Transactions on Magnetics
+  date: 2021
+  volume: 57
+  number: 2
+  pages: 1-15
+  genre: Master Thesis
+  doi: 10.1109/TMAG.2020.3039950
+
 radeck2020:
   type: thesis
   title: "Comparision of Technical Design Options for a Hyperloop System"

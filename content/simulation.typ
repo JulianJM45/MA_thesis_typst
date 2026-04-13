@@ -45,67 +45,6 @@ Another option is to build Yamamura's alternavtive model @fig:yamamura_simplifie
 
 
 
-/*
-=== $vb(A)-Phi$ Formulation in Maxwell 3D (Transient)
-For solid conductors Maxwell 3D uses potential as introduced in @A-phi_potential @ansys_A-phi:
-- $vb(B)=curl vb(A)$
-- $vb(E)=-grad phi - dv(vb(A),t)$
-Then the material equations,
-- $vb(B)=mu vb(H)$
-- $vb(D)=epsilon vb(E)$
-the continuity equation with $pdv(rho, t)=0$
-- $div vb(J) = 0$
-and Ohm's law with the fourth macroscopic Maxwell equation:
-- $vb(J)=sigma vb(E)+dv(vb(D),t)$
-- $curl vb(H)=vb(J)$.
-Notice that the term $dv(vb(D),t)$ actually belongs to the Maxwell equation and not to Ohm's law, but this won't change the equation system in this case.
-Inserting these equations into the fourth Maxwell equations evolves to:
-- $curl 1/mu vb(B)=sigma vb(E)+dv(vb(D),t)$
-- $curl 1/mu curl vb(A)=-sigma dv(vb(A),t) - sigma grad phi - dv(,t)(epsilon dv(vb(A),t))-dv(,t)(epsilon grad phi)$
-In the documentation of Maxwell 3D it is stated, that the radiation term $dv(,t)(epsilon dv(vb(A),t)$ is ignored, since it is negligible in low-frequency simulations. This does only partially correlate to the statement in @displacement-current, where we showed that the whole displacement current $pdv(vb(D),t)$ term can be neglected.
-Furthermore, a term for permanent magnets is added, with $vb(H)_c$ as the coercivity of the permanent magnet.\
-\
-In the same way the above equations are inserted into the second Maxwell equation. This leads two the following set of two equations which Maxwell 3D solves:
-$ div (-sigma dv(vb(A),t) -sigma grad phi - dv(,t)(epsilon grad phi))=0 $
-$ curl 1/mu curl vb(A)=-sigma dv(vb(A),t) - sigma grad phi -dv(,t)(epsilon grad phi) + curl vb(H)_c $
-
-=== Comparison of T-Omega and A-Phi Solver
-Following comparison table is taken from the Ansys Maxwell documentation @ansys_solver-comparison:
-
-
-#figure(
-  table(
-    columns: (1fr, 1fr),
-    align: (left, left),
-    stroke: 0.5pt,
-    inset: 8pt,
-
-    table.header(
-      [*T-Omega*],
-      [*A-Phi*],
-    ),
-
-    [Solves second-order elements for magnetic B field],
-    [Solves second-order F for electrical E field, and solves first-order A for magnetic B field. (In order to account the difference in the order of elements solved, increasing the mesh density in A-Phi should help achieve the same B field results as T-Omega.)],
-
-    [Computational efficient for electric machines applications],
-    [Computational efficient and flexible for ECAD PCB and electronics applications],
-
-    [Does not support multi-terminals with mixed excitation types on the same conduction path],
-    [Supports multi-terminals with mixed excitation types on the same conduction path],
-
-    [Ignores displacement current],
-    [Can consider capacitive effects (displacement current)],
-
-    [Supports all advanced material modeling],
-    [Limited advanced material modeling capabilities],
-
-    [Easy handling of motion due to only scalar potential for the motion coupling],
-    [Does not support motion],
-  ),
-  caption: [Comparison of T-Omega and A-Phi formulations]
-)
-*/
 === Yamamura Model on Ansys Maxwell
 As discussed in @section:Motion the computational cost for the Yamamura model is significantly lower than that of the  conventional model, since the rail and thus the moving band can have condsiderably smaller volumes. This is why the model is recreated in Ansys Maxwell as shown in @yamamura_recreated.
 #figure(
@@ -154,7 +93,10 @@ In @eddy_currents_long we can see the eddy currents in the rail. They are basica
   caption: [Breaking force of the Yamamura model at speed of $qti("100", "m/s")$ over time to observe the steady state.]
 )<yam_long_force_x>
 The braking force over time is depicted in @yam_long_force_x. Since we deal here with a transient simulation, the force is not constant but changes over time to find its equilibrium. We can see that after around $qty("500", "us")$ (50 time steps) the force is stable, which confirms that we reached our equilibrium with the 90 time steps. The breaking force is around $qty("400", "mN")$ and has negative values because it points against the direction of motion.\
-We can put in the geometry parameters of the simulation to the Yamamura model which yields a breaking force of around $qty("3.83", "N")$ which is one magnitude larger than the one obtained in the simulation.\
+We can put in the geometry parameters of the simulation to the Yamamura model which yields a breaking force of around $qty("3.83", "N")$ which is one magnitude larger than the one obtained in the simulation.
+
+Since in the Yamamura geometry the yoke surfaces embrace the rail on both sides, the magnetic forces on the rail (or the magnet) in z-direction, which correspond to the lift force, cancel each other out, so that it is pointless to look at the lift force in this model. To study the lift force, we will look at the conventional model in the following sections.
+
 #figure(
   image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%),
   caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
@@ -176,7 +118,7 @@ To get a better insight into the change of the magnetic field, we can plot the d
 We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The profiles show a different form, whereas the simulation has a drop of magnetic field at the nose and a peak at the tail, the Yamamura model shows a complete shift of the magnetic field profile in x-direction towards the tail.
 
 
-#pagebreak()
+
 == Simualtion with Ansys Mechanical
 The simulation with the Ansys Maxwell software is very inefficient for several reasons. The main reason is that with Ansys Maxwell we can only conduct a transient setup for our problem, even if we are interested only in a steady state solution. This requires on one hand a more complex solution, but also a larger geometry for the rail. Since the fine mesh must be distributed over the whole rail volume by Ansys Maxwell restrictions, this leads to a very inefficient use of fine mesh as described in @section:Motion. Ansys Maxwell is also not optimzed for parallel computing, so all of the calculatins run on one thread. This leads to very long computation time, namely around three weeks for a model with geometries as described in @table:yam_v100_mx. Therefore a diffrent approach is tested with Ansys Maxwell software and an unconvential solver type for this problem, namely a steady-state thermal solver.
 
@@ -252,7 +194,7 @@ To get more insight into the magnitude of the induced currents and their spacial
   image("../figures/simulation/B_profile_yam_mc.svg", width: 100%),
   caption: [Magnetic field profile of the Yamamura model along the x-axis in the airgap at velocity $v=qti("100", "m/s")$. Simulated with Ansys Mechanical. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$]
 )<B_profile_yam_mc_y10>
-We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a  lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the B-profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). To visualize the change of the magnetic field more clearly, we can plot the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc.
+We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the B-profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). To visualize the change of the magnetic field more clearly, we can plot the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc.
 
 #figure(
   image("../figures/simulation/deltaB_profile_yam_mc.svg", width: 100%),
@@ -285,15 +227,15 @@ To get a better insight into the differences between the two simulations, we can
 
 The values of the change in the magnetic field are in the same order of magnitude, with a LND of 4.68% in Ansys Mechanical and 6.50% in Ansys Maxwell and a HTP of 2.99% in Ansys Mechanical and 5.41% in Ansys Maxwell at a speed of $qti("100", "m/s")$. The differences can be explained by the different meshing and solver types used in both simulations.\
 We can also compare the resulting braking force. For the Maxwell simulation we can see that the transient plot in @yam_long_force_x converges to a braking force of around $qty("400", "mN")$ at $qti("100", "m/s")$, whereas the Ansys Mechanical simulation yields a braking force of around $qty("340", "mN")$ at the same speed (@Forces_yam_x135y10).\
+#figure(
+  image("../figures/simulation/F_yam_vsweep.svg", width: 100%),
+  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$.]
+)<Forces_yam_x135y10>
+
 In @DeltaB_2Dprofile_yam_mc_y10 we can see, that the resolution of the Mechanical simulation is much higher than the one of the Maxwell simulation, which can be explined by the higher mesh density at crucial areas. Therefore the Mechanical simulation is more trustworthy and will be used for the following simulations.
 
 
 
-
-
-
-
-#pagebreak()
 == Yamamura Model
 As the simulation with Ansys Mechanical turned out to be way more efficient than the one with Ansys Maxwell, we will now use it to investigate different parameters of the Yamamura model. At first we will look at the velocity dependency of the model, then we will investigate the influence of the rail/yoke width and finally we will look at the influence of the yoke length.
 Unless stated otherwise, following parameters will be used:
@@ -307,76 +249,131 @@ For the velocity dependency we run the simulation for several velocities from $q
   image("../figures/simulation/deltaB_profile_yam_mc_vsweep.svg", width: 100%),
   caption:[Change in magnetic field profile of the Yamamura model along the x-axis in the airgap at different velocities. Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<deltaB_profile_yam_mc_vsweep>
-We see that with increasing velocity the induced field becomes stronger, which is expected since the eddy currents are stronger at higher velocities. The amplitudes of the nose dip aswell as of the tail peak increase with increasing velocity. We observe along the length of the magnet a rest induced field which vanishes slowly towards the end of the magnet, which also grows with increasing velocity. The values of the LND and HTP for all velocities are given in @table:LND_HTP_yam_mc_y10.
+We see that with increasing velocity the induced field becomes stronger, which is expected since the eddy currents are stronger at higher velocities. The amplitudes of the nose dip aswell as of the tail peak increase with increasing velocity. We observe along the length of the magnet a rest induced field which vanishes slowly towards the end of the magnet, which also grows with increasing velocity. The values of the lowest nose dips and highest tail peaks for all velocities are given in @table:LND_HTP_yam_mc_y10.
+#figure(
+table(
+  columns: (auto, auto, auto),
+  align: horizon,
+  table.header([*Velocity in $m/s$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+  [30], [24.94 (2.49%)], [14.11 (1.41%)],
+  [60], [35.83 (3.58%)], [21.57 (2.16%)],
+  [100], [47.48 (4.75%)], [30.66 (3.07%)],
+  [200], [72.30 (7.23%)], [52.61 (5.26%)],
+  [300], [95.16 (9.51%)], [74.51 (7.45%)]
+),
+caption: [LND and HTP for several velocities in the Yamamura model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("1000", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the airgap at different velocities.]
+)<table:LND_HTP_yam_mc_y10>
+
+#figure(
+  image("../figures/simulation/F_yam_vfit.svg", width: 100%),
+  caption:[Fit of the breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths $num("10"), num("15"), num("20"),num("25"),num("30") "and" qti("35", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(v)=a v^b$.]
+)<F_yam_vfit>
+We can also look at the breaking force of the model at different velocities, which is shown in @F_yam_vfit, where the braking force is plotted against the velocity for several yoke widths. We can see that with increasing velocity the breaking force increases as well, which is expected since the eddy currents are stronger at higher velocities. The shape of the curve is similar to a square root function, therefore we fit the curves with a model function of the form $F(v)=a v^b$. The fitted curves are shown in @F_yam_vfit as blue lines, where the red dots represent the simulated values. The fit is very good with $R^2$ values above 0.99 for all velocities, the fitting parameters are shown in @table:F_yam_vfit_parameters.
+#figure(
+  table(
+    columns: (auto, auto, auto, auto),
+    align: horizon,
+    table.header([*Yoke width in $unit("mm")$*], [*a*], [*b*], [*$R^2$*]),
+    [10], [0.0490], [0.6550], [0.9956],
+    [15], [0.1769], [0.5786], [0.9940],
+    [20], [0.2917], [0.5921], [0.9972],
+    [25], [0.5674], [0.5537], [0.9978],
+    [30], [0.9627], [0.5251], [0.9981],
+    [35], [1.5037], [0.4993], [0.9982]
+  ),
+  caption: [Fitted parameters for the breaking force of the Yamamura model at different velocities. The fitting is done with the function $F(v)=a v^b$.]
+)<table:F_yam_vfit_parameters>
+Indeed we see for the exponent $b$ that it is converging towards 0.5 with increasing yoke width, which confirms the square root shape of the curve. The prefactor $a$ is increasing with increasing yoke width, which is expected since a wider yoke leads to stronger eddy currents and thus a stronger braking force.
+
+
+=== Yoke width dependency
+For the yoke width dependency we run the simulation for several yoke widths from $qti("10", "mm")$ to $qti("35", "mm")$. The resulting induced field profiles along the x-axis in the airgap are shown in @deltaB_yam_ysweep for representative yoke widths.
+#figure(
+  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
+  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
+)<deltaB_yam_ysweep>
+We observe a similar behavior for increasing yoke width as for increasing velocity, that the induced field becomes stronger, which is expected since the eddy currents can flow in larger circulations and thus get stronger at higher yoke widths. But in contrast to the velocity dependency, the shape of the curve does not only have increased amplitudes but also relaxes after the lowest nose dip way slower towards the end of the magnet. This corresponds also to a larger eddy current circulation flux, which has increased diameter in y-direction and in x-direction. The lift and drag forces are now not only affected by the nose and tail regions but also by the middle region of the magnet, which leads to a stronger braking force. The values of the lowest nose dips and highest tail peaks for all yoke widths are given in @table:LND_HTP_yam_ysweep.
 
 #figure(
 table(
   columns: (auto, auto, auto),
   align: horizon,
-  table.header([*Velocity in $m/s$*], [*LND in mT (%)*], [*HTP in mT (%)*]),
-  [30], [15.37 (2.49%)], [8.55 (1.39%)],
-  [60], [21.94 (3.56%)], [13.02 (2.11%)],
-  [100], [28.89 (4.68%)], [18.42 (2.99%)],
-  [200], [43.60 (7.07%)], [31.45 (5.10%)],
-  [300], [57.09 (9.25%)], [44.46 (7.21%)]
+  table.header([*Yoke width in $unit("mm")$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+  [10], [47.48 (4.75%)], [30.66 (3.07%)],
+  [15], [80.68 (8.07%)], [50.66 (5.07%)],
+  [20], [117.28 (11.73%)], [72.53 (7.25%)],
+  [25], [155.13 (15.51%)], [94.38 (9.44%)],
+  [30], [194.64 (19.46%)], [116.53 (11.65%)],
+  [35], [233.62 (23.36%)], [137.67 (13.76%)]
 ),
-caption: [LND and HTP for several velocities in the Yamamura model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("617", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the airgap at different velocities.]
-)<table:LND_HTP_yam_mc_y10>
+caption: [LND and HTP for several yoke widths in the Yamamura model with a velocity of $qty("100", "m/s")$ and an applied magnetic field of $B_0=qty("1000", "mT")$.]
+)<table:LND_HTP_yam_ysweep>
 
-// #figure(
-//   image("../figures/simulation/B_profile_yam_mc_vsweep.svg", width: 100%),
-//   caption:[]
-// )<B_profile_yam_mc_vsweep>
+The yoke width dependeny of the breaking force is shown in @F_yam_yfit, where the braking force is plotted against the yoke width for several velocities. We can see that with increasing yoke width the breaking force increases as well, but with a much higher dependcy than for the velocity. The shape of the curve is similar to a square function therefore we fit the curves again with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_yfit as blue lines, where the red dots represent the simulated values. The coeefficient of determination $R^2$ is above 0.999 for all velocities, which indicates a very good fit. The fitted parameters are shown in @table:F_yam_yfit_parameters. \
+#figure(
+  image("../figures/simulation/F_yam_yfit.svg", width: 100%),
+  caption:[Fit of the breaking force of the Yamamura model at yoke width from $qty("10", "mm")$ to $qty("35", "mm")$ for different velocities $num("30"), num("60"), num("100"), num("200")" and "qti("300","m/s")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.]
+)<F_yam_yfit>
+#figure(
+  table(
+    columns: (auto, auto, auto, auto),
+    align: horizon,
+    table.header([*Velocity in $unit("m/s")$*], [*a*], [*b*], [*$R^2$*]),
+    [10], [0.0014], [2.3108], [0.9991],
+    [30], [0.0029], [2.2400], [0.9996],
+    [60], [0.0049], [2.1831], [0.9998],
+    [100], [0.0077], [2.1238], [0.9998],
+    [200], [0.0160], [2.0190], [0.9998],
+    [300], [0.0262], [1.9462], [0.9998]
+  ),
+  caption: [Fitted parameters for the breaking force of the Yamamura model at different velocities. The fitting is done with the function $F(v)=a v^b$.]
+)<table:F_yam_yfit_parameters>
+For high velecities the exponent $b$ is converging towards 2, which confirms the square shape of the curve. The prefactor $a$ is increasing with increasing velocity, which is expected since a higher velocity leads to stronger eddy currents and thus a stronger braking force.
+
+
+=== Yoke lenght dependency
+For the yoke length dependency we run the simulation for several yoke lengths from $qti("100", "mm")$ to $qti("900", "mm")$. The resulting induced field profiles along the x-axis in the airgap are shown in @deltaB_yam_xsweep for representative yoke lengths.
+#figure(
+  image("../figures/simulation/deltaB_yam_xsweep.svg", width: 100%),
+  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke lengths. Yoke width: $qti("10", "mm")$.]
+)<deltaB_yam_xsweep>
+We observe that with increasing yoke length no significant change in the shape nor the amplitudes of the induced field profile occurs. This is expected since the eddy currents are mainly induced at the nose and tail of the magnet, so that a longer yoke does not lead to stronger eddy currents but only has a larger middle region where the magnetic field is barly affected.
+
+In @F_yam_xsweep we can see that the breaking force in dependence of the yoke length for different velocities. As expected, we can observe that the breaking force aswell is not affected by the length of the yoke. Therefore we wont apply a fit to the curves since they are basically constant.
 
 #figure(
-  image("../figures/simulation/F_yam_vsweep.svg", width: 100%),
-  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
-)<Forces_yam_x135y10>
-// #figure(
-//   image("../figures/simulation/F_yam_x140y15.svg", width: 100%),
-//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("15", "mm")$.]
-// )<F_yam_x140y15>
+  image("../figures/simulation/F_yam_xsweep.svg", width: 100%),
+  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke lengths. Yoke width: $qti("10", "mm")$.]
+)<F_yam_xsweep>
 
 
-// #figure(
-//   image("../figures/simulation/F_yam_x140y20.svg", width: 100%),
-//   caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("20", "mm")$.]
-// )<F_yam_x140y20>
-
-#pagebreak()
-=== Rail width dependency
-#figure(
-  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
-  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
-)
-hi
-#figure(
-  image("../figures/simulation/F_yam_ysweep.svg", width: 100%),
-  caption:[Breaking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
-)<F_yam_ysweep>
-
-
-
-=== Rail lenght dependency ?
-
+=== Braking force fit
 
 
 
 #pagebreak()
 == TUM Hyperloop Model
-The basic setup of the 3D Simulation consists of two main components: the rail and the electromagnet which is made of a coil of wire wound around a ferromagnetic yoke.
-The dimensions in $qty("1","mm")$ are given in the following table:
+The original model of the TUM Hyperloop consists of a rail and an electromagnet whichs yoke is shaped like a u. Since both yoke surfaces are exposed to the same side of the rail, the rail needs to be wider than in the Yamamura model, which increases the amount of mesh elements and thus the computational cost significantly. But the Hyperloop model can be used for actual levitation, since now a netto magnetic force can act between rail and magnet in z-direction, whereas in the Yamamura model the forces in z-direction cancel each other out. Therefore we will also investigate the Hyperloop model with Ansys Mechanical to get a better insight into the influence of the different parameters on the magnetic field and the resulting forces.
 
+We will start with a smaller dimension of the model to reduce the computational cost, but we will keep the same proportions as in the original model. The dimensions in $unit("mm")$ are given in the following table:
 #table(
   columns: (auto, auto, auto),
   align: horizon,
-
   table.header([*Component*], [*Size*], [*Value*]),
-  table.cell(rowspan: 3)[*yoke*],
-  [yoke_x], [135],
-  [yoke_y], [14.7],
-  [yoke_z], [10],
+  table.cell(rowspan: 4)[*yoke*],
+  [yoke_x], [140],
+  [yoke_width], [10],
+  [yoke_y], [40],
+  [yoke_z], [20],
   table.cell(rowspan: 2)[*coil*],
-  [coil_thickness], [4.5],
+  [coil_thickness], [7.5],
   [coil_padding], [0.2],
+  table.cell(rowspan: 3)[*rail*],
+  [rail_x], [590],
+  [rail_y], [40],
+  [rail_z], [1],
+  table.cell(rowspan: 1)[*air*],
+  [airgap], [1],
 )
+The geometry in original dimensions has a yoke length of $qti("1350", "mm")$ (\~ 10x larger), and a yoke width of $qti("3.5", "mm")$ (\~ 3.5x larger), which results in a scaling factor of 35 for the magnetic area of the smaller model.
+#pagebreak()
