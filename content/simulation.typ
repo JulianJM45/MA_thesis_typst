@@ -347,21 +347,73 @@ In @F_yam_xsweep we can see the braking force as a function of yoke length for d
 )<F_yam_xsweep>
 
 
+=== B field dependence
+For the B field dependence, we run the simulation for several current densities from $num("8.38e6")$ to $qti("83.8e6", "A/m^2")$. This results in different applied magnetic fields in the air gap. We expect a linear dependence of applied currents density and the resulting magnetic field because of Ampere's law, which states that the magnetic field is proportional to the electric current (see @amperes-law).
+#figure(
+  image("../figures/simulation/B_yam_x140y10v0_jsweep.svg", width: 100%),
+  caption:[Magnetic field profile of the Yamamura model at zero speed for different applied magnetic fields. The B field values inside the magnet are (increasing): $qty("100", "mT"), qty("300", "mT"), qty("500", "mT"), qty("700", "mT"), qty("1000", "mT")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)<B_yam_x140y10v0_jsweep>
+In @B_yam_x140y10v0_jsweep we can see the magnetic field profile along the x-axis in the air gap at zero speed for different applied electric current densities. We can see that the shape of the profile is the same for all current densities, but the basic mean level of the magnetic field is increasing with increasing current density. Comparing the mean values of the magnetic field for the different current densities, we can confirm a linear dependence between the applied current density and the resulting magnetic field, as shown in @table:B0_jsweep.
+
+#figure(
+  table(
+    columns: (auto, auto),
+    align: horizon,
+    table.header([*Current density in $unit("A/m^2")$*], [*Mean B field in $unit("mT")$*]),
+    [$num("8.38e6")$], [100.01],
+    [$num("25.15e6")$], [300.01],
+    [$num("41.92e6")$], [500.02],
+    [$num("58.69e6")$], [700.03],
+    [$num("83.85e6")$], [1000.05]
+  ),
+  caption:[Mean magnetic field in the air gap for different applied current densities.]
+)<table:B0_jsweep>
+
+Next we are interested in the dependency of the induced magnetic field on the applied current density. For that our magnet (or the rail) needs to be moving, so we run the simulation for a velocity of $qti("100", "m/s")$ for different current densities. The resulting change of the magnetic field compared to the zero speed case is shown in @deltaB_yam_x140y10v100_jsweep.
+#figure(
+  image("../figures/simulation/B_yam_x140y10v100_jsweep.svg", width: 100%),
+  caption:[]
+)<deltaB_yam_x140y10v100_jsweep>
+We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_mc_vsweep, i.e. that the amplitude increase but the shape of the curve is basically the same for all current densities. The values of the lowest nose dips and highest tail peaks for the different current densities are given in @table:LND_HTP_yam_jsweep.
+#figure(
+  table(
+    columns: (auto, auto, auto),
+    align: horizon,
+    table.header([*$B_0$ in $unit("mT")$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+    [$num("100")$], [4.76 (4.76%)], [3.11 (3.11%)],
+    [$num("300")$], [14.29 (4.76%)], [9.32 (3.11%)],
+    [$num("500")$], [23.82 (4.76%)], [15.53 (3.11%)],
+    [$num("700")$], [33.35 (4.76%)], [21.75 (3.11%)],
+    [$num("1000")$], [47.64 (4.76%)], [31.05 (3.11%)]
+  ),
+  caption:[LND and HTP for several applied magnetic fields in the Yamamura model with a velocity of $qti("100", "m/s")$, a yoke width of $qti("10", "mm")$ and a yoke length of $qti("140", "mm")$.]
+)<table:LND_HTP_yam_jsweep>
+We see that the values for LND and HTP are linear increasing with the applied magnetic field $B_0$ and the relativ values are constant at 4.76% and 3.11% respectively, which means that the induced magnetic field is proportional to the applied magnetic field and thus to the applied current density.
+
+In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependency, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed we get as exponent a value of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependency of the braking force on the applied current density. The prefactor $a$ is equal to $num("9.573e-7") plus.minus num("5.76e-12")$ and the $R^2$ value of the fit $1.0000$.
+
+#figure(
+  image("../figures/simulation/F_yam_jfit.svg", width: 100%),
+  caption:[Fitting of the braking force of the Yamamura model against the applied magnetic field with the function $F (x) = a dot x^b$. The red dots represent the simulated values, whereas the blue lines represent the fit.]
+)<F_yam_jfit>
+
+
 === Braking force fit
-We will now compile the results of the velocity, yoke width and yoke length dependence to conclude a general law for the braking force of the Yamamura model. Since we observed a square root dependency on the velocity, a square dependency on the yoke width and no dependency on the yoke length, we will model the braking force with the following function:
-$ F_B (v,y) = C dot y^2 sqrt(v) $
-We still have to determine whether the prefactor $C$ is really a constant or whether it also depends on velocity and/or yoke width. To do this, we plot the braking force against the function $y^2 sqrt(v)$ for all simulated velocities and yoke widths, as shown in @F_yam_vyfit. We can see that all values lie on a straight line, which confirms the model function. The fitted line is shown in blue in @F_yam_vyfit, where the red dots represent the simulated values. The fit is good with a coefficient of determination of $R^2=0.9973$. The slope of the fitted line corresponds to the prefactor $C$ and is equal to $C=1241.8$ with a standard error of 4.3.
+We will now compile the results of the velocity, yoke width, yoke length and applied field dependence to conclude a general law for the braking force of the Yamamura model. Since we observed a square root dependency on the velocity, a square dependency on the yoke width and the applied field and no dependency on the yoke length, we will model the braking force with the following function:
+$ F_B (v,y,B_0) = C dot B_0^2 y^2 sqrt(v) $
+We still have to determine whether the prefactor $C$ is really a constant or whether it also depends on velocity and/or yoke width. Since the fit for the applied field has a perfect $R^2$ value and a neglectable error for the exponent, we assume no dependency for $C$ on $B_0$. To check the dependency on $v$ and $y$, we plot the braking force against the function $y^2 sqrt(v)$ for all simulated velocities and yoke widths, as shown in @F_yam_vyfit. Since we conducted all simulations for the velocity and yoke width dependence with the same applied magnetic field of $B_0=qty("1", "T")$, we can devide by 1 to neglect the dependency on $B_0$ in the plot.\
+We can see that all values lie on a straight line, which confirms the model function. The fitted line is shown in blue in @F_yam_vyfit, where the red dots represent the simulated values. The fit is good with a coefficient of determination of $R^2=0.9973$. The slope of the fitted line corresponds to the prefactor $C$ and is equal to $C=1241.8$ with a standard error of 4.3.
 
 #figure(
  image("../figures/simulation/F_yam_vyfit.svg", width: 100%),
  caption:[Fitting of the braking force of the Yamamura model against the velocity and yoke width with the function $F_B (v,y) = C y^2 sqrt(v)$. The red dots represent the simulated values, whereas the blue lines represent the fit.]
 )<F_yam_vyfit>
 We can also derive $C$ by dividing the simulated braking force by the term $y^2 sqrt(v)$ for all simulated velocities and yoke widths, which yields a mean value of $C=1133.9$ with a standard deviation of $126.98$ which is 11.2%. These two methods yield a similar value for $C$, which confirms that it is really a constant and does not depend on the velocity nor on the yoke width. Therefore we can conclude that the braking force of the Yamamura model can be described with the following function:
-$ F_B (v,y) = qty("1241.8","kg m^-1.5 s^-1.5 ") y^2 sqrt(v) $
-The unit for $C$ is $unit("kg m^-1.5 s^-1.5")$ to ensure that the braking force is in $unit("N")$.
+$ F_B (v,y,B_0) = qty("1241.8","A^2 kg^-1 m^-1.5 s^-2.5") B_0^2 y^2 sqrt(v) $
+The unit for $C$ is $unit("N T^-2 * m^-2 * m^-0.5 s^0.5")= unit("A^2 kg^-1 m^-1.5 s^-2.5")$ to ensure that the braking force is in $unit("N")$.
 
 This function can be used to predict the braking force of the Yamamura model, where $y$ is both the yoke and rail width. For a conventional geometry, as discussed in the next @section:hyperloop_model, the rail width has to be much larger since both yoke surfaces are exposed to the same side of the rail.
-We expect here an even stronger braking force since the eddy currents can flow in larger circulations. This would specifically influence the $C$ constant. The general square root dependency on the velocity and the square dependency on the yoke width should still hold.
+We expect here an even stronger braking force since the eddy currents can flow in larger circulations. This would specifically influence the $C$ constant. The general square root dependency on the velocity and the square dependency on the yoke width and the applied field should still hold.
 
 
 #pagebreak()
@@ -390,4 +442,11 @@ We will start with a smaller dimension of the model to reduce the computational 
  [air gap], [1],
 )
 The original-dimension geometry has a yoke length of $qti("1350", "mm")$ (\~ 10x larger), and a yoke width of $qti("3.5", "mm")$ (\~ 3.5x larger), which results in a scaling factor of 35 for the magnetic area of the smaller model.
+
+#figure(
+ image("../figures/simulation/B_hurric_x140y10_vsweep.svg", width: 100%),
+ caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)<B_hurric_x140y10_vsweep>
+
+
 #pagebreak()

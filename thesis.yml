@@ -20,8 +20,34 @@ schmid2021:
   volume: 57
   number: 2
   pages: 1-15
-  genre: Master Thesis
   doi: 10.1109/TMAG.2020.3039950
+
+transrapid_dot_report:
+  type: report
+  title: "Safety of High Speed Magnetic Levitation Transportation Systems"
+  author:
+    - Robert M. Dorer
+    - William T. Hathaway
+  url: "https://railroads.dot.gov/sites/fra.dot.gov/files/fra_net/17232/DOTFRAORD-90.09.pdf"
+  date: 1990
+  accessed:
+    - year: 2026
+      month: 4
+      day: 15
+
+kleikemper2025:
+  type: article
+  title: "Multi-mode electromagnetic suspension test bench for system characterization, model parameterization and levitation tests"
+  author:
+    - Kleikemper, Oliver
+    - Hsu, Felix He Mao
+    - Holzapfel, Florian
+  journal: e-Prime – Advances in Electrical Engineering, Electronics and Energy
+  volume: 16
+  pages: 101141
+  date: 2025
+  doi: 10.1016/j.prime.2025.101141
+  url: https://www.sciencedirect.com/science/article/pii/S2772671125002578
 
 radeck2020:
   type: thesis
