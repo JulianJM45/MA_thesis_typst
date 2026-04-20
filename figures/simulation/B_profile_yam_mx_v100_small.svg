@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-03-04T16:43:59.226662</dc:date>
+    <dc:date>2026-04-20T14:29:10.801919</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -41,22 +41,22 @@ z
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="mad9cdd3c7f" d="M 0 0 
+       <path id="m8e54f25166" d="M 0 0 
 L 0 -4 
 " style="stroke: #000000"/>
       </defs>
       <g>
-       <use xlink:href="#mad9cdd3c7f" x="44.614295" y="99.281693" style="stroke: #000000"/>
+       <use xlink:href="#m8e54f25166" x="44.614295" y="99.281693" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_2">
       <defs>
-       <path id="m7ab4bf489c" d="M 0 0 
+       <path id="m7f53f3fb18" d="M 0 0 
 L 0 4 
 " style="stroke: #000000"/>
       </defs>
       <g>
-       <use xlink:href="#m7ab4bf489c" x="44.614295" y="7.2" style="stroke: #000000"/>
+       <use xlink:href="#m7f53f3fb18" x="44.614295" y="7.2" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_1">
@@ -66,12 +66,12 @@ L 0 4
     <g id="xtick_2">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#mad9cdd3c7f" x="82.098092" y="99.281693" style="stroke: #000000"/>
+       <use xlink:href="#m8e54f25166" x="82.098092" y="99.281693" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m7ab4bf489c" x="82.098092" y="7.2" style="stroke: #000000"/>
+       <use xlink:href="#m7f53f3fb18" x="82.098092" y="7.2" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_2">
@@ -81,12 +81,12 @@ L 0 4
     <g id="xtick_3">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#mad9cdd3c7f" x="119.58189" y="99.281693" style="stroke: #000000"/>
+       <use xlink:href="#m8e54f25166" x="119.58189" y="99.281693" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_6">
       <g>
-       <use xlink:href="#m7ab4bf489c" x="119.58189" y="7.2" style="stroke: #000000"/>
+       <use xlink:href="#m7f53f3fb18" x="119.58189" y="7.2" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_3">
@@ -96,12 +96,12 @@ L 0 4
     <g id="xtick_4">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#mad9cdd3c7f" x="157.065687" y="99.281693" style="stroke: #000000"/>
+       <use xlink:href="#m8e54f25166" x="157.065687" y="99.281693" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_8">
       <g>
-       <use xlink:href="#m7ab4bf489c" x="157.065687" y="7.2" style="stroke: #000000"/>
+       <use xlink:href="#m7f53f3fb18" x="157.065687" y="7.2" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_4">
@@ -111,12 +111,12 @@ L 0 4
     <g id="xtick_5">
      <g id="line2d_9">
       <g>
-       <use xlink:href="#mad9cdd3c7f" x="194.549484" y="99.281693" style="stroke: #000000"/>
+       <use xlink:href="#m8e54f25166" x="194.549484" y="99.281693" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_10">
       <g>
-       <use xlink:href="#m7ab4bf489c" x="194.549484" y="7.2" style="stroke: #000000"/>
+       <use xlink:href="#m7f53f3fb18" x="194.549484" y="7.2" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_5">
@@ -124,29 +124,38 @@ L 0 4
      </g>
     </g>
     <g id="text_6">
-     <text style="font-size: 9px; font-family: 'NewComputerModern'; text-anchor: middle" x="119.58189" y="121.524818" transform="rotate(-0 119.58189 121.524818)">x (cm)</text>
+     <!-- $x\,\mathrm{(cm)}$ -->
+     <g transform="translate(107.29689 121.524818)">
+      <text>
+       <tspan x="0" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">x</tspan>
+       <tspan x="6.001523" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">(</tspan>
+       <tspan x="9.502515" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">c</tspan>
+       <tspan x="13.498517" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">m</tspan>
+       <tspan x="20.995511" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">)</tspan>
+      </text>
+     </g>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_11">
       <defs>
-       <path id="m318a94bd16" d="M 0 0 
+       <path id="maef24f622a" d="M 0 0 
 L 4 0 
 " style="stroke: #000000"/>
       </defs>
       <g>
-       <use xlink:href="#m318a94bd16" x="37.2" y="95.523213" style="stroke: #000000"/>
+       <use xlink:href="#maef24f622a" x="37.2" y="95.523213" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_12">
       <defs>
-       <path id="m291f3eae15" d="M 0 0 
+       <path id="md7c1d1fa68" d="M 0 0 
 L -4 0 
 " style="stroke: #000000"/>
       </defs>
       <g>
-       <use xlink:href="#m291f3eae15" x="201.96378" y="95.523213" style="stroke: #000000"/>
+       <use xlink:href="#md7c1d1fa68" x="201.96378" y="95.523213" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_7">
@@ -156,12 +165,12 @@ L -4 0
     <g id="ytick_2">
      <g id="line2d_13">
       <g>
-       <use xlink:href="#m318a94bd16" x="37.2" y="69.566225" style="stroke: #000000"/>
+       <use xlink:href="#maef24f622a" x="37.2" y="69.566225" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_14">
       <g>
-       <use xlink:href="#m291f3eae15" x="201.96378" y="69.566225" style="stroke: #000000"/>
+       <use xlink:href="#md7c1d1fa68" x="201.96378" y="69.566225" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_8">
@@ -171,12 +180,12 @@ L -4 0
     <g id="ytick_3">
      <g id="line2d_15">
       <g>
-       <use xlink:href="#m318a94bd16" x="37.2" y="43.609236" style="stroke: #000000"/>
+       <use xlink:href="#maef24f622a" x="37.2" y="43.609236" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_16">
       <g>
-       <use xlink:href="#m291f3eae15" x="201.96378" y="43.609236" style="stroke: #000000"/>
+       <use xlink:href="#md7c1d1fa68" x="201.96378" y="43.609236" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_9">
@@ -186,12 +195,12 @@ L -4 0
     <g id="ytick_4">
      <g id="line2d_17">
       <g>
-       <use xlink:href="#m318a94bd16" x="37.2" y="17.652248" style="stroke: #000000"/>
+       <use xlink:href="#maef24f622a" x="37.2" y="17.652248" style="stroke: #000000"/>
       </g>
      </g>
      <g id="line2d_18">
       <g>
-       <use xlink:href="#m291f3eae15" x="201.96378" y="17.652248" style="stroke: #000000"/>
+       <use xlink:href="#md7c1d1fa68" x="201.96378" y="17.652248" style="stroke: #000000"/>
       </g>
      </g>
      <g id="text_10">
@@ -199,7 +208,16 @@ L -4 0
      </g>
     </g>
     <g id="text_11">
-     <text style="font-size: 9px; font-family: 'NewComputerModern'; text-anchor: middle" x="13.95" y="53.240846" transform="rotate(-90 13.95 53.240846)">B (mT)</text>
+     <!-- $B\,\mathrm{(mT)}$ -->
+     <g transform="translate(13.95 67.550846) rotate(-90)">
+      <text>
+       <tspan x="0" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">B</tspan>
+       <tspan x="7.621518" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">(</tspan>
+       <tspan x="11.12251" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">m</tspan>
+       <tspan x="18.619504" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">T</tspan>
+       <tspan x="25.117505" y="-0" style="font-size: 9px; font-family: 'NewComputerModern Math'">)</tspan>
+      </text>
+     </g>
     </g>
    </g>
    <g id="line2d_19">
@@ -364,7 +382,7 @@ L 188.199729 91.279649
 L 192.045567 92.47315 
 L 194.474517 93.171059 
 L 194.474517 93.171059 
-" clip-path="url(#pf54c0b2042)" style="fill: none; stroke: #ff0000; stroke-linecap: square"/>
+" clip-path="url(#pdea78662e5)" style="fill: none; stroke: #ff0000; stroke-linecap: square"/>
    </g>
    <g id="line2d_20">
     <path d="M 44.689263 95.096161 
@@ -519,7 +537,7 @@ L 191.235917 92.306062
 L 193.462454 93.167652 
 L 194.474517 93.508425 
 L 194.474517 93.508425 
-" clip-path="url(#pf54c0b2042)" style="fill: none; stroke: #8000ff; stroke-linecap: square"/>
+" clip-path="url(#pdea78662e5)" style="fill: none; stroke: #0000ff; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 37.2 99.281693 
@@ -543,41 +561,60 @@ L 201.96378 7.2
    </g>
    <g id="legend_1">
     <g id="patch_7">
-     <path d="M 69.602202 94.281693 
-L 169.561577 94.281693 
-Q 171.561577 94.281693 171.561577 92.281693 
-L 171.561577 64.341068 
-Q 171.561577 62.341068 169.561577 62.341068 
-L 69.602202 62.341068 
-Q 67.602202 62.341068 67.602202 64.341068 
-L 67.602202 92.281693 
-Q 67.602202 94.281693 69.602202 94.281693 
+     <path d="M 78.53189 94.281693 
+L 160.63189 94.281693 
+Q 162.63189 94.281693 162.63189 92.281693 
+L 162.63189 64.341068 
+Q 162.63189 62.341068 160.63189 62.341068 
+L 78.53189 62.341068 
+Q 76.53189 62.341068 76.53189 64.341068 
+L 76.53189 92.281693 
+Q 76.53189 94.281693 78.53189 94.281693 
 z
 " style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"/>
     </g>
     <g id="line2d_21">
-     <path d="M 71.602202 69.841068 
-L 81.602202 69.841068 
-L 91.602202 69.841068 
+     <path d="M 80.53189 69.841068 
+L 90.53189 69.841068 
+L 100.53189 69.841068 
 " style="fill: none; stroke: #ff0000; stroke-linecap: square"/>
     </g>
     <g id="text_12">
-     <text style="font-size: 10px; font-family: 'NewComputerModern'; text-anchor: start" x="99.602202" y="73.341068" transform="rotate(-0 99.602202 73.341068)">B at v=0</text>
+     <!-- $v=0$ -->
+     <g transform="translate(108.53189 73.341068)">
+      <text>
+       <tspan x="0" y="-0.0625" style="font-size: 10px; font-family: 'NewComputerModern Math'">v</tspan>
+       <tspan x="6.945981" y="-0.0625" style="font-size: 10px; font-family: 'NewComputerModern Math'">=</tspan>
+       <tspan x="16.391962" y="-0.0625" style="font-size: 10px; font-family: 'NewComputerModern Math'">0</tspan>
+      </text>
+     </g>
     </g>
     <g id="line2d_22">
-     <path d="M 71.602202 84.281693 
-L 81.602202 84.281693 
-L 91.602202 84.281693 
-" style="fill: none; stroke: #8000ff; stroke-linecap: square"/>
+     <path d="M 80.53189 84.281693 
+L 90.53189 84.281693 
+L 100.53189 84.281693 
+" style="fill: none; stroke: #0000ff; stroke-linecap: square"/>
     </g>
     <g id="text_13">
-     <text style="font-size: 10px; font-family: 'NewComputerModern'; text-anchor: start" x="99.602202" y="87.781693" transform="rotate(-0 99.602202 87.781693)">B at v=100m/s</text>
+     <!-- $v=100\,\mathrm{m/s}$ -->
+     <g transform="translate(108.53189 87.781693)">
+      <text>
+       <tspan x="0" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">v</tspan>
+       <tspan x="6.945981" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">=</tspan>
+       <tspan x="16.391962" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">1</tspan>
+       <tspan x="21.391946" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">0</tspan>
+       <tspan x="26.391931" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">0</tspan>
+       <tspan x="32.780275" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">m</tspan>
+       <tspan x="41.110261" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">/</tspan>
+       <tspan x="46.110246" y="-0.234375" style="font-size: 10px; font-family: 'NewComputerModern Math'">s</tspan>
+      </text>
+     </g>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pf54c0b2042">
+  <clipPath id="pdea78662e5">
    <rect x="37.2" y="7.2" width="164.76378" height="92.081693"/>
   </clipPath>
  </defs>

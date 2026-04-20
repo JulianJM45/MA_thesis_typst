@@ -400,7 +400,7 @@ In @F_yam_jfit we can see the braking force of the model for different applied c
 
 === Braking force fit
 We will now compile the results of the velocity, yoke width, yoke length and applied field dependence to conclude a general law for the braking force of the Yamamura model. Since we observed a square root dependency on the velocity, a square dependency on the yoke width and the applied field and no dependency on the yoke length, we will model the braking force with the following function:
-$ F_B (v,y,B_0) = C dot B_0^2 y^2 sqrt(v) $
+$ F_b (v,y,B_0) = C dot B_0^2 y^2 sqrt(v) $
 We still have to determine whether the prefactor $C$ is really a constant or whether it also depends on velocity and/or yoke width. Since the fit for the applied field has a perfect $R^2$ value and a neglectable error for the exponent, we assume no dependency for $C$ on $B_0$. To check the dependency on $v$ and $y$, we plot the braking force against the function $y^2 sqrt(v)$ for all simulated velocities and yoke widths, as shown in @F_yam_vyfit. Since we conducted all simulations for the velocity and yoke width dependence with the same applied magnetic field of $B_0=qty("1", "T")$, we can devide by 1 to neglect the dependency on $B_0$ in the plot.\
 We can see that all values lie on a straight line, which confirms the model function. The fitted line is shown in blue in @F_yam_vyfit, where the red dots represent the simulated values. The fit is good with a coefficient of determination of $R^2=0.9973$. The slope of the fitted line corresponds to the prefactor $C$ and is equal to $C=1241.8$ with a standard error of 4.3.
 
@@ -409,7 +409,7 @@ We can see that all values lie on a straight line, which confirms the model func
  caption:[Fitting of the braking force of the Yamamura model against the velocity and yoke width with the function $F_B (v,y) = C y^2 sqrt(v)$. The red dots represent the simulated values, whereas the blue lines represent the fit.]
 )<F_yam_vyfit>
 We can also derive $C$ by dividing the simulated braking force by the term $y^2 sqrt(v)$ for all simulated velocities and yoke widths, which yields a mean value of $C=1133.9$ with a standard deviation of $126.98$ which is 11.2%. These two methods yield a similar value for $C$, which confirms that it is really a constant and does not depend on the velocity nor on the yoke width. Therefore we can conclude that the braking force of the Yamamura model can be described with the following function:
-$ F_B (v,y,B_0) = qty("1241.8","A^2 kg^-1 m^-1.5 s^-2.5") B_0^2 y^2 sqrt(v) $
+$ F_b (v,y,B_0) = qty("1241.8","A^2 kg^-1 m^-1.5 s^-2.5") B_0^2 y^2 sqrt(v) $
 The unit for $C$ is $unit("N T^-2 * m^-2 * m^-0.5 s^0.5")= unit("A^2 kg^-1 m^-1.5 s^-2.5")$ to ensure that the braking force is in $unit("N")$.
 
 This function can be used to predict the braking force of the Yamamura model, where $y$ is both the yoke and rail width. For a conventional geometry, as discussed in the next @section:hyperloop_model, the rail width has to be much larger since both yoke surfaces are exposed to the same side of the rail.
@@ -447,6 +447,41 @@ The original-dimension geometry has a yoke length of $qti("1350", "mm")$ (\~ 10x
  image("../figures/simulation/B_hurric_x140y10_vsweep.svg", width: 100%),
  caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<B_hurric_x140y10_vsweep>
+
+#figure(
+ image("../figures/simulation/deltaB_hurric_x140y10_vsweep.svg", width: 100%),
+ caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)<deltaB_hurric_x140y10_vsweep>
+
+
+
+#figure(
+table(
+ columns: (auto, auto, auto),
+ align: horizon,
+ table.header([*Velocity in $m/s$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+ [30], [40.20 (8.31%)], [26.79 (5.54%)],
+ [60], [59.27 (12.26%)], [38.71 (8.01%)],
+ [100], [78.42 (16.22%)], [52.18 (10.79%)],
+ [200], [113.13 (23.40%)], [80.50 (16.65%)],
+ [300], [139.68 (28.89%)], [104.88 (21.69%)]
+),
+caption: [LND and HTP for several velocities in the TUM Hyperloop model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("480", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.]
+)<table:LND_HTP_hurric_vsweep>
+
+
+#figure(
+  image("../figures/simulation/Fb_hm_vfit.svg", width: 100%),
+  caption:[Fit of the braking force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for a yoke width of $qty("10", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue line represents the fit with the function $F(v)=a sqrt(v)$.]
+)<Fb_hm_vfit>
+
+Fitted parameter: a=0.1203±0.0030, R²=0.9902
+
+#figure(
+  image("../figures/simulation/F_hm_vsweep.svg", width: 100%),
+  caption:[Braking force and Lift force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+)
+
 
 
 #pagebreak()
