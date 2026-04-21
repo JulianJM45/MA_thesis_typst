@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.5423746"
-     inkscape:cx="299.8623"
-     inkscape:cy="165.32949"
+     inkscape:zoom="3.9244828"
+     inkscape:cx="391.89877"
+     inkscape:cy="88.928916"
      inkscape:window-width="2580"
      inkscape:window-height="1015"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g13" />
+     inkscape:current-layer="layer2" />
   <defs
      id="defs1">
     <marker
@@ -215,7 +215,7 @@
        id="text11"><tspan
          sodipodi:role="line"
          id="tspan11"
-         style="font-size:11.2889px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;fill:#000000;fill-opacity:1;stroke-width:0.264583"
          x="131.41072"
          y="208.94812">x</tspan></text>
     <text
@@ -226,7 +226,7 @@
        id="text12"><tspan
          sodipodi:role="line"
          id="tspan12"
-         style="font-size:11.2889px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;fill:#000000;fill-opacity:1;stroke-width:0.264583"
          x="155.20657"
          y="209.25436">x+dx</tspan></text>
     <g
@@ -256,7 +256,7 @@
            id="text8-7"><tspan
              sodipodi:role="line"
              id="tspan8-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;fill:#000000;fill-opacity:1;stroke-width:0.264583"
              x="188.25758"
              y="202.70766">x</tspan></text>
         <text
@@ -267,7 +267,7 @@
            id="text9-2"><tspan
              sodipodi:role="line"
              id="tspan9-0"
-             style="font-size:7.76111px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;fill:#000000;fill-opacity:1;stroke-width:0.264583"
              x="168.22578"
              y="181.20317">z</tspan></text>
         <text
@@ -278,7 +278,7 @@
            id="text10-6"><tspan
              sodipodi:role="line"
              id="tspan10-5"
-             style="font-size:7.76111px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;fill:#000000;fill-opacity:1;stroke-width:0.264583"
              x="164.61206"
              y="206.97142">y</tspan></text>
       </g>
@@ -297,13 +297,13 @@
            id="text5"><tspan
              sodipodi:role="line"
              id="tspan5"
-             style="stroke:none;stroke-width:0.265"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;stroke:none;stroke-width:0.265"
              x="117.83421"
              y="157.46146">  2d</tspan><tspan
              sodipodi:role="line"
-             style="stroke:none;stroke-width:0.265"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:NewComputerModern;-inkscape-font-specification:NewComputerModern;stroke:none;stroke-width:0.265"
              x="117.83421"
-             y="171.57259"
+             y="171.63303"
              id="tspan13">+2g</tspan></text>
       </g>
     </g>

@@ -51,25 +51,30 @@ Another option is to build Yamamura's alternative model as depicted in  @fig:yam
  caption: [Depiction of the Yamamura model recreated in Ansys Maxwell.]
 )<yamamura_recreated>
 As discussed in @section:Motion the computational cost for the Yamamura model is significantly lower than that of the conventional model, since the rail and thus the moving band can have considerably smaller volumes. This is why the model is recreated in Ansys Maxwell as shown in @yamamura_recreated.
-The dimensions of the yoke and the rail are given in $unit("mm")$ in @table:yam_v100_mx:
+The dimensions of the yoke and the rail are given in $unit("mm")$ in @table:yam_v100_mx.
 #figure(
-table(
- columns: (auto, auto, auto),
- align: horizon,
-
- table.header([*Component*], [*Size*], [*Value*]),
- table.cell(rowspan: 1)[*yoke*],
- [yoke_x], [135],
- // [yoke_y], [x],
- // [yoke_z], [x],
- table.cell(rowspan: 3)[*rail*],
- [rail_x], [245],
- [rail_y], [10],
- [rail_z], [1],
- table.cell(rowspan: 1)[*air gap*],
- [air_z], [1],
-),
-caption:[Geometry of the yoke and the rail in the Yamamura model. The dimensions are given in $unit("mm")$.]
+  grid(columns: 2,
+  column-gutter: 1em,
+  row-gutter: 0.5em,
+  [
+  #table(
+  columns: (auto, auto, auto),
+  align: horizon,
+  table.header([*Component*], [*Label*], [*Size*]),
+  table.cell(rowspan: 2)[*yoke*],
+  [L], [135],
+  [2a], [10],
+  // [yoke_z], [x],
+  table.cell(rowspan: 2)[*rail*],
+  [rail_x], [245],
+  // [2a], [10],
+  [2d], [1],
+  table.cell(rowspan: 1)[*air gap*],
+  [g], [1],
+  )],
+  [#image("../figures/models/yamamura_simplified.svg", width: 50%)],
+  [], []),
+  caption:[Geometry of the yoke and the rail in the Yamamura model. The dimensions are given in $unit("mm")$. The labels are the same as in the analytical model in @yamamura-model. Additionally we introduce the length of the rail _rail_x_, which is infinite in the analytical model but finite in the simulation. The length of the rail is chosen to be long enough to ensure that the eddy currents are stable and do not reach the end of the rail during the simulation time.]
 )<table:yam_v100_mx>
 \
 *Simulation preparation*\
@@ -389,13 +394,11 @@ We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_m
   caption:[LND and HTP for several applied magnetic fields in the Yamamura model with a velocity of $qti("100", "m/s")$, a yoke width of $qti("10", "mm")$ and a yoke length of $qti("140", "mm")$.]
 )<table:LND_HTP_yam_jsweep>
 We see that the values for LND and HTP are linear increasing with the applied magnetic field $B_0$ and the relativ values are constant at 4.76% and 3.11% respectively, which means that the induced magnetic field is proportional to the applied magnetic field and thus to the applied current density.
-
-In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependency, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed we get as exponent a value of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependency of the braking force on the applied current density. The prefactor $a$ is equal to $num("9.573e-7") plus.minus num("5.76e-12")$ and the $R^2$ value of the fit $1.0000$.
-
 #figure(
   image("../figures/simulation/F_yam_jfit.svg", width: 100%),
   caption:[Fitting of the braking force of the Yamamura model against the applied magnetic field with the function $F (x) = a dot x^b$. The red dots represent the simulated values, whereas the blue lines represent the fit.]
 )<F_yam_jfit>
+In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependency, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed we get as exponent a value of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependency of the braking force on the applied current density. The prefactor $a$ is equal to $num("0.956") plus.minus num("1.36e-6")$ and the $R^2$ value of the fit $1.0000$. The x values for the fit are converted from current density ($unit("A/m^2")$) to magnetic field ($unit("T")$) using their linear relationship, which must be taken into account when interpreting the prefactor $a$.
 
 
 === Braking force fit
@@ -411,8 +414,9 @@ We can see that all values lie on a straight line, which confirms the model func
 We can also derive $C$ by dividing the simulated braking force by the term $y^2 sqrt(v)$ for all simulated velocities and yoke widths, which yields a mean value of $C=1133.9$ with a standard deviation of $126.98$ which is 11.2%. These two methods yield a similar value for $C$, which confirms that it is really a constant and does not depend on the velocity nor on the yoke width. Therefore we can conclude that the braking force of the Yamamura model can be described with the following function:
 $ F_b (v,y,B_0) = qty("1241.8","A^2 kg^-1 m^-1.5 s^-2.5") B_0^2 y^2 sqrt(v) $
 The unit for $C$ is $unit("N T^-2 * m^-2 * m^-0.5 s^0.5")= unit("A^2 kg^-1 m^-1.5 s^-2.5")$ to ensure that the braking force is in $unit("N")$.
+Comparing the constant $C$ to the prefactor $a$ of the fit for the applied field dependence, we have first to apply the yoke width and velocity values of the applied field dependence simulation. For the applied field dependence, we used a yoke width of $y=qti("10", "mm")$ and a velocity of $v=qti("100", "m/s")$. Therefore, we can calculate the expected prefactor for the applied field dependence as $a = C y^2 sqrt(v) = 1241.8 * (0.01)^2 * sqrt(100) = 1.2418$, which is close to the fitted value of $a=0.956$ for the applied field dependence.
 
-This function can be used to predict the braking force of the Yamamura model, where $y$ is both the yoke and rail width. For a conventional geometry, as discussed in the next @section:hyperloop_model, the rail width has to be much larger since both yoke surfaces are exposed to the same side of the rail.
+The function $F_b (v,y,B_0)$ can be used to predict the braking force of the Yamamura model, where $y$ is both the yoke and rail width. For a conventional geometry, as discussed in the next @section:hyperloop_model, the rail width has to be much larger since both yoke surfaces are exposed to the same side of the rail.
 We expect here an even stronger braking force since the eddy currents can flow in larger circulations. This would specifically influence the $C$ constant. The general square root dependency on the velocity and the square dependency on the yoke width and the applied field should still hold.
 
 
@@ -421,40 +425,47 @@ We expect here an even stronger braking force since the eddy currents can flow i
 <section:hyperloop_model>
 The original model of the TUM Hyperloop consists of a rail and an electromagnet whose yoke is shaped like a U. Since both yoke surfaces are exposed to the same side of the rail, the rail needs to be wider than in the Yamamura model, which increases the number of mesh elements and thus significantly increases computational cost. However, the Hyperloop model can be used for actual levitation, since a net magnetic force can now act between rail and magnet in the z-direction, whereas in the Yamamura model the forces in the z-direction cancel each other out. Therefore, we also investigate the Hyperloop model with Ansys Mechanical to get better insight into the influence of different parameters on the magnetic field and the resulting forces.
 
-We will start with a smaller dimension of the model to reduce the computational cost, but we will keep the same proportions as in the original model. The dimensions in $unit("mm")$ are given in the following table:
-#table(
- columns: (auto, auto, auto),
- align: horizon,
- table.header([*Component*], [*Size*], [*Value*]),
- table.cell(rowspan: 4)[*yoke*],
- [yoke_x], [140],
- [yoke_width], [10],
- [yoke_y], [40],
- [yoke_z], [20],
- table.cell(rowspan: 2)[*coil*],
- [coil_thickness], [7.5],
- [coil_padding], [0.2],
- table.cell(rowspan: 3)[*rail*],
- [rail_x], [590],
- [rail_y], [40],
- [rail_z], [1],
- table.cell(rowspan: 1)[*air*],
- [air gap], [1],
-)
-The original-dimension geometry has a yoke length of $qti("1350", "mm")$ (\~ 10x larger), and a yoke width of $qti("3.5", "mm")$ (\~ 3.5x larger), which results in a scaling factor of 35 for the magnetic area of the smaller model.
+We will start with a smaller dimension of the model to reduce the computational cost, but we will keep the same proportions as in the original model. The dimensions in $unit("mm")$ are given in @table:TUM_model_dimensions:
+#figure(
+  grid(columns: 2,
+  column-gutter: 1em,
+  row-gutter: 0.5em,
+  [
+  #table(
+   columns: (auto, auto, auto),
+   align: horizon,
+   table.header([*Component*], [*Label*], [*Size*]),
+   table.cell(rowspan: 4)[*yoke*],
+   [yoke_x], [140],
+   [yoke_width], [10],
+   [yoke_y], [40],
+   [yoke_z], [20],
+   table.cell(rowspan: 2)[*coil*],
+   [coil_thickness], [7.5],
+   [coil_padding], [0.2],
+   table.cell(rowspan: 3)[*rail*],
+   [rail_x], [590],
+   [rail_y], [40],
+   [rail_z], [1],
+   table.cell(rowspan: 1)[*air*],
+   [air gap], [1],
+  )],
+  [#image("../figures/simulation/tum_model.svg", width: 100%)],
+  [],[])
+)<table:TUM_model_dimensions>
 
+The original-dimension geometry has a yoke length of $qti("1350", "mm")$ (\~ 10x larger), and a yoke width of $qti("3.5", "mm")$ (\~ 3.5x larger), which results in a scaling factor of 35 for the magnetic area of the smaller model.
+As in the analysis of the Yamamura model, we simulate the model for different velocities to get insight into the velocity dependence of the magnetic field and the resulting forces. The magnetic field profiles along the x-axis in the air gap for an applied magnetic field of $B_0=qti("484", "mT")$ and different velocities are shown in @B_hurric_x140y10_vsweep.
 #figure(
  image("../figures/simulation/B_hurric_x140y10_vsweep.svg", width: 100%),
- caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+ caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qti("484", "mT")$.]
 )<B_hurric_x140y10_vsweep>
-
+We can observe a similar behavior as in the Yamamura model: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field. Compared to the Yamamura model with the same dimensions for yoke length and width the amplitudes of the nose dip and tail peak are much stronger in the Hyperloop model. This is even more noticeable when comparing the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc_vsweep for the Yamamura model and in @deltaB_hurric_x140y10_vsweep for the Hyperloop model.
 #figure(
  image("../figures/simulation/deltaB_hurric_x140y10_vsweep.svg", width: 100%),
  caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<deltaB_hurric_x140y10_vsweep>
-
-
-
+The values of the lowest nose dips and highest tail peaks for all velocities are given in @table:LND_HTP_hurric_vsweep and are roughly three times higher than for the Yamamura model (@table:LND_HTP_yam_mc_y10). This can be explained by the fact that in the Hyperloop model the eddy currents can flow in larger circulations, because the rail width, which equals the yoke width in the Yamamura model, has to be wider in the Hyperloop model to expose both yoke surfaces to the same side of the rail.
 #figure(
 table(
  columns: (auto, auto, auto),
@@ -468,19 +479,24 @@ table(
 ),
 caption: [LND and HTP for several velocities in the TUM Hyperloop model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("480", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.]
 )<table:LND_HTP_hurric_vsweep>
+A further indication that states that the eddy currents flow in larger circulations can be seen when comparing the magnetic field profiles along the x-axis with the ones of the yoke width sweep of the Yamamura model in @deltaB_yam_ysweep. The profile shows in both cases not only increased amplitudes but also a much slower relaxation after the lowest nose dip toward the end of the magnet. This effect was characteristic for the yoke width dependence in the Yamamura model, but can be now even stronger observed in the Hyperloop model, which indicates that the eddy currents can flow in circulations with a larger diameter in both the y- and x-directions. Comparing the relative values of the LND and HTP for the Hyperloop model at a velocity of $qti("100", "m/s")$ with the ones of the yoke width sweep of the Yamamura model at the same velocity, we can see that they are similar to the ones for a yoke width of around $qty("25", "mm")$ in the Yamamura model.
+For this configuration of the Hyperloop model that would mean that we can transfer the results Yamamura model by applying a scaling factor of $approx 2.5$ for the yoke width.
 
-
+Next we want to look at the braking force of the Hyperloop model at different velocities, as shown in @Fb_hm_vfit, where the braking force is plotted against velocity.
 #figure(
   image("../figures/simulation/Fb_hm_vfit.svg", width: 100%),
-  caption:[Fit of the braking force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for a yoke width of $qty("10", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue line represents the fit with the function $F(v)=a sqrt(v)$.]
+  caption:[Fit of the braking force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for a yoke width of $qty("10", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue line represents the fit with the function $F(x)=a sqrt(x)$.]
 )<Fb_hm_vfit>
+As expected in the analysis of the Yamamura model, the curve shape is similar to a square-root function; therefore, we fit the curve with a model function of the form $F(x)=a sqrt(x)$. We get for the fit a coefficient of determination of $R^2=0.9902$ and a prefactor of $a=0.1203$ with a standard error of 0.0030.
+Comparing the prefactor $a$ to the constant $C$ of the braking force function of the Yamamura model, we have first to apply the yoke width and B field values of the Hyperloop model to the function of the Yamamura model. For the Hyperloop model we used a yoke width of $y=qti("10", "mm")$ and an applied magnetic field of $B_0=qti("484", "mT")$. Therefore, we can calculate the expected prefactor for the velocity dependence as $a = C B_0^2 y^2 = 1241.8 * (0.484)^2 * (0.01)^2 = 0.02909$. The fitted value of $a=0.1203$ is about four times higher than the expected value. Since the induced field is $approx 2.5$ times higher in the Hyperloop model compared to the Yamamura model and the braking force depends on the square of the induced field, we can expect a scaling factor of around 6.25 for the braking force. The difference between the expected value and the fitted value can easily explained when we consider that we deal with very approximated values for the scaling factor and the fit in the Hyperloop model. But the general order of magnitude is correct, which helps to approximate the braking force of the Hyperloop model based on the results of the Yamamura model.
 
-Fitted parameter: a=0.1203±0.0030, R²=0.9902
+In contrast to the Yamamura model, the Hyperloop model also has a net lift force in the z-direction, which is shown in @F_hm_vsweep for different velocities. We can see that the lift force is decreasing with increasing velocity. As stated by Yamamura @eq:lift_force the lift force is calculated by the integration of the total magnetic field, i.e. the sum of the applied and induced field, over the surface of the magnet. As shown in @B_hurric_x140y10_vsweep, the average magnetic field in the air gap is decreasing with increasing velocity, only at the tail we have an increase of the magnetic field which increases there the lift force. But it is not enough to compensate the decrease of the magnetic field at the nose and the middle region, which leads to a net decrease of the lift force. This net decrease of the lift force can be interpreted as the oriented surface integration of the plot in @deltaB_hurric_x140y10_vsweep.
+
 
 #figure(
   image("../figures/simulation/F_hm_vsweep.svg", width: 100%),
   caption:[Braking force and Lift force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
-)
+)<F_hm_vsweep>
 
 
 

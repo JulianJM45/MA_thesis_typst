@@ -148,7 +148,7 @@ As described with the formulas of the Yamamura model, the plots show that in thi
  *Force equations*\
 <force-equations>
 The attracting lift force $F_l$ of the magnet is given by
-$ F_l = 1 / mu_0 integral_(- oo)^oo d x integral_a^a d y (b (x , y))^2 $
+$ F_l = 1 / mu_0 integral_(- oo)^oo d x integral_a^a d y (b (x , y))^2 $<eq:lift_force>
 For a static magnetic this results in
 $ F_l^0 = 2 / mu_0 a L B_0^2 $
 Substituting equation @eq:magnetic_field_solution the losses due to eddy
