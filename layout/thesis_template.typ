@@ -55,13 +55,13 @@
     author: author,
     submissionDate: submissionDate
   )
-  transparency_ai_tools_layout(transparency_ai_tools)
+  // transparency_ai_tools_layout(transparency_ai_tools)
 
   print_page_break(print: is_print)
 
-  acknowledgement_layout(acknowledgement)
+  // acknowledgement_layout(acknowledgement)
 
-  print_page_break(print: is_print)
+  // print_page_break(print: is_print)
 
   abstract(lang: "en")[#abstract_en]
   abstract(lang: "de")[#abstract_de]
@@ -182,4 +182,9 @@
   pagebreak()
   bibliography("/thesis.yml")
   // bibliography("/thesis.bib")
+
+  transparency_ai_tools_layout(transparency_ai_tools)
+
+  acknowledgement_layout(acknowledgement)
+
 }
