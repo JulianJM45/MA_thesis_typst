@@ -35,8 +35,8 @@ The braking force of the TUM Hyperloop design was about four times higher than t
 This thesis analyzed fundamental theory and modeling of eddy currents in a homogeneous EMS system. Using finite-element simulations, we identified key dependencies on velocity, yoke width, yoke length, and applied magnetic field.
 For practical operation, several effects remain relevant for future work.
 For example, a numerical implementation of the rail–frame model could serve as an alternative to the analytical Yamamura approach and improve accuracy.
-// For example, as an alternative to the analytical Yamamura model, a numerical implementation of the rail-frame model could improve the accuracy of eddy-current simulation.
 Because of the skin effect, magnetic flux in the rail may become strongly compressed and drive the magnetic flux density into the nonlinear region of the B-H curve.
 The TUM Hyperloop design currently uses a flat rail profile. A U-shaped rail could support vehicle guidance, but it would also increase the magnetic flux path length and may strengthen eddy currents.
 Rail lamination will likely reduce eddy currents because the current paths are constrained to smaller loop areas. This is expected to have a similar effect to reducing yoke width.
-Finally, introducing smaller magnets at the nose and tail could reduce the magnetic-field gradient along the direction of motion and thereby lower eddy-current losses.
+Introducing smaller magnets at the nose and tail could reduce the magnetic field gradient along the direction of motion and thereby lower eddy-current losses.
+Finally, the simulation results should be validated experimentally. A possible experimental setup could consist of a large conducting wheel representing the rail and a magnet array mounted along its circumference. The magnet array would require force sensors in the radial direction to measure the lift force. The braking force could be inferred from the power required by the drive motor. In addition, Hall sensors placed along the airgap could be used to measure the magnetic field profile.
