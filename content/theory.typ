@@ -257,7 +257,7 @@ In this section, we start with the neglection of the displacement current; then 
 
 === Neglect of the displacement current
 <displacement-current>
-As stated before the displacement current $pdv(vb(D), t)$ can be neglected for most eddy current cases @kriezis1992eddy @sinha1987electromagnetic @biro1999edge. This can be easily shown by comparing the conduction current with the displacement current:
+As stated before the displacement current $pdv(vb(D), t)$ can be neglected for most eddy current cases @kriezis1992eddy @sinha1987 @biro1999edge. This can be easily shown by comparing the conduction current with the displacement current:
 $ (|pdv(D, t)|)/(|J|) = (omega epsilon E)/(sigma E) = (omega epsilon)/(sigma) $
 For small frequencies and high conductivity, this term becomes negligible. As an example, we consider a conductor like iron with a conductivity of $qty("10.3e6", "S/m")$ and a frequency of $qty("1","MHz")$. Since iron is a conductor, its electric permittivity is quite low, and we assume just the vacuum permittivity $epsilon_0$; we get $(omega epsilon_0)/(sigma)  approx num("8.6e-10")$, so the displacement current is negligible compared to the conduction current. This assumption is also known as the quasi-static field.
 

@@ -1,13 +1,15 @@
 #import "@preview/codedis:0.3.0": code
 #import "@preview/physica:0.9.6": *
--- Supplementary Material --
+// -- Supplementary Material --
 
-#let code_yam_pyaedt = read("../code/yamamura01.py")
+
+// #let code_yam_pyaedt = read("../code/yamamura01.py")
 
 // #code(code_yam_pyaedt, line-numbers: true)
 
-== Sinha Model
-P. K. Sinha described in his book @sinha1987electromagnetic a similar model to describe the eddy currents induced by a moving magnetic field along a conducting rail. \
+-- Sinha Model --
+
+P. K. Sinha described in his book @sinha1987 a similar model to describe the eddy currents induced by a moving magnetic field along a conducting rail. \
 In this approach equation @eq:current_density is also used but instead of the static third Maxwell equation as in the Yamamura model, the dynamic one @maxwell_E2 is used. Sinha uses also the macroscopic Maxwell equations @maxwell_H2 (without the displacment current).
 Combining these results in the following differential equation:
 $ frac(1, mu sigma)laplacian H = pdv(H, t) + curl (v times H) $

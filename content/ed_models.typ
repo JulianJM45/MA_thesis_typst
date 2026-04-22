@@ -29,7 +29,9 @@ We expect therefore for the magnetic field profile along the x-axis that it main
 
 == Yamamura model
 <yamamura-model>
-In his paper from 1975 @yamamura1975, Yamamura proposed an analytical model for speed characteristics of attracting magnets for magnetic levitation. The model here is simplified in the following form that rail and magnet core are not bent any more but are straight as shown in @fig:yamamura_simplified.
+In his 1975 paper @yamamura1975, Yamamura proposed an analytical model for desribing the speed characteristics of attracting magnets for magnetic levitation systems. Other works, such as those by Sinha @sinha1987, introduce similar approaches, but are based on the Yamamura model. In the appendix, we show that Sinha's formulation leads to the same differential equation. Therefore, we restrict the discussion here to the original Yamamura model.
+The model of Yamamura is simplified in the following form that rail and magnet core are not bent any more but are straight as shown in @fig:yamamura_simplified.
+
 #figure(caption: [Comparison of the magnetic circuit (a) and the simplified magnetic circuit (b)],
   grid(columns: 2,
   column-gutter: 1em,
