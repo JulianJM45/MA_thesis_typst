@@ -106,7 +106,8 @@ Since in the Yamamura geometry the yoke surfaces embrace the rail on both sides,
  image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%),
  caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
 )<B_profile_yam_long>
-In @B_profile_yam_long we can see the magnetic field profile in the air gap at zero speed and at $qti("100", "m/s")$. We can see that at the nose of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the nose region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the tail region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.\
+In @B_profile_yam_long we can see the magnetic field profile in the air gap at zero speed and at $qti("100", "m/s")$. We can see that at the nose of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the nose region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the tail region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.
+
 To get a better insight into the change of the magnetic field, we can plot the difference between the magnetic field at $qti("100", "m/s")$ and the magnetic field at zero speed, which is shown in @deltaB_profile_yam_mx_y10.
 #figure(
  image("../figures/simulation/deltaB_profile_yam_mx.svg", width: 100%),
@@ -120,6 +121,8 @@ To get a better insight into the change of the magnetic field, we can plot the d
  ),
  caption: [Comparison between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$.]
 )<B_profile_yam_mx_analy_comparison>
+Here we can see, that the total sum of the magnetic field reduction and increase is negative, which results in a total reduction of the magnetic field in the air gap and therefore to a reduction of the lift force of the system. Since the magnetic force is not any more equaly distributed along the x-axis, this also leads to a tilting of the magnet (or later the vehicle), which is disadvantageous for the stability of the system.
+
 We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The profiles have different forms: whereas the simulation shows a drop in magnetic field at the nose and a peak at the tail, the Yamamura model shows a complete shift of the magnetic field profile in the x-direction toward the tail.
 
 
@@ -423,6 +426,18 @@ We expect here an even stronger braking force since the eddy currents can flow i
 #pagebreak()
 == TUM Hyperloop Model
 <section:hyperloop_model>
+
+// #figure(
+//  image("../figures/simulation/ColorMapB_2Dprofile_hm_v0.png", width: 95%),
+//  caption: [Magnetic field 2D air gap profile of the TUM Hyperloop model at zero speed.]
+// )<B_2Dprofile_hm_v0>
+
+// #figure(
+//  image("../figures/simulation/ColorMapdeltaB_2Dprofile_hm_v100.png", width: 95%),
+//  caption: [Magnetic field 2D air gap profile of the TUM Hyperloop model at zero speed.]
+// )<deltaB_2Dprofile_hm_v100>
+
+
 The original model of the TUM Hyperloop consists of a rail and an electromagnet whose yoke is shaped like a U. Since both yoke surfaces are exposed to the same side of the rail, the rail needs to be wider than in the Yamamura model, which increases the number of mesh elements and thus significantly increases computational cost. However, the Hyperloop model can be used for actual levitation, since a net magnetic force can now act between rail and magnet in the z-direction, whereas in the Yamamura model the forces in the z-direction cancel each other out. Therefore, we also investigate the Hyperloop model with Ansys Mechanical to get better insight into the influence of different parameters on the magnetic field and the resulting forces.
 
 We will start with a smaller dimension of the model to reduce the computational cost, but we will keep the same proportions as in the original model. The dimensions in $unit("mm")$ are given in @table:TUM_model_dimensions:
@@ -497,7 +512,3 @@ In contrast to the Yamamura model, the Hyperloop model also has a net lift force
   image("../figures/simulation/F_hm_vsweep.svg", width: 100%),
   caption:[Braking force and Lift force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<F_hm_vsweep>
-
-
-
-#pagebreak()

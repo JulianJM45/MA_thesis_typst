@@ -163,7 +163,7 @@ and
 $beta_n ' = frac(beta_n, alpha_n - beta_n)$. \
 The breaking force $F_b$ is given by
 $ F_b & = frac(g, d mu_0) integral_(- oo)^oo d x integral_0^(2 d) d z integral_a^a d y (b_e frac(partial b_i, partial x) + 1 / 2 frac(partial b_i^2, partial x))\
- & = F_a^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp(beta_n L) - 1) + beta_n ' (exp(-alpha_n L) - 1))) $
+ & = F_l^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp(beta_n L) - 1) + beta_n ' (exp(-alpha_n L) - 1))) $
 
 The following plots are generated from the python implementation from the author with the same parameters as in the original paper. \
 In @fig:yam_org_lift_f the lift force reduction for different lengths and rail widths is shown.
