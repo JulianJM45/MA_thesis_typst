@@ -87,7 +87,7 @@ There are several steps to prepare the simulation:
 
 In a first simulation, we create the geometry in the dimensions described above and assign a velocity of $qti("100000", "mm/s")$ which corresponds to $qti("100", "m/s")$.
 Since the mesh density is about $qti("1", "mm")$ and the velocity is $qti("100", "m/s")$, a time step of $qti("1e-5", "s")$ is chosen.
-Previous tests have shown that after around 20-30 time steps, a steady state is reached and the eddy currents become stable. To increase confidence in this result, we chose 90 time steps in this run.\
+Previous tests have shown that after around 20--30 time steps, a steady state is reached and the eddy currents become stable. To increase confidence in this result, we chose 90 time steps in this run.\
 #figure(
  image("../figures/simulation/eddy_currents_long.png", width: 100%),
  caption: [Depiction of the eddy currents in the Yamamura model at a speed of $qti("100", "m/s")$. The rail is moving from left to right (Top view).]
@@ -123,7 +123,7 @@ To obtain a clearer understanding of the field redistribution, the difference be
 )<B_profile_yam_mx_analy_comparison>
 It can be observed that the net change in the magnetic field, i.e. the sum of the local field reduction and increase along the x-direction, is negative. This results in an overall reduction of the magnetic field in the air gap and therefore in a reduction of the lift force of the system. Since the magnetic force is no longer evenly distributed along the x-axis, this also leads to a tilting of the magnet (and, in a real system, of the vehicle), which is disadvantageous for the stability of the system.
 
-The magnetic field profile at $qti("100", "m/s")$ can also be compared to the results of the analytical Yamamura model, as shown in @B_profile_yam_mx_analy_comparison. The profiles exhibit different behavior: while the simulation shows a localized reduction of the magnetic field at the nose and an increasse at the tail, the analytical Yamamura model predicts a spatial shift of the entire magnetic field profile in the x-direction toward the tail.
+The magnetic field profile at $qti("100", "m/s")$ can also be compared to the results of the analytical Yamamura model, as shown in @B_profile_yam_mx_analy_comparison. The profiles exhibit different behavior: while the simulation shows a localized reduction of the magnetic field at the nose and an increase at the tail, the analytical Yamamura model predicts a spatial shift of the entire magnetic field profile in the x-direction toward the tail.
 
 
 
@@ -173,13 +173,13 @@ In Ansys Mechanical software, we can write an _APDL_ script to define the physic
 #code(apdl_code, lang: "apdl", lines:(13,66), line-numbers:false)
 
 === Yamamura Model on Ansys Mechanical
-In a first step, we can look at the eddy currents in the rail. In @ec_yam_mc_y10 we can see that they are basically only at the nose and tail of the magnet. In our frame, the electrons move in the positive x-direction and the magnetic field points into the plane, so they are diverted inside the magnet area toward the negative y-direction (positive current density $vb(J)$ points in the opposite direction, i.e., in the positive y-direction). We notice that the currents are not perfectly symmetric but are highest at the rail edges and quenched in the x-direction.
+In a first step, we can look at the eddy currents in the rail. In @ec_yam_mc_y10 we can see that they are mainly at the nose and tail of the magnet. In our frame, the electrons move in the positive x-direction and the magnetic field points into the plane, so they are diverted inside the magnet area toward the negative y-direction (positive current density $vb(J)$ points in the opposite direction, i.e., in the positive y-direction). We notice that the currents are not perfectly symmetric but are highest at the rail edges and quenched in the x-direction.
 #figure(
  image("../figures/simulation/yam_ec.png", width: 100%),
  caption: [Depiction of the eddy currents in the Yamamura model at speed of $qti("100", "m/s")$ simulated with Ansys Mechanical. The rail is moving from left to right. Top view.]
 )<ec_yam_mc_y10>
 
-For retrieving the magnetic field in the air gap we define a surface parallel to the rail in the air gap. On this surface we can then export the magnetic field values and evaluate them.
+To retrieve the magnetic field in the air gap we define a surface parallel to the rail in the air gap. On this surface we can then export the magnetic field values and evaluate them.
 Since the surface includes all values of the plane through the whole region, we first need to cut by x and y coordinates to get the values inside the air gap.\
 We can illustrate the result in a 2D color plot, which is shown for zero speed in @B_2Dprofile_yam_mc_y10. As expected, the magnetic field is evenly distributed in the air-gap cross section at zero speed.
 
@@ -210,8 +210,8 @@ We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic
 )<deltaB_profile_yam_mc>
 
 
-== Comparison Ansys Maxwell and Ansys Mechanical
-To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the air gap to the one obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field.
+== Comparison between Ansys Maxwell and Ansys Mechanical
+To verify the results of the Ansys Mechanical simulation, we can compare the magnetic field profile in the air gap to that obtained with Ansys Maxwell. The comparison is shown in @B_profile_yam_y10_comparison. We can see the same behavior in both simulations: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field.
 
 #figure(
  grid(columns:2, column-gutter: 1em, row-gutter: 0.5em,
@@ -262,7 +262,7 @@ We see that with increasing velocity the induced field becomes stronger, which i
 table(
  columns: (auto, auto, auto),
  align: horizon,
- table.header([*Velocity in $m/s$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+ table.header([*Velocity in $m/s$*], [*LND in $unit("mT")$*], [*HTP in $unit("mT")$*]),
  [30], [24.94 (2.49%)], [14.11 (1.41%)],
  [60], [35.83 (3.58%)], [21.57 (2.16%)],
  [100], [47.48 (4.75%)], [30.66 (3.07%)],
@@ -300,13 +300,13 @@ For the yoke width dependence, we run the simulation for several yoke widths fro
  image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
  caption:[Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.]
 )<deltaB_yam_ysweep>
-We observe a behavior similar to the velocity case: with increasing yoke width, the induced field becomes stronger, which is expected since the eddy currents can flow in larger circulations and thus become stronger at larger yoke widths. In contrast to velocity dependence, however, the curve shape not only shows increased amplitudes but also relaxes much more slowly after the lowest nose dip toward the end of the magnet. This also corresponds to a larger eddy-current circulation flux, with an increased diameter in both the y- and x-directions. The lift and drag forces are now affected not only by the nose and tail regions but also by the middle region of the magnet, which leads to a stronger braking force. The values of the lowest nose dips and highest tail peaks for the representative yoke widths are given in @table:LND_HTP_yam_ysweep.
+We observe a behavior similar to the velocity case: with increasing yoke width, the induced field becomes stronger, which is expected since the eddy currents can flow in larger circulations and thus become stronger at larger yoke widths. In contrast to the velocity dependence, however, the curve shape not only shows increased amplitudes but also relaxes much more slowly after the lowest nose dip toward the end of the magnet. This also corresponds to a larger eddy-current circulation flux, with an increased diameter in both the y- and x-directions. The lift and drag forces are now affected not only by the nose and tail regions but also by the middle region of the magnet, which leads to a stronger braking force. The values of the lowest nose dips and highest tail peaks for the representative yoke widths are given in @table:LND_HTP_yam_ysweep.
 
 #figure(
 table(
  columns: (auto, auto, auto),
  align: horizon,
- table.header([*Yoke width in $unit("mm")$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+ table.header([*Yoke width in $unit("mm")$*], [*LND in $unit("mT")$*], [*HTP in$unit("mT")$*]),
  [10], [47.48 (4.75%)], [30.66 (3.07%)],
  [15], [80.68 (8.07%)], [50.66 (5.07%)],
  [20], [117.28 (11.73%)], [72.53 (7.25%)],
@@ -355,11 +355,11 @@ In @F_yam_xsweep we can see the braking force as a function of yoke length for d
 )<F_yam_xsweep>
 
 
-=== B field dependence
-For the B field dependence, we run the simulation for several current densities from $num("8.38e6")$ to $qti("83.8e6", "A/m^2")$. This results in different applied magnetic fields in the air gap. We expect a linear dependence of applied currents density and the resulting magnetic field because of Ampere's law, which states that the magnetic field is proportional to the electric current (see @amperes-law).
+=== Magnetic field dependence
+For the magnetic field dependence, we run the simulation for several current densities from $num("8.38e6")$ to $qti("83.8e6", "A/m^2")$. This results in different applied magnetic fields in the air gap. We expect a linear dependence between applied current density and the resulting magnetic field because of Ampere's law, which states that the magnetic field is proportional to the electric current (see @amperes-law).
 #figure(
   image("../figures/simulation/B_yam_x140y10v0_jsweep.svg", width: 100%),
-  caption:[Magnetic field profile of the Yamamura model at zero speed for different applied magnetic fields. The B field values inside the magnet are (increasing): $qty("100", "mT"), qty("300", "mT"), qty("500", "mT"), qty("700", "mT"), qty("1000", "mT")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+  caption:[Magnetic field profile of the Yamamura model at zero speed for different applied magnetic fields. The magnetic field values inside the magnet are (increasing): $qty("100", "mT"), qty("300", "mT"), qty("500", "mT"), qty("700", "mT"), qty("1000", "mT")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<B_yam_x140y10v0_jsweep>
 In @B_yam_x140y10v0_jsweep we can see the magnetic field profile along the x-axis in the air gap at zero speed for different applied electric current densities. We can see that the shape of the profile is the same for all current densities, but the basic mean level of the magnetic field is increasing with increasing current density. Comparing the mean values of the magnetic field for the different current densities, we can confirm a linear dependence between the applied current density and the resulting magnetic field, as shown in @table:B0_jsweep.
 
@@ -367,7 +367,7 @@ In @B_yam_x140y10v0_jsweep we can see the magnetic field profile along the x-axi
   table(
     columns: (auto, auto),
     align: horizon,
-    table.header([*Current density in $unit("A/m^2")$*], [*Mean B field in $unit("mT")$*]),
+    table.header([*Current density in $unit("A/m^2")$*], [*Mean magnetic field in $unit("mT")$*]),
     [$num("8.38e6")$], [100.01],
     [$num("25.15e6")$], [300.01],
     [$num("41.92e6")$], [500.02],
@@ -377,17 +377,17 @@ In @B_yam_x140y10v0_jsweep we can see the magnetic field profile along the x-axi
   caption:[Mean magnetic field in the air gap for different applied current densities.]
 )<table:B0_jsweep>
 
-Next we are interested in the dependency of the induced magnetic field on the applied current density. For that our magnet (or the rail) needs to be moving, so we run the simulation for a velocity of $qti("100", "m/s")$ for different current densities. The resulting change of the magnetic field compared to the zero speed case is shown in @deltaB_yam_x140y10v100_jsweep.
+Next we are interested in the dependence of the induced magnetic field on the applied current density. For that our magnet (or the rail) needs to be moving, so we run the simulation for a velocity of $qti("100", "m/s")$ for different current densities. The resulting change of the magnetic field compared to the zero speed case is shown in @deltaB_yam_x140y10v100_jsweep.
 #figure(
   image("../figures/simulation/B_yam_x140y10v100_jsweep.svg", width: 100%),
-  caption:[]
+  caption:[Change in magnetic field for different applied magnetic field values at a velocity of $qti("100", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<deltaB_yam_x140y10v100_jsweep>
-We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_mc_vsweep, i.e. that the amplitude increase but the shape of the curve is basically the same for all current densities. The values of the lowest nose dips and highest tail peaks for the different current densities are given in @table:LND_HTP_yam_jsweep.
+We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_mc_vsweep, i.e. that the amplitudes increase but the shape of the curve is basically the same for all current densities. The values of the lowest nose dips and highest tail peaks for the different current densities are given in @table:LND_HTP_yam_jsweep.
 #figure(
   table(
     columns: (auto, auto, auto),
     align: horizon,
-    table.header([*$B_0$ in $unit("mT")$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+    table.header([*$B_0$ in $unit("mT")$*], [*LND in $unit("mT")$*], [*HTP in $unit("mT")$*]),
     [$num("100")$], [4.76 (4.76%)], [3.11 (3.11%)],
     [$num("300")$], [14.29 (4.76%)], [9.32 (3.11%)],
     [$num("500")$], [23.82 (4.76%)], [15.53 (3.11%)],
@@ -396,18 +396,18 @@ We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_m
   ),
   caption:[LND and HTP for several applied magnetic fields in the Yamamura model with a velocity of $qti("100", "m/s")$, a yoke width of $qti("10", "mm")$ and a yoke length of $qti("140", "mm")$.]
 )<table:LND_HTP_yam_jsweep>
-We see that the values for LND and HTP are linear increasing with the applied magnetic field $B_0$ and the relativ values are constant at 4.76% and 3.11% respectively, which means that the induced magnetic field is proportional to the applied magnetic field and thus to the applied current density.
+We see that the values for LND and HTP increase linearly with the applied magnetic field $B_0$ and the relative values are constant at 4.76% and 3.11% respectively, which means that the induced magnetic field is proportional to the applied magnetic field and thus to the applied current density.
 #figure(
   image("../figures/simulation/F_yam_jfit.svg", width: 100%),
   caption:[Fitting of the braking force of the Yamamura model against the applied magnetic field with the function $F (x) = a dot x^b$. The red dots represent the simulated values, whereas the blue lines represent the fit.]
 )<F_yam_jfit>
-In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependency, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed we get as exponent a value of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependency of the braking force on the applied current density. The prefactor $a$ is equal to $num("0.956") plus.minus num("1.36e-6")$ and the $R^2$ value of the fit $1.0000$. The x values for the fit are converted from current density ($unit("A/m^2")$) to magnetic field ($unit("T")$) using their linear relationship, which must be taken into account when interpreting the prefactor $a$.
+In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependence, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed we obtain an exponent of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependence of the braking force on the applied current density. The prefactor $a$ is equal to $num("0.956") plus.minus num("1.36e-6")$ and the $R^2$ value of the fit is $1.0000$. The x values for the fit are converted from current density ($unit("A/m^2")$) to magnetic field ($unit("T")$) using their linear relationship, which must be taken into account when interpreting the prefactor $a$.
 
 
 === Braking force fit
-We will now compile the results of the velocity, yoke width, yoke length and applied field dependence to conclude a general law for the braking force of the Yamamura model. Since we observed a square root dependency on the velocity, a square dependency on the yoke width and the applied field and no dependency on the yoke length, we will model the braking force with the following function:
+We will now compile the results of the velocity, yoke width, yoke length and applied field dependence to conclude a general law for the braking force of the Yamamura model. Since we observed a square root dependence on the velocity, a square dependence on the yoke width and the applied field and no dependence on the yoke length, we will model the braking force with the following function:
 $ F_b (v,y,B_0) = C dot B_0^2 y^2 sqrt(v) $
-We still have to determine whether the prefactor $C$ is really a constant or whether it also depends on velocity and/or yoke width. Since the fit for the applied field has a perfect $R^2$ value and a neglectable error for the exponent, we assume no dependency for $C$ on $B_0$. To check the dependency on $v$ and $y$, we plot the braking force against the function $y^2 sqrt(v)$ for all simulated velocities and yoke widths, as shown in @F_yam_vyfit. Since we conducted all simulations for the velocity and yoke width dependence with the same applied magnetic field of $B_0=qty("1", "T")$, we can devide by 1 to neglect the dependency on $B_0$ in the plot.\
+We still have to determine whether the prefactor $C$ is really a constant or whether it also depends on velocity and/or yoke width. Since the fit for the applied field has a perfect $R^2$ value and a negligible error for the exponent, we assume no dependence for $C$ on $B_0$. To check the dependence on $v$ and $y$, we plot the braking force against the function $y^2 sqrt(v)$ for all simulated velocities and yoke widths, as shown in @F_yam_vyfit. Since we conducted all simulations for the velocity and yoke width dependence with the same applied magnetic field of $B_0=qty("1", "T")$, we can divide by 1 to neglect the dependence on $B_0$ in the plot.\
 We can see that all values lie on a straight line, which confirms the model function. The fitted line is shown in blue in @F_yam_vyfit, where the red dots represent the simulated values. The fit is good with a coefficient of determination of $R^2=0.9973$. The slope of the fitted line corresponds to the prefactor $C$ and is equal to $C=1241.8$ with a standard error of 4.3.
 
 #figure(
@@ -417,10 +417,10 @@ We can see that all values lie on a straight line, which confirms the model func
 We can also derive $C$ by dividing the simulated braking force by the term $y^2 sqrt(v)$ for all simulated velocities and yoke widths, which yields a mean value of $C=1133.9$ with a standard deviation of $126.98$ which is 11.2%. These two methods yield a similar value for $C$, which confirms that it is really a constant and does not depend on the velocity nor on the yoke width. Therefore we can conclude that the braking force of the Yamamura model can be described with the following function:
 $ F_b (v,y,B_0) = qty("1241.8","A^2 kg^-1 m^-1.5 s^-2.5") B_0^2 y^2 sqrt(v) $
 The unit for $C$ is $unit("N T^-2 * m^-2 * m^-0.5 s^0.5")= unit("A^2 kg^-1 m^-1.5 s^-2.5")$ to ensure that the braking force is in $unit("N")$.
-Comparing the constant $C$ to the prefactor $a$ of the fit for the applied field dependence, we have first to apply the yoke width and velocity values of the applied field dependence simulation. For the applied field dependence, we used a yoke width of $y=qti("10", "mm")$ and a velocity of $v=qti("100", "m/s")$. Therefore, we can calculate the expected prefactor for the applied field dependence as $a = C y^2 sqrt(v) = 1241.8 * (0.01)^2 * sqrt(100) = 1.2418$, which is close to the fitted value of $a=0.956$ for the applied field dependence.
+Comparing the constant $C$ to the prefactor $a$ of the fit for the applied field dependence, we first have to apply the yoke width and velocity values of the applied field dependence simulation. For the applied field dependence, we used a yoke width of $y=qti("10", "mm")$ and a velocity of $v=qti("100", "m/s")$. Therefore, we can calculate the expected prefactor for the applied field dependence as $a = C y^2 sqrt(v) = 1241.8 * (0.01)^2 * sqrt(100) = 1.2418$, which is close to the fitted value of $a=0.956$ for the applied field dependence.
 
 The function $F_b (v,y,B_0)$ can be used to predict the braking force of the Yamamura model, where $y$ is both the yoke and rail width. For a conventional geometry, as discussed in the next @section:hyperloop_model, the rail width has to be much larger since both yoke surfaces are exposed to the same side of the rail.
-We expect here an even stronger braking force since the eddy currents can flow in larger circulations. This would specifically influence the $C$ constant. The general square root dependency on the velocity and the square dependency on the yoke width and the applied field should still hold.
+We expect here an even stronger braking force since the eddy currents can flow in larger circulations. This would specifically influence the $C$ constant. The general square root dependence on the velocity and the square dependence on the yoke width and the applied field should still hold.
 
 
 #pagebreak()
@@ -473,19 +473,19 @@ The original-dimension geometry has a yoke length of $qti("1350", "mm")$ (\~ 10x
 As in the analysis of the Yamamura model, we simulate the model for different velocities to get insight into the velocity dependence of the magnetic field and the resulting forces. The magnetic field profiles along the x-axis in the air gap for an applied magnetic field of $B_0=qti("484", "mT")$ and different velocities are shown in @B_hurric_x140y10_vsweep.
 #figure(
  image("../figures/simulation/B_hurric_x140y10_vsweep.svg", width: 100%),
- caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qti("484", "mT")$.]
+ caption: [Magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several velocities from 0 to $qti("300", "m/s")$. Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qti("484", "mT")$.]
 )<B_hurric_x140y10_vsweep>
 We can observe a similar behavior as in the Yamamura model: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field. Compared to the Yamamura model with the same dimensions for yoke length and width the amplitudes of the nose dip and tail peak are much stronger in the Hyperloop model. This is even more noticeable when comparing the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc_vsweep for the Yamamura model and in @deltaB_hurric_x140y10_vsweep for the Hyperloop model.
 #figure(
  image("../figures/simulation/deltaB_hurric_x140y10_vsweep.svg", width: 100%),
- caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several verlocities from 0 to $qti("300", "m/s")$ . Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
+ caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several velocities from 0 to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.]
 )<deltaB_hurric_x140y10_vsweep>
 The values of the lowest nose dips and highest tail peaks for all velocities are given in @table:LND_HTP_hurric_vsweep and are roughly three times higher than for the Yamamura model (@table:LND_HTP_yam_mc_y10). This can be explained by the fact that in the Hyperloop model the eddy currents can flow in larger circulations, because the rail width, which equals the yoke width in the Yamamura model, has to be wider in the Hyperloop model to expose both yoke surfaces to the same side of the rail.
 #figure(
 table(
  columns: (auto, auto, auto),
  align: horizon,
- table.header([*Velocity in $m/s$*], [*LND in$unit("mT")$*], [*HTP in$unit("mT")$*]),
+ table.header([*Velocity in $m/s$*], [*LND in $unit("mT")$*], [*HTP in $unit("mT")$*]),
  [30], [40.20 (8.31%)], [26.79 (5.54%)],
  [60], [59.27 (12.26%)], [38.71 (8.01%)],
  [100], [78.42 (16.22%)], [52.18 (10.79%)],
@@ -494,15 +494,16 @@ table(
 ),
 caption: [LND and HTP for several velocities in the TUM Hyperloop model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("480", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.]
 )<table:LND_HTP_hurric_vsweep>
-A further indication that states that the eddy currents flow in larger circulations can be seen when comparing the magnetic field profiles along the x-axis with the ones of the yoke width sweep of the Yamamura model in @deltaB_yam_ysweep. The profile shows in both cases not only increased amplitudes but also a much slower relaxation after the lowest nose dip toward the end of the magnet. This effect was characteristic for the yoke width dependence in the Yamamura model, but can be now even stronger observed in the Hyperloop model, which indicates that the eddy currents can flow in circulations with a larger diameter in both the y- and x-directions. Comparing the relative values of the LND and HTP for the Hyperloop model at a velocity of $qti("100", "m/s")$ with the ones of the yoke width sweep of the Yamamura model at the same velocity, we can see that they are similar to the ones for a yoke width of around $qty("25", "mm")$ in the Yamamura model.
-For this configuration of the Hyperloop model that would mean that we can transfer the results Yamamura model by applying a scaling factor of $approx 2.5$ for the yoke width.
+A further indication that the eddy currents flow in larger circulations can be seen when comparing the magnetic field profiles along the x-axis with the ones of the yoke width sweep of the Yamamura model in @deltaB_yam_ysweep. In both cases, the profiles exhibit not only increased amplitudes but also a significantly slower recovery from the lowest nose dip toward the end of the magnet. This behavior is characteristic of increasing yoke width in the Yamamura model, but is now observed even more strongly in the Hyperloop configuration. This suggests that the eddy currents circulate over larger effective diameters, both in the transverse (y) direction and along the direction of motion (x).
+Comparing the relative values of the LND and HTP for the Hyperloop model at a velocity of $qti("100", "m/s")$ with those obtained from the yoke width sweep of the Yamamura model at the same velocity shows that they are similar to the ones for a yoke width of approximately $qty("25", "mm")$ in the Yamamura model.
+For this configuration of the Hyperloop model that would mean that we can transfer the results of the Yamamura model by applying a scaling factor of approximately $2.5$ for the yoke width.
 
 Next we want to look at the braking force of the Hyperloop model at different velocities, as shown in @Fb_hm_vfit, where the braking force is plotted against velocity.
 #figure(
   image("../figures/simulation/Fb_hm_vfit.svg", width: 100%),
   caption:[Fit of the braking force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for a yoke width of $qty("10", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue line represents the fit with the function $F(x)=a sqrt(x)$.]
 )<Fb_hm_vfit>
-As expected in the analysis of the Yamamura model, the curve shape is similar to a square-root function; therefore, we fit the curve with a model function of the form $F(x)=a sqrt(x)$. We get for the fit a coefficient of determination of $R^2=0.9902$ and a prefactor of $a=0.1203$ with a standard error of 0.0030.
+As expected from the analysis of the Yamamura model, the curve shape is similar to a square-root function; therefore, we fit the curve with a model function of the form $F(x)=a sqrt(x)$. We get for the fit a coefficient of determination of $R^2=0.9902$ and a prefactor of $a=0.1203$ with a standard error of 0.0030.
 To compare the prefactor $a$ with the constant $C$ of the Yamamura braking force model, the yoke width and magnetic field values of the Hyperloop configuration must first be inserted into the Yamamura expression. For the Hyperloop model, a yoke width of $y=qti("10", "mm")$ and an applied magnetic field of $B_0=qti("484", "mT")$ were used. The expected prefactor for the velocity dependence is therefore
 #set math.equation(numbering: none)
 $ a = C B_0^2 y^2 = 1241.8 * (0.484)^2 * (0.01)^2 = 0.02909 $.
@@ -511,7 +512,7 @@ Based on this, the braking force for the full-scale Hyperloop geometry can be ap
 $ F_b = C B_0^2 y^2 sqrt(v) = 4.14*1241.8 * (0.55)^2 * (0.035)^2 * sqrt(100) = qty("19.05", "N") $.
 The TUM Hyperloop pod consists of four such magnet arrangements, resulting in a total braking force of approximately $qty("76.2", "N")$. Although this is a very rough estimate, it provides a useful indication of the expected order of magnitude for the braking force in the full-scale system.
 
-In contrast to the Yamamura model, the Hyperloop model also has a net lift force in the z-direction, which is shown in @F_hm_vsweep for different velocities. We can see that the lift force is decreasing with increasing velocity. As stated by Yamamura @eq:lift_force the lift force is calculated by the integration of the total magnetic field, i.e. the sum of the applied and induced field, over the surface of the magnet. As shown in @B_hurric_x140y10_vsweep, the average magnetic field in the air gap is decreasing with increasing velocity, only at the tail we have an increase of the magnetic field which increases there the lift force. But it is not enough to compensate the decrease of the magnetic field at the nose and the middle region, which leads to a net decrease of the lift force. This net decrease of the lift force can be interpreted as the oriented surface integration of the plot in @deltaB_hurric_x140y10_vsweep.
+In contrast to the Yamamura model, the Hyperloop model also has a net lift force in the z-direction, which is shown in @F_hm_vsweep for different velocities. We can see that the lift force is decreasing with increasing velocity. As stated by Yamamura @eq:lift_force, the lift force is calculated by the integration of the total magnetic field, i.e. the sum of the applied and induced field, over the surface of the magnet. As shown in @B_hurric_x140y10_vsweep, the average magnetic field in the air gap is decreasing with increasing velocity, only at the tail we have an increase of the magnetic field which increases there the lift force. But it is not enough to compensate the decrease of the magnetic field at the nose and the middle region, which leads to a net decrease of the lift force. This net decrease of the lift force can be interpreted as the oriented surface integration of the plot in @deltaB_hurric_x140y10_vsweep.
 
 
 #figure(
