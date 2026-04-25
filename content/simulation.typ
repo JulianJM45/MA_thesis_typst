@@ -7,41 +7,41 @@
 #let qti(value, unit) = qty(value, unit, per:"/")
 
 = Simulation<chapter:simulation>
-The simulation for this thesis is conducted using two different software packages: Ansys Maxwell 2025 R2 (Ansys Inc., USA) and Ansys Mechanical 2025 R2 (Ansys Inc., USA).
+The simulations for this thesis are conducted using two different software packages: Ansys Maxwell 2025 R2 (Ansys Inc., USA) and Ansys Mechanical 2025 R2 (Ansys Inc., USA).
 
 == Ansys Maxwell
-Since Ansys Maxwell is designed for electromagnetic simulations, it is the most intuitive choice for our problem. In the following sections, we discuss the different steps to prepare the simulation and the different options available in Ansys Maxwell for each step.
+Since Ansys Maxwell is designed for electromagnetic simulations, it is the most suitable choice for this problem. In the following sections, we discuss the steps required to set up the simulation and the available options in Ansys Maxwell for each step.
 
 === Solver Type
-There are several solver types available in Maxwell, such as _Magnetostatic_, _Electrostatic_, and _Eddy Current_. The only solver relevant to our use case is _Transient_, since it includes motion. \
-For transient simulations, Maxwell offers two formulations: the $vb(T)-Omega$ formulation and the $vb(A)-Phi$ formulation. However, Maxwell allows motion only with the $vb(T)-Omega$ formulation. Therefore, the $vb(A)-Phi$ formulation is not relevant for this study.\
+There are several solver types available in Maxwell, such as _Magnetostatic_, _Electrostatic_, and _Eddy Current_. The only solver relevant to our use case is the _Transient_, since it includes motion. \
+For transient simulations, Maxwell offers two formulations: the $vb(T)-Omega$ formulation and the $vb(A)-Phi$ formulation. However, motion is only supported with the $vb(T)-Omega$ formulation. Therefore, the $vb(A)-Phi$ formulation is not relevant for this study.\
 The $vb(T)-Omega$ formulation is also the default option for the _Transient_ solver, where the order of the magnetic scalar potential $Omega$ is 2 and the order of the electric vector potential $vb(T)$ is 1 @ansys_3D_transient_solver.
-For motion problems, Maxwell uses a fixed coordinate system for Maxwell's equations in both the moving and the stationary parts of the model. This eliminates the explicit motion term, so there is no $vb(v) times vb(B)$ term in the current-density equation. Instead, in the stationary frame the magnetic field changes over time, so Maxwell's third equation @maxwell_E2 can be applied. A combination of Maxwell's third and fourth equations @maxwell_E2 and @maxwell_H2 as well as Ohm's law @ohms_law results in the following differential equation:
+For motion problems, Maxwell uses a fixed coordinate system for Maxwell's equations in both the moving and the stationary parts of the model. This eliminates the explicit motion term, so there is no $vb(v) times vb(B)$ term in the current-density equation. Instead, in the stationary frame, the magnetic field changes over time, so Maxwell's third equation @maxwell_E2 can be applied. A combination of Maxwell's third and fourth equations @maxwell_E2 and @maxwell_H2, as well as Ohm's law @ohms_law results in the following differential equation:
 $ curl 1/sigma curl vb(H) + pdv(vb(B),t) = 0 $
-Together with Maxwell's second equation @maxwell_B1 this set of two equations yields the physical description of the problem.
+Together with Maxwell's second equation @maxwell_B1 this set of two equations yields a complete physical description of the problem.
 === Meshing
-There are different meshing methods in Ansys that can be applied to a solid. First, Ansys automatically creates an initial mesh, which is then refined by the user in certain regions. \
+There are different meshing methods in Ansys that can be applied to a solid. First, Ansys automatically creates an initial mesh, which is then refined by the user in selected regions. \
 For the initial mesh, the available methods are @ansys_maxwell_initialmeshsettings:
 - Auto (default): automatically selects the mesher, mostly TAU
-- Tau: well suited for curved surfaces
-- (advanced) Tau Flex Meshing: may reduce meshing time, provides a mesh even for complex geometries
+- TAU: well suited for curved surfaces
+- (advanced) TAU Flex Meshing: may reduce meshing time and provides a mesh even for complex geometries
 - Classic: uses the Bowyer algorithm. Well suited for geometries with many thin surfaces
 - PhiPlus: efficient meshes for designs with layout components
 In this thesis, the Auto method is used for the initial meshing. \
 In a second step, the mesh is refined in the regions of interest. There are also different methods available for mesh refinement:
 - length-based mesh inside an object: applies a mesh inside the whole object with a density specified by the _maximum_length_ parameter
-- length-based mesh on object face: applies a mesh on the surface of an object which gets coarser with distance from the surface. Its density is specified by the _maximum_length_ parameter
+- length-based mesh on object face: applies a mesh on the surface of an object that becomes coarser with distance from the surface. Its density is specified by the _maximum_length_ parameter
 - skin depth-based mesh on object face: applies a mesh on the surface of an object which is well suited for skin effects like eddy currents. The density on the surface is specified by _triangulation_max_length_, whereas the depth into the object is specified by _skin_depth_ and the number of layers by _layers_number_.
-Maxwell also automatically adapts the mesh in the vicinity of finely meshed areas.
+Maxwell also automatically adapts the mesh in the vicinity of finely meshed regions.
 
 
 
 === Motion
 <section:Motion>
-Maxwell 3D's _Transient_ solution type offers the option to add motion to an object. This is done by defining a motion band, i.e., a box that wraps the moving object. It is important to note that only one object is allowed inside the motion band. If your object consists of several parts, e.g. a yoke and coil that should move together, you must wrap them inside an inner band, which then moves inside the motion band.\
-Unfortunately, there is a catch with the mesh of the moving band: in contrast to other objects, which can have different mesh densities (e.g. only dense mesh at one surface), Ansys always applies the highest density of the motion band to the whole band as a length-based mesh inside an object. In other words, if we have only a small region of interest, such as the air gap between magnet and rail where we need a high-density mesh, this high-density mesh is not only applied to the region of the moving band located in the air gap but to the entire moving band. This increases computational costs dramatically.\
-There are basically two options for implementing the motion: either move the magnet (yoke and coil) under the rail, or keep the magnet stationary and move the rail. The latter requires a longer moving band in the x-direction (direction of motion), but it can be built much smaller in the z-direction because the eddy currents occur mainly at the surface, which allows us to model a very thin rail. With a moving rail, the moving band's volume is significantly smaller, which reduces computation time and is therefore chosen in this study.\
-Another option is to build Yamamura's alternative model as depicted in  @fig:yamamura_simplified. This allows an even smaller moving band volume since the rail is considerably smaller in the y-direction.
+Maxwell 3D's _Transient_ solution type offers the option to add motion to an object. This is done by defining a motion band, i.e., a box that encloses the moving object. It is important to note that only one object is allowed inside the motion band. If the object consists of several parts, e.g., a yoke and coil that should move together, these must be wrapped inside an inner band, which then moves inside the motion band.\
+Unfortunately, there is a limitation regarding the mesh of the moving band: in contrast to other objects, which can have different mesh densities (e.g. a dense mesh only at one surface), Ansys always applies the highest mesh density of the motion band to the entire band as a length-based mesh inside an object. In other words, if we have only a small region of interest, such as the air gap between magnet and rail where a high-density mesh is required, this high-density mesh is not only applied locally but to the entire moving band. This increases computational costs significantly.\
+There are essentially two options for implementing the motion: either move the magnet (yoke and coil) under the rail, or keep the magnet stationary and move the rail. The latter requires a longer moving band in the x-direction (direction of motion), but it can be made significantly smaller in the z-direction because eddy currents occur mainly near the surface, which allows us to model a very thin rail. With a moving rail, the volume of the motion band is significantly smaller, which reduces computation time and is therefore chosen in this study.\
+Another option is to build Yamamura's alternative model as shown in  @fig:yamamura_simplified. This allows an even smaller moving band volume since the rail is considerably smaller in the y-direction.
 
 
 
@@ -50,7 +50,7 @@ Another option is to build Yamamura's alternative model as depicted in  @fig:yam
  image("../figures/simulation/yamamura_y10.png", width: 100%),
  caption: [Depiction of the Yamamura model recreated in Ansys Maxwell.]
 )<yamamura_recreated>
-As discussed in @section:Motion the computational cost for the Yamamura model is significantly lower than that of the conventional model, since the rail and thus the moving band can have considerably smaller volumes. This is why the model is recreated in Ansys Maxwell as shown in @yamamura_recreated.
+As discussed in @section:Motion, the computational cost for the Yamamura model is significantly lower than that of the conventional model, since the rail and thus the moving band can have considerably smaller volumes. This is why the model is recreated in Ansys Maxwell as shown in @yamamura_recreated.
 The dimensions of the yoke and the rail are given in $unit("mm")$ in @table:yam_v100_mx.
 #figure(
   grid(columns: 2,
@@ -74,41 +74,41 @@ The dimensions of the yoke and the rail are given in $unit("mm")$ in @table:yam_
   )],
   [#image("../figures/models/yamamura_simplified.svg", width: 50%)],
   [], []),
-  caption:[Geometry of the yoke and the rail in the Yamamura model. The dimensions are given in $unit("mm")$. The labels are the same as in the analytical model in @yamamura-model. Additionally we introduce the length of the rail _rail_x_, which is infinite in the analytical model but finite in the simulation. The length of the rail is chosen to be long enough to ensure that the eddy currents are stable and do not reach the end of the rail during the simulation time.]
+  caption:[Geometry of the yoke and the rail in the Yamamura model. The dimensions are given in $unit("mm")$. The labels are the same as in the analytical model in @yamamura-model. Additionally, we introduce the length of the rail _rail_x_, which is infinite in the analytical model but finite in the simulation. The length of the rail is chosen to be long enough to ensure that the eddy currents are stable and do not reach the end of the rail during the simulation time.]
 )<table:yam_v100_mx>
 \
 *Simulation preparation*\
 There are several steps to prepare the simulation:
 1. Create the geometry of the different components, such as the rail, yoke, coil, and air gap.
-2. Assign current to the coils and turn on eddy effects for the rail.
+2. Assign current to the coils and enable eddy effects for the rail.
 3. Assign motion to the rail.
 4. Create a setup that defines the simulation parameters.
-5. Analyze the simulation setup.
+5. Run the simulation.
 
-In a first simulation, we create the geometry in the dimensions described above and assign a velocity to the rail of $qti("100000", "mm/s")$ which is $qti("100", "m/s")$.
+In a first simulation, we create the geometry in the dimensions described above and assign a velocity of $qti("100000", "mm/s")$ which corresponds to $qti("100", "m/s")$.
 Since the mesh density is about $qti("1", "mm")$ and the velocity is $qti("100", "m/s")$, a time step of $qti("1e-5", "s")$ is chosen.
-Former tests have shown that after around 20-30 time steps, a steady state is reached, so the eddy currents are stable. To increase confidence in this result, we chose 90 time steps in this run.\
+Previous tests have shown that after around 20-30 time steps, a steady state is reached and the eddy currents become stable. To increase confidence in this result, we chose 90 time steps in this run.\
 #figure(
  image("../figures/simulation/eddy_currents_long.png", width: 100%),
- caption: [Depiction of the eddy currents in the Yamamura model at a speed of $qti("100", "m/s")$. The rail is moving from left to right. Top view.]
+ caption: [Depiction of the eddy currents in the Yamamura model at a speed of $qti("100", "m/s")$. The rail is moving from left to right (Top view).]
 )<eddy_currents_long>
-In @eddy_currents_long we can see the eddy currents in the rail. They are basically only at the nose and tail of the magnet. In our frame, the electrons move in the positive x-direction and the magnetic field points into the plane, so they get diverted inside the magnet area toward the negative y-direction. Outside the magnet area, the electrons move back to the positive y-edge of the rail due to the electric fields created by charge displacement. This leads to a closed current loop, which is clockwise at the nose and counterclockwise at the tail of the magnet.\
+In @eddy_currents_long we can observe the eddy currents in the rail. They are mainly concentrated at the nose and tail of the magnet. In our frame, electrons move in the positive x-direction and the magnetic field points into the plane, so they are deflected inside the magnet region toward the negative y-direction. Outside the magnet region, the electrons move back toward the positive y-edge of the rail due to electric fields induced by charge separation. This leads to a closed current loop, which is clockwise at the nose and counterclockwise at the tail of the magnet.\
 #figure(
  image("../figures/simulation/yam_long_force_x.svg", width: 100%),
- caption: [Braking force of the Yamamura model at speed of $qti("100", "m/s")$ over time to observe the steady-state.]
+ caption: [Braking force of the Yamamura model at speed of $qti("100", "m/s")$ over time, showing the approach to steady-state.]
 )<yam_long_force_x>
-The braking force over time is depicted in @yam_long_force_x. Since this is a transient simulation, the force is not constant but changes over time until it reaches equilibrium. We can see that after around $qty("500", "us")$ (50 time steps), the force is stable, which confirms that equilibrium is reached within 90 time steps. The braking force is around $qty("400", "mN")$ and has negative values because it points against the direction of motion.\
-If we insert the geometry parameters of the simulation into the Yamamura model, it yields a braking force of around $qty("3.83", "N")$, which is one order of magnitude larger than the one obtained in the simulation.
+The braking force over time is shown in @yam_long_force_x. Since this is a transient simulation, the force is not constant but evolves over time until it reaches equilibrium. We observe that after approximately $qty("500", "us")$ (50 time steps), the force becomes stable, confirming that steady state is reached within 90 time steps. The braking force is around $qty("400", "mN")$ and has negative values because it acts opposite to the direction of motion.\
+If we insert the geometry parameters of the simulation into the Yamamura model, it yields a braking force of around $qty("3.83", "N")$, which is one order of magnitude larger than the value obtained from the simulation.
 
-Since in the Yamamura geometry the yoke surfaces embrace the rail on both sides, the magnetic forces on the rail (or the magnet) in z-direction, which correspond to the lift force, cancel each other out, so that it is pointless to look at the lift force in this model. To study the lift force, we will look at the conventional model in the following sections.
+Since in the Yamamura geometry the yoke surfaces embrace the rail on both sides, the magnetic forces on the rail (or the magnet) in z-direction, which correspond to the lift force, cancel each other out. Therefore, it is not meaningful to analyze the lift force in this model. To study the lift force, we consider the conventional model in the following sections.
 
 #figure(
  image("../figures/simulation/B_profile_yam_mx_v100.svg", width: 100%),
  caption: [Magnetic field profile of the Yamamura model at speed of $qti("0", "m/s")$ (at $t=0$) and $qti("100", "m/s")$ (at $t=qti("0","s")$).]
 )<B_profile_yam_long>
-In @B_profile_yam_long we can see the magnetic field profile in the air gap at zero speed and at $qti("100", "m/s")$. We can see that at the nose of the magnet the magnetic field is reduced due to the induced field which points against the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field which points in the same direction as the applied field. We can identify different regions, where we can describe a characteristic behavior of the magnetic field: at the nose region we see the highest drop of the magnetic field, which starts at $6.3 %$ (at $x=qty("-6.7","cm")$) and then decreases to around $3.1%$ (at $x=qty("-4.5","cm")$). In the middle region the magnetic field comes slowly back to the undisturbed value which it reaches at around $x=qty("3","cm")$. At the tail region the magnetic field is increased and reaches its maximum peak at around $x=qty("6.75","cm")$ which is the very end of the magnet. Here the magnetic field increases up to $5.8%$ compared to the zero speed case.
+In @B_profile_yam_long, the magnetic field profile in the air gap is shown for zero speed and for a velocity of $qti("100", "m/s")$. It can be observed that at the nose of the magnet the magnetic field is reduced due to the induced field opposing the applied field, whereas at the tail of the magnet the magnetic field is increased due to the induced field acting in the same direction as the applied field. Different regions can be identified, each showing characteristic behavior of the magnetic field. In the nose region, the strongest reduction occurs, starting at $6.3 %$ (at $x=qty("-6.7","cm")$) and decreasing to about $3.1%$ (at $x=qty("-4.5","cm")$). In the central region, the magnetic field gradually returns to the undisturbed value, which is reached at approximately $x=qty("3","cm")$. In the tail region, the magnetic field increases and reaches its maximum at around $x=qty("6.75","cm")$ corresponding to the end of the magnet. Here, the magnetic field rises up to $5.8%$ compared to the zero speed case.
 
-To get a better insight into the change of the magnetic field, we can plot the difference between the magnetic field at $qti("100", "m/s")$ and the magnetic field at zero speed, which is shown in @deltaB_profile_yam_mx_y10.
+To obtain a clearer understanding of the field redistribution, the difference between the magnetic field at $qti("100", "m/s")$ and the magnetic field at zero speed is plotted in @deltaB_profile_yam_mx_y10.
 #figure(
  image("../figures/simulation/deltaB_profile_yam_mx.svg", width: 100%),
  caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$.]
@@ -121,29 +121,29 @@ To get a better insight into the change of the magnetic field, we can plot the d
  ),
  caption: [Comparison between the magnetic field profile of the Yamamura model simulated with Ansys Maxwell (a) and Ansys Mechanical (b) at speed of $qti("100", "m/s")$.]
 )<B_profile_yam_mx_analy_comparison>
-Here we can see, that the total sum of the magnetic field reduction and increase is negative, which results in a total reduction of the magnetic field in the air gap and therefore to a reduction of the lift force of the system. Since the magnetic force is not any more equaly distributed along the x-axis, this also leads to a tilting of the magnet (or later the vehicle), which is disadvantageous for the stability of the system.
+It can be observed that the net change in the magnetic field, i.e. the sum of the local field reduction and increase along the x-direction, is negative. This results in an overall reduction of the magnetic field in the air gap and therefore in a reduction of the lift force of the system. Since the magnetic force is no longer evenly distributed along the x-axis, this also leads to a tilting of the magnet (and, in a real system, of the vehicle), which is disadvantageous for the stability of the system.
 
-We can also compare the magnetic field profile at $qti("100", "m/s")$ to the one obtained with the analytical model of Yamamura. The profiles have different forms: whereas the simulation shows a drop in magnetic field at the nose and a peak at the tail, the Yamamura model shows a complete shift of the magnetic field profile in the x-direction toward the tail.
+The magnetic field profile at $qti("100", "m/s")$ can also be compared to the results of the analytical Yamamura model, as shown in @B_profile_yam_mx_analy_comparison. The profiles exhibit different behavior: while the simulation shows a localized reduction of the magnetic field at the nose and an increasse at the tail, the analytical Yamamura model predicts a spatial shift of the entire magnetic field profile in the x-direction toward the tail.
 
 
 
 == Simulation with Ansys Mechanical
-The simulation with Ansys Maxwell software is very inefficient for several reasons. The main reason is that with Ansys Maxwell we can only conduct a transient setup for our problem, even if we are interested only in a steady-state solution. This requires, on one hand, a more complex solution and, on the other hand, a larger rail geometry. Since the fine mesh must be distributed over the whole rail volume due to Ansys Maxwell restrictions, this leads to very inefficient use of the fine mesh, as described in @section:Motion. Ansys Maxwell is also not optimized for parallel computing, so all calculations run on a single thread. This leads to very long computation times, namely around three weeks for a model with geometries as described in @table:yam_v100_mx. Therefore, a different approach is tested with Ansys Mechanical software using an unconventional solver type for this problem, namely a steady-state thermal solver.
+The simulation using Ansys Maxwell is computationally inefficient for several reasons. The main limitation is that, for our problem, Maxwell only allows a transient setup, even though we are interested solely in the steady-state solution. This results, on the one hand, in a more complex solution procedure and, on the other hand, in the need for a larger rail geometry. Due to restrictions in Ansys Maxwell, the fine mesh must be applied throughout the entire rail volume, leading to an inefficient use of computational resources, as discussed in @section:Motion. Furthermore, Ansys Maxwell is not well optimized for parallel computing, so all calculations are effectively executed on a single thread. As a consequence, computation times are very long, reaching up to approximately three weeks for a model with the geometry described in @table:yam_v100_mx. Therefore, we investigate an alternative approach using Ansys Mechanical with an unconventional solver type for this problem, namely a steady-state thermal solver.
 
 === Description of the setup
-The whole setup is embedded in the Ansys Workbench software, where the geometry is created in Ansys Discovery and then imported to Ansys Mechanical.
+The entire setup is implemented within Ansys Workbench, where the geometry is created in Ansys Discovery and then imported into Ansys Mechanical.
 ==== Geometry
 #let geo_code = read("../code/yamamura_geo.py")
-The setup is built with Ansys Discovery software via PyAnsys Geometry. There are five bodies created in the model: the rail, the yoke, the coil, the (finely meshed) air gap, and a region box surrounding the whole model.
-The air gap body is actually not the whole air gap between rail and yoke but only a small strip in it, along which we want to observe the magnetic field with high resolution.
-Here, care must be taken not to overlap the different bodies; this is done, for example, by cutting out the bodies from the region.
+The geometry is constructed in Ansys Discovery using PyAnsys Geometry. The model consists of five bodies: the rail, the yoke, the coil, a (finely meshed) air gap region, and a surrounding region box enclosing the entire model.
+The air gap body does not represent the full air gap between the rail and the yoke but only a narrow strip within it, along which we evaluate the magnetic field with high spatial resolution.
+Care must be taken to avoid overlaps among the bodies. This is ensured, for example, by subtracting the individual bodies from the surrounding region.
 #code(geo_code, lines:(182,182), line-numbers:false)
 \
 For a successful meshing, all bodies must be combined using a shared topology.
 #code(geo_code, lines:(198,198), line-numbers:false)
 
 ==== Material Data
-The model consists of three different materials taken from the General_Materials library of Ansys: Air, Copper Alloy and Gray Cast Iron. The material properties are given in the following @table:materials.
+The model consists of three materials selected from the _General_Materials_ library in Ansys: Air, Copper Alloy and Gray Cast Iron. The corresponding material properties are listed in the following @table:materials.
 
 #figure(
 table(
@@ -157,14 +157,14 @@ table(
 ),
 caption:[Material properties of the different materials used in the Ansys Mechanical simulation. The values for the isotropic relative permeability are dimensionless.]
 )<table:materials>
-Since we are using a steady-state thermal solver, we need to assign an arbitrary value for _Isotropic Thermal Conductivity_ to each material. This value is absolutely irrelevant for the solution, but it is needed for the Ansys solver to start the simulation.
+Since a steady-state thermal solver is employed, an isotropic thermal conductivity must be assigned to each material. Here we can choose an arbitrary value for _Isotropic Thermal Conductivity_, since this value is absolutely irrelevant for the solution, but it is needed for the Ansys solver to start the simulation.
 ==== Meshing
-All components except the region box get a finer mesh. The coil and the yoke body are assigned a _Body Mesh Sizing_ of $qty("1.5", "mm")$. Additionally, the yoke is assigned a _Patch Conforming Method_ that requires a mesh of _Tetrahedrons_ instead of _Hexahedrons_, which is the default for the other bodies.
-The air gap body is assigned with a _Body Mesh Sizing_ of $qty("0.1", "mm")$ to ensure a high resolution of the magnetic field in this region.
-For the rail we apply three mesh sizing methods along the edges: along the x-edge we assign an _Edge Mesh Sizing_ of $qty("0.4", "mm")$, along the y-edge we assign an _Edge Mesh Sizing_ of $qty("0.5", "mm")$, and along the z-edge we assign an _Edge Mesh Sizing_ of $qty("0.1", "mm")$, with the latter two using a bias that makes the mesh finer on the surfaces and coarser in the middle of the rail.
+All components, except for the surrounding region box, are assigned a finer mesh. The coil and the yoke are assigned a _Body Mesh Sizing_ of $qty("1.5", "mm")$. In addition, the yoke is meshed using the _Patch Conforming Method_, which generates a mesh of _Tetrahedrons_ instead of the default _Hexahedrons_, used for the other bodies.
+The air gap region is assigned a _Body Mesh Sizing_ of $qty("0.1", "mm")$ in order to ensure a high spatial resolution of the magnetic field.
+For the rail, three mesh sizing methods are applied along the edges. Along the x-edge we assign an _Edge Mesh Sizing_ of $qty("0.4", "mm")$, along the y-edge we assign an _Edge Mesh Sizing_ of $qty("0.5", "mm")$, and along the z-edge we assign an _Edge Mesh Sizing_ of $qty("0.1", "mm")$, with the latter two using a bias that makes the mesh finer on the surfaces and coarser in the middle of the rail.
 
 ==== Additional preparations
-To apply a current to the coil, we need to define an _Element Orientation_ with the y-coordinate along the current direction.\
+To apply a current to the coil, we need to define an _Element Orientation_ with the y-coordinate along the current flow direction.\
 It is often convenient, and necessary for the _APDL_ script, to define a _Named Selection_ for bodies, surfaces, and edges where we want to assign a velocity, a current, a mesh, or an _Element Orientation_.\
 
 ==== _APDL_ script
@@ -274,7 +274,7 @@ caption: [LND and HTP for several velocities in the Yamamura model with a rail w
 
 #figure(
  image("../figures/simulation/F_yam_vfit.svg", width: 100%),
- caption:[Fit of the braking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths $num("10"), num("15"), num("20"),num("25"),num("30") "and" qti("35", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(v)=a v^b$.]
+ caption:[Fit of the braking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.]
 )<F_yam_vfit>
 We can also look at the braking force of the model at different velocities, as shown in @F_yam_vfit, where the braking force is plotted against velocity for several yoke widths. We can see that with increasing velocity, the braking force increases as well, which is expected since the eddy currents are stronger at higher velocities. The shape of the curve is similar to a square-root function; therefore, we fit the curves with a model function of the form $F(v)=a v^b$. The fitted curves are shown in @F_yam_vfit as blue lines, where the red dots represent the simulated values. The fit is very good, with $R^2$ values above 0.99 for all curves. The fitting parameters are shown in @table:F_yam_vfit_parameters.
 #figure(
@@ -320,7 +320,7 @@ caption: [LND and HTP for several yoke widths in the Yamamura model with a veloc
 The yoke-width dependence of the braking force is shown in @F_yam_yfit, where the braking force is plotted against yoke width for several velocities. We can see that with increasing yoke width, the braking force increases as well, but with a much stronger dependence than for velocity. The shape of the curve is similar to a square function; therefore, we fit the curves again with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_yfit as blue lines, where the red dots represent the simulated values. The coefficient of determination $R^2$ is above 0.999 for all velocities, which indicates a very good fit. The fitted parameters are shown in @table:F_yam_yfit_parameters. \
 #figure(
  image("../figures/simulation/F_yam_yfit.svg", width: 100%),
- caption:[Fit of the braking force of the Yamamura model for yoke widths from $qty("10", "mm")$ to $qty("35", "mm")$ at different velocities $qti("10","m/s"), qti("30","m/s"), qti("60","m/s"), qti("100","m/s"), qti("200","m/s"), qti("300","m/s")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.]
+ caption:[Fit of the braking force of the Yamamura model for yoke widths from $qty("10", "mm")$ to $qty("35", "mm")$ at different velocities. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.]
 )<F_yam_yfit>
 #figure(
  table(
@@ -503,7 +503,13 @@ Next we want to look at the braking force of the Hyperloop model at different ve
   caption:[Fit of the braking force of the TUM Hyperloop model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for a yoke width of $qty("10", "mm")$. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue line represents the fit with the function $F(x)=a sqrt(x)$.]
 )<Fb_hm_vfit>
 As expected in the analysis of the Yamamura model, the curve shape is similar to a square-root function; therefore, we fit the curve with a model function of the form $F(x)=a sqrt(x)$. We get for the fit a coefficient of determination of $R^2=0.9902$ and a prefactor of $a=0.1203$ with a standard error of 0.0030.
-Comparing the prefactor $a$ to the constant $C$ of the braking force function of the Yamamura model, we have first to apply the yoke width and B field values of the Hyperloop model to the function of the Yamamura model. For the Hyperloop model we used a yoke width of $y=qti("10", "mm")$ and an applied magnetic field of $B_0=qti("484", "mT")$. Therefore, we can calculate the expected prefactor for the velocity dependence as $a = C B_0^2 y^2 = 1241.8 * (0.484)^2 * (0.01)^2 = 0.02909$. The fitted value of $a=0.1203$ is about four times higher than the expected value. Since the induced field is $approx 2.5$ times higher in the Hyperloop model compared to the Yamamura model and the braking force depends on the square of the induced field, we can expect a scaling factor of around 6.25 for the braking force. The difference between the expected value and the fitted value can easily explained when we consider that we deal with very approximated values for the scaling factor and the fit in the Hyperloop model. But the general order of magnitude is correct, which helps to approximate the braking force of the Hyperloop model based on the results of the Yamamura model.
+To compare the prefactor $a$ with the constant $C$ of the Yamamura braking force model, the yoke width and magnetic field values of the Hyperloop configuration must first be inserted into the Yamamura expression. For the Hyperloop model, a yoke width of $y=qti("10", "mm")$ and an applied magnetic field of $B_0=qti("484", "mT")$ were used. The expected prefactor for the velocity dependence is therefore
+#set math.equation(numbering: none)
+$ a = C B_0^2 y^2 = 1241.8 * (0.484)^2 * (0.01)^2 = 0.02909 $.
+The fitted value $a=0.1203$ is approximately $4.14$ times larger than this estimate. Since the induced field in the Hyperloop model is approximately $2.5$ times larger than in the Yamamura model and the braking force scales with the square of the induced magnetic field, a scaling factor of about $6.25$ would be expected. The discrepancy between the estimated and fitted values can be attributed to the approximations involved in both the scaling argument and the fitting procedure. Nevertheless, the agreement in order of magnitude supports the validity of using the Yamamura model as a basis for estimating the braking force in the Hyperloop configuration.\
+Based on this, the braking force for the full-scale Hyperloop geometry can be approximated. The original design uses a yoke width of $y=qti("35", "mm")$ and an applied magnetic field of approximately $B_0=qti("550", "mT")$, depending on the load conditions and air gap. For a velocity of $v=qti("100", "m/s")$, the braking force per magnet arrangement is estimated as
+$ F_b = C B_0^2 y^2 sqrt(v) = 4.14*1241.8 * (0.55)^2 * (0.035)^2 * sqrt(100) = qty("19.05", "N") $.
+The TUM Hyperloop pod consists of four such magnet arrangements, resulting in a total braking force of approximately $qty("76.2", "N")$. Although this is a very rough estimate, it provides a useful indication of the expected order of magnitude for the braking force in the full-scale system.
 
 In contrast to the Yamamura model, the Hyperloop model also has a net lift force in the z-direction, which is shown in @F_hm_vsweep for different velocities. We can see that the lift force is decreasing with increasing velocity. As stated by Yamamura @eq:lift_force the lift force is calculated by the integration of the total magnetic field, i.e. the sum of the applied and induced field, over the surface of the magnet. As shown in @B_hurric_x140y10_vsweep, the average magnetic field in the air gap is decreasing with increasing velocity, only at the tail we have an increase of the magnetic field which increases there the lift force. But it is not enough to compensate the decrease of the magnetic field at the nose and the middle region, which leads to a net decrease of the lift force. This net decrease of the lift force can be interpreted as the oriented surface integration of the plot in @deltaB_hurric_x140y10_vsweep.
 
