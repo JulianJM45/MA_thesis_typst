@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        # uses: actions/checkout@v5
-        uses: actions/checkout@v6
+        uses: actions/checkout@v5
+        # uses: actions/checkout@v6
         with:
           fetch-depth: "0"
           lfs: true
@@ -34,8 +34,8 @@ jobs:
           cp -r fonts/newComputerModern/*.otf ~/.local/share/fonts/
           fc-cache -f -v  # Refresh font cache
 
-      # - uses: typst-community/setup-typst@v4
-      - uses: typst-community/setup-typst@v5
+      - uses: typst-community/setup-typst@v4
+      # - uses: typst-community/setup-typst@v5
       - run: typst compile main.typ main.pdf
       - run: typst compile proposal.typ proposal.pdf
       - run: typst compile registration_certificate.typ registration_certificate.pdf
