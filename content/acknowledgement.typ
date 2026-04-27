@@ -9,6 +9,7 @@
 I would like to express my gratitude to everyone who supported me and helped accomplishing this thesis.
 
 First, I want to thank my supervisor, Dr. Matthias Althammer, for his kind and immediate willingness to supervise my thesis and thus giving me the opportunity to work on this engineering-related topic as a physics student. I'm especially grateful for his support and the motivational discussions throughout the course of this work.\
+Next, I want to thank Prof. Dr. Martin S. Brandt for serving as the second examiner of this thesis.\
 I would also like to thank my advisor, Oliver Kleikemper, for providing this interesting topic, for his general support when I had questions and at the same time giving me the opportunity to develop and pursue my own approaches.\
 My thanks also go to my office mates Matej, Armin and Felix for creating a pleasant working atmosphere in our office.\
 I want to thank Joao for the technical support with our computers and for enabling access to the LRZ cluster.\

@@ -17,7 +17,7 @@ In this thesis we define the coordinate system as follows (see also @fig:yamamur
  - y-axis: lateral direction, also parallel to the rail surface
  - z-axis: perpendicular to the rail surface
 When the magnet is not moving, we expect a constant ($pdv(B, x)=0$) magnetic field $B_0$ in z-direction in the area between the rail and the magnetic yoke surface. Only at the front, which we will call nose, and at the end, which we will call tail, we have a change of magnetic flux along x-direction ($pdv(B, x) != 0$) to raise the magnetic field from 0 up to $B_0$ at the nose and to decline it at the tail as depicted in @fig:static_B0.
-#figure(caption: [Magnetic field profile along x-axis for a static magnet],
+#figure(caption: [Magnetic field profile along x-axis for a static magnet.],
   // placement: left,
   image("../figures/models/static_B0.svg", width:90%)
 )<fig:static_B0>
@@ -84,7 +84,7 @@ $ pdv(b_i, x, 2) + pdv(b_i, y, 2) - K pdv(b_i, x) = 0 med. $<eq:simplified_wave_
 An approach of separated variables is assumed
 $ b_i (x , y) = X (x) Y (y) med, $<eq:separated_variables>
 which leads to
-$ X''^(#footnote[$X'' = pdv(X, x, 2)$])/X  - K X'/X + Y''/Y = 0 med,  $
+$ X''^(#footnote[$X'' = pdv(X, x, 2)$])/X  - K X'/X + Y''/Y = 0 med, $
 $ => X''/X - K X'/X = -Y''/Y = "const." := lambda_n med, $
 $ => dv(Y (y), y, 2) + lambda_n Y (y) = 0 med, $
 $ => dv(X(x), x, 2) - K dv(X(x), x) - lambda_n X(x) = 0 med, $
@@ -128,13 +128,13 @@ $  & upright("for ") 0 < x < L : &  & b (x , y) = B_0 + sum_(n = 1)^oo X_n (x) c
  & upright("for ") L < x : &  & b (x , y) = sum_(n = 1)^oo X_n (x) cos lambda_n y med. $<eq:magnetic_field_solution>
 
 As a next step, we visualize the magnetic field profiles. This was achieved by using Python code written as part of this thesis work. We use a rail length of $L = qty("140","mm")$, rail width of $qty("10", "mm")$ ($a=qty("5", "mm")$), a rail thickness of $qty("1", "mm")$ ($d= qty("0.5","mm")$), an air gap of $g = qty("1", "mm")$, and a static magnetic field of $B_0 = qty("1","T")$. The results are shown in @fig:magnetic_profiles_yam_org.
-#figure(caption:[Magnetic Profiles derived from the original Yamamura model],
+#figure(caption:[Magnetic Profiles derived from the original Yamamura model.],
   image("../figures/models/Yamamura_org.svg", width:100%)
 )<fig:magnetic_profiles_yam_org>
 We observe that with increasing velocity, the magnetic field profile changes significantly. The maximum value of each curve remains unaffected by the velocity; however, the overall shape of the curve exhibits a spatial shear deformation opposite to the direction of movement. This deformation leads to a delayed increase of the magnetic field at the nose and to a delayed decrease at the tail. Both the delay in the increase and the delay in the decrease become more pronounced with increasing velocity.
 
 The Yamamura model also allows the calculation of the y-dependence of the magnetic field for different x-slices and the x-dependence of the magnetic field for different y-slices. The results are shown in @fig:yam_org_long_dist.
-#figure(caption: [Magnetic field profiles for different yoke widths (left) and different yoke lengths (right) with the following parameters: $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$],
+#figure(caption: [Magnetic field profiles for different yoke widths (left) and different yoke lengths (right) with the following parameters: $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
   grid(columns: 2,
   column-gutter: 1em,
   row-gutter: 0.5em,
@@ -167,7 +167,7 @@ $ F_b & = frac(g, d mu_0) integral_(- oo)^oo d x integral_0^(2 d) d z integral_a
 
 The following plots are generated from the Python implementation of this thesis with the same parameters as in the original paper. \
 In @fig:yam_org_lift_f the lift force reduction for different lengths and rail widths is shown.
-#figure(caption: [Lift force reduction for different lengths (left) and rail widths (right). \ $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$],
+#figure(caption: [Lift force reduction for different lengths (left) and rail widths (right). \ $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
   grid(columns: 2,
   column-gutter: 1em,
   row-gutter: 0.5em,
@@ -218,10 +218,10 @@ For computation the same values for rail thickness and air gap are used as in th
 )<fig:magnetic_profiles_yam_02>
 Comparing the magnetic field profiles of the adapted model with the original one (@fig:magnetic_profiles_yam_org), the differences are quite insignificant.\
 To visualize the differences more clearly, the induced magnetic field profiles are plotted in @fig:yam_org_deltaB and @fig:yam_02_deltaB, which show the difference between the total magnetic field and the applied magnetic field.
-#figure(caption:[Induced magnetic field profiles derived from the original Yamamura model],
+#figure(caption:[Induced magnetic field profiles derived from the original Yamamura model.],
   image("../figures/models/Yam_org_deltaB.svg", width:100%)
 )<fig:yam_org_deltaB>
-#figure(caption:[Induced magnetic field profiles derived from the adapted Yamamura model],
+#figure(caption:[Induced magnetic field profiles derived from the adapted Yamamura model.],
   image("../figures/models/Yam_02_deltaB.svg", width:100%),
   // placement: bottom
 
