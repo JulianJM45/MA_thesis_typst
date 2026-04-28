@@ -1,6 +1,6 @@
 #pagebreak()
 
-#import "@preview/unify:0.7.1": num,qty,numrange,qtyrange
+#import "@preview/unify:0.7.1": num, numrange, qty, qtyrange
 #import "@preview/physica:0.9.6": *
 
 // #bibliography("/thesis.yml")
@@ -78,10 +78,14 @@ potentials superpose each other, and we can express the total potential
 as follows:
 $ phi.alt \( vb(r) \) = - frac(1, 4 pi epsilon.alt_0) sum_(i = 1)^N frac(Q_i, \| vb(r) - vb(r)_i \|) med, $
 or with a spatially dependent charge distribution $rho \( vb(r) \)$:
-$ phi.alt \( vb(r) \) = - frac(1, 4 pi epsilon.alt_0) integral frac(rho \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med. $
+$
+  phi.alt \( vb(r) \) = - frac(1, 4 pi epsilon.alt_0) integral frac(rho \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med.
+$
 So the electric field can be calculated from a charge distribution
 $rho \( vb(r) \)$:
-$ vb(E) \( vb(r) \) = - grad phi.alt \( vb(r) \) = frac(1, 4 pi epsilon.alt_0) integral frac(rho \( vb(r)' \), \| vb(r) - vb(r)' \|^3) \( vb(r) - vb(r)' \) dd(r, 3)' med. $
+$
+  vb(E) \( vb(r) \) = - grad phi.alt \( vb(r) \) = frac(1, 4 pi epsilon.alt_0) integral frac(rho \( vb(r)' \), \| vb(r) - vb(r)' \|^3) \( vb(r) - vb(r)' \) dd(r, 3)' med.
+$
 
 === Magnetic Vector Potential
 <magnetic-vector-potential>
@@ -106,15 +110,15 @@ $ vb(B)(t,vb(r))=curl vb(A)(t,vb(r)) med. $
 This can be inserted into equation @maxwell_E2, and we see that the expression $vb(E)+pdv(vb(A), t)$ is indeed free from curls:
 $ curl (vb(E) + pdv(vb(A), t)) = 0 med. $
 Now there can again be a scalar potential $phi(t)$ introduced, which is now time-dependent:
-$ vb(E)(t,vb(r)) + pdv(vb(A), t)(t,vb(r)) = -grad phi(t,vb(r)) med. $
+$ vb(E)(t,vb(r)) + pdv(vb(A), t)(t,vb(r)) = -grad phi(t, vb(r)) med. $
 For a known vector potential $vb(A)$ and scalar potential $phi$, the electric field is given as @feynman1963lectures:
-$ vb(E)(t,vb(r)) = -grad phi(t,vb(r)) - pdv(vb(A), t)(t,vb(r)) med. $
+$ vb(E)(t,vb(r)) = -grad phi(t, vb(r)) - pdv(vb(A), t)(t,vb(r)) med. $
 
 === The $vb(T)-Omega$ Potential
 We introduce another formulation for the electromagnetic potentials, where we have an electric vector potential $vb(T)$ and a magnetic scalar potential $Omega$.\
 \
 *The magnetic scalar potential*\
-In current-free regions, where $vb(J)+pdv(vb(D),t)=0$, the curl of the magnetic field is zero as well:
+In current-free regions, where $vb(J)+pdv(vb(D), t)=0$, the curl of the magnetic field is zero as well:
 $ curl vb(H) = 0 med. $
 This allows us to express there the magnetic field as a divergence of a scalar potential $Omega_t$ @silvester1996:
 $ vb(H) = -grad Omega_t med. $
@@ -125,8 +129,8 @@ We call $Omega_t$ the total magnetic scalar potential.\
 \
 *Carpenter-Noether potentials*\
 In regions that have electric currents, the magnetic field cannot be expressed by a scalar potential anymore due to its rotationality (see Maxwell's fourth equation @maxwell_B2). But Carpenter and Noether had the idea of a change of variable to define a closely related potential that is also valid where currents flow @silvester1996. So Carpenter defined a vector quantity $vb(T)$ such that:
-$ curl vb(T) = vb(J) + pdv(vb(D),t) med. $
-Note that Carpenter uses $vb(H)_c$ instead of $vb(T)$ and we will neglect the displacement current term $pdv(vb(D),t)$ as discussed later in @displacement-current.
+$ curl vb(T) = vb(J) + pdv(vb(D), t) med. $
+Note that Carpenter uses $vb(H)_c$ instead of $vb(T)$ and we will neglect the displacement current term $pdv(vb(D), t)$ as discussed later in @displacement-current.
 The quantity $vb(T)$ is not the magnetic field $vb(H)$, though, since it is not subject to any boundary conditions nor is it solenoidal (its divergence is not necessarily zero). It is also not uniquely defined like the magnetic vector potential $vb(A)$, as it can be scaled in the same way with an arbitrary scalar function $f$ (see @magnetic-vector-potential):
 $ curl vb(T) = curl (vb(T)+grad f) med. $
 The magnetic field $vb(H)$ and the vector potential $vb(T)$ have the same current density as source, therefore their curl is the same:
@@ -213,12 +217,16 @@ This is a Poisson equation for the magnetic vector potential $vb(A)$, which can 
 $ vb(A) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med, $
 where $vb(r)'$ is the position vector of the source point. \
 Now the magnetic vector potential $vb(A)$ can be used to calculate the magnetic field $vb(B)$ using the definition $vb(B) = curl vb(A)$. This gives:
-$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med. $<biot-savart-curl>
+$
+  vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med.
+$<biot-savart-curl>
 Here it must be noted that the differentiation is with respect to the coordinates of the observation point $vb(r)$, whereas the integration is with respect to the coordinates of the source point $vb(r)'$.
 It can be simplified with the identity
 $\| vb(r) - vb(r)' \| = sqrt(\( vb(r) - vb(r)' \)^2) = sqrt(\( x - x' \)^2 + \( y - y' \)^2 + \( z - z' \)^2)$
 to:
-$ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \) times \( vb(r) - vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' med. $<biot-savart>
+$
+  vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \) times \( vb(r) - vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' med.
+$<biot-savart>
 \
 \
 \
@@ -230,7 +238,7 @@ In this section, we will discuss time-variant fields and their transformation. W
 <induction-law>
 Michael Faraday discovered the induction law, which states that a changing magnetic field along a conductor induces an electromotive force
 $cal(E)$ (emf):
-$ cal(E) = integral.cont_C vb(E) dot d vb(l) =  - dv(Phi, t) med, $
+$ cal(E) = integral.cont_C vb(E) dot d vb(l) = - dv(Phi, t) med, $
 where $Phi = integral_S vb(B) dot.op dd(vb(n))$ is the magnetic flux enclosed by the conductor. \
 The minus sign in the induction law indicates that the induced emf opposes the change in magnetic flux that caused it. This is known as Lenz's law. \
 The electromotive force is also called induced voltage and has units in volts (V). It is the energy per unit charge which gives rise to an electric current but is not dependent on the current load and likewise not dependent on the resistance of the conductor.
@@ -239,11 +247,15 @@ The electromotive force is also called induced voltage and has units in volts (V
 === Transformation of Fields
 Even before the development of special relativity, it was understood that physical laws should be invariant under Galilean transformations @jackson1998classical. This means that physical phenomena are the same regardless of the perspective they are observed. As an example, consider a conductor loop and a magnet moving relative to each other: \
 In the magnet frame, the magnet is at rest and the conductor is moving towards the magnet. The electromotive force that induces the current in the conductor can be expressed by Faraday's induction law:
-$ integral.cont_C vb(E)' dot dd(vb(l)) = - dv(,t) integral_S vb(B) dot dd(vb(n)) med. $<induction_law>
-An important note is that $vb(E)'$ is the electric field in the coordinate system in which $dd(vb(l))$ is at rest. The total time derivative $dv(,t)=pdv(,t)+vb(v)dot nabla$ must be taken into account. Applying Stokes' theorem yields:
-$ dv(,t)integral_S vb(B)dot dd(vb(n)) = integral_S pdv(vb(B),t)dot dd(vb(n)) + integral.cont_C (vb(B)times vb(v))dot dd(vb(l)) med. $
+$ integral.cont_C vb(E)' dot dd(vb(l)) = - dv(, t) integral_S vb(B) dot dd(vb(n)) med. $<induction_law>
+An important note is that $vb(E)'$ is the electric field in the coordinate system in which $dd(vb(l))$ is at rest. The total time derivative $dv(, t)=pdv(, t)+vb(v)dot nabla$ must be taken into account. Applying Stokes' theorem yields:
+$
+  dv(, t)integral_S vb(B)dot dd(vb(n)) = integral_S pdv(vb(B), t)dot dd(vb(n)) + integral.cont_C (vb(B)times vb(v))dot dd(vb(l)) med.
+$
 Equation @induction_law can now be written as
-$ integral.cont_C [vb(E)'-(vb(v)times vb(B))]dot dd(vb(l)) = - integral_S pdv(vb(B),t)dot dd(vb(n)) med. $<induction_magnet_frame>
+$
+  integral.cont_C [vb(E)'-(vb(v)times vb(B))]dot dd(vb(l)) = - integral_S pdv(vb(B), t)dot dd(vb(n)) med.
+$<induction_magnet_frame>
 In the conductor frame the conductor is at rest and the magnet is moving towards the conductor.
 Applying Faraday's law to the fixed conductor in the frame of the conductor yields:
 $ integral.cont_C vb(E) dot dd(vb(l)) = - integral_S pdv(vb(B), t) dd(vb(n)) med. $<induction_conductor_frame>
@@ -263,15 +275,15 @@ In this section, we start with the neglect of the displacement current; then we 
 <displacement-current>
 As stated before the displacement current $pdv(vb(D), t)$ can be neglected for most eddy current cases @kriezis1992eddy @sinha1987 @biro1999edge. This can be easily shown by comparing the conduction current with the displacement current:
 $ (|pdv(D, t)|)/(|J|) = (omega epsilon E)/(sigma E) = (omega epsilon)/(sigma) med. $
-For small frequencies and high conductivity, this term becomes negligible. As an example, we consider a conductor like iron with a conductivity of $qty("10.3e6", "S/m")$ and a frequency of $qty("1","MHz")$. Since iron is a conductor, its electric permittivity is quite low, and we assume just the vacuum permittivity $epsilon_0$; we get $(omega epsilon_0)/(sigma)  approx num("8.6e-10")$, so the displacement current is negligible compared to the conduction current. This assumption is also known as the quasi-static field.
+For small frequencies and high conductivity, this term becomes negligible. As an example, we consider a conductor like iron with a conductivity of $qty("10.3e6", "S/m")$ and a frequency of $qty("1", "MHz")$. Since iron is a conductor, its electric permittivity is quite low, and we assume just the vacuum permittivity $epsilon_0$; we get $(omega epsilon_0)/(sigma) approx num("8.6e-10")$, so the displacement current is negligible compared to the conduction current. This assumption is also known as the quasi-static field.
 
 === The $vb(A)-phi$ Formulation
 Combining equations @maxwell_B2_static and @B-potential, one gets the following equation @kriezis1992eddy:
 $ curl (1/mu curl vb(A)) = vb(J) med, $
 or
-$ curl (1/mu curl vb(A)) = -sigma (pdv(vb(A),t)+grad phi) med, $<A-phi_formulation>
-where $vb(J)= vb(J)_e + vb(J)_s$ is the sum of the internally generated eddy-current density $vb(J)_e = -sigma pdv(vb(A),t)$ and the externally impressed source current density $vb(J)_s=-sigma grad phi$. Considering a medium with constant permeability and no externally driven current, this equation reduces to
-$ laplacian vb(A)= mu sigma pdv(vb(A),t) med. $
+$ curl (1/mu curl vb(A)) = -sigma (pdv(vb(A), t)+grad phi) med, $<A-phi_formulation>
+where $vb(J)= vb(J)_e + vb(J)_s$ is the sum of the internally generated eddy-current density $vb(J)_e = -sigma pdv(vb(A), t)$ and the externally impressed source current density $vb(J)_s=-sigma grad phi$. Considering a medium with constant permeability and no externally driven current, this equation reduces to
+$ laplacian vb(A)= mu sigma pdv(vb(A), t) med. $
 
 === The $vb(T)-Omega$ Formulation
 Based on Maxwell's second equation @maxwell_B1 and inserting the equation for the $vb(T)-Omega$ potential @T-Omega_potential, one gets the first equation for the $vb(T)-Omega$ formulation @kriezis1992eddy:
@@ -282,7 +294,7 @@ $ curl (1/sigma curl vb(T)) = - mu (pdv(vb(T), t) - grad pdv(Omega, t)) med. $
 
 === The Field Formulation
 Applying a curl on equation @A-phi_formulation yields the field formulation @kriezis1992eddy:
-$ curl curl B = -mu sigma pdv(vb(B),t) med. $
+$ curl curl B = -mu sigma pdv(vb(B), t) med. $
 The same equation can be obtained for $vb(E), vb(H)$, and $vb(J)$.\
 This formulation is inconvenient in regions where the permeability changes discontinuously.
 
@@ -310,14 +322,14 @@ $ vb(J)=sigma vb(E) med. $
 Regarding movements, we must consider field transformations as shown in @E_field_transformation, which gives us
 $ vb(J_f)=sigma(vb(E)+vb(v)times vb(B)) med. $
 Inserting into Maxwell's third equation @maxwell_E2 yields:
-$ 1/sigma curl vb(J_f) - curl (vb(v)times vb(B)) = -pdv(vb(B),t) med. $
+$ 1/sigma curl vb(J_f) - curl (vb(v)times vb(B)) = -pdv(vb(B), t) med. $
 Using Maxwell's macroscopic fourth equation @maxwell_H2 (neglecting the displacement current) and the material equation @material_equation eliminates $vb(J_f)$:
-$ 1/(mu sigma) curl (curl vb(B)) -curl(vb(v)times vb(B)) = -pdv(vb(B),t) med. $
+$ 1/(mu sigma) curl (curl vb(B)) -curl(vb(v)times vb(B)) = -pdv(vb(B), t) med. $
 We use the vector identity @vec_identity_double_curl and @maxwell_B1 to simplify the equation:
-$ 1/(mu sigma) laplacian vb(B) + pdv(vb(B),t) = curl(vb(v)times vb(B)) med. $<magnetic_field_distribution>
-This equation describes the distribution of magnetic field in a conductor. The right-hand side of this equation can be interpreted as the rate of change of magnetic field due to the motion of charges. This change is absorbed by a flux change due to ohmic dissipation ($laplacian vb(B)$) and time derivative of flux density ($pdv(vb(B),t)$). \
+$ 1/(mu sigma) laplacian vb(B) + pdv(vb(B), t) = curl(vb(v)times vb(B)) med. $<magnetic_field_distribution>
+This equation describes the distribution of magnetic field in a conductor. The right-hand side of this equation can be interpreted as the rate of change of magnetic field due to the motion of charges. This change is absorbed by a flux change due to ohmic dissipation ($laplacian vb(B)$) and time derivative of flux density ($pdv(vb(B), t)$). \
 In the absence of material motion, this reduces to the diffusion equation
-$ 1/(mu sigma) laplacian vb(B) = -pdv(vb(B),t) med. $
-This form of equation is often found to describe diffusions processes, for example in the diffusion of heat in a solid or neutron diffusion.\
+$ 1/(mu sigma) laplacian vb(B) = -pdv(vb(B), t) med. $
+This form of equation is often found to describe diffusion processes, for example in the diffusion of heat in a solid or neutron diffusion.\
 A second simplification of the distribution equation @magnetic_field_distribution is to consider motion but in a steady-state condition:
 $ -1/(mu sigma) laplacian vb(B) = curl (vb(v)times vb(B)) med. $

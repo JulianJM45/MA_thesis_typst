@@ -1,6 +1,5 @@
 #import "/utils/todo.typ": TODO
 
-
 = Introduction
 
 Transportation is one of the major challenges of our society. Since conventional transportation systems lack efficiency, new solutions for transportation are being sought.

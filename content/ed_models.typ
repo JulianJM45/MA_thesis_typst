@@ -1,9 +1,9 @@
 #pagebreak()
 
-#import "@preview/unify:0.7.1": num,qty,numrange,qtyrange
+#import "@preview/unify:0.7.1": num, numrange, qty, qtyrange
 #import "@preview/physica:0.9.6": *
 
-#let qti(value, unit) = qty(value, unit, per:"/")
+#let qti(value, unit) = qty(value, unit, per: "/")
 
 = Eddy Current Models<chapter:eddy_currents_models>
 In this chapter, different models are presented to describe the
@@ -15,17 +15,18 @@ of the magnet.
 == General Considerations<chapter:general_considerations>
 We consider an electromagnetic suspension system that consists of two parts: the rail and the magnet, which attract each other. The rail is a straight conductor, e.g., of iron, and the magnet is an actively controlled homogeneous electromagnet. The active control allows a (nearly) steady levitation under the rail with constant air gap, i.e., a balance between the electromagnetic force that pulls upwards and the gravitational force that pulls downwards.\
 In this thesis, we define the coordinate system as follows (see also @fig:yamamura_simplified):
- - x-axis: along the direction of the rail, i.e. the moving direction of the magnet
- - y-axis: lateral direction, also parallel to the rail surface
- - z-axis: perpendicular to the rail surface
+- x-axis: along the direction of the rail, i.e. the moving direction of the magnet
+- y-axis: lateral direction, also parallel to the rail surface
+- z-axis: perpendicular to the rail surface
 When the magnet is not moving, we expect a constant ($pdv(B, x)=0$) magnetic field $B_0$ in z-direction in the area between the rail and the magnetic yoke surface. Only at the front, which we will call nose, and at the end, which we will call tail, we have a change of magnetic flux along x-direction ($pdv(B, x) != 0$) to raise the magnetic field from 0 up to $B_0$ at the nose and to decline it at the tail as depicted in @fig:static_B0.
-#figure(caption: [Magnetic field profile along x-axis for a static magnet.],
+#figure(
+  caption: [Magnetic field profile along x-axis for a static magnet.],
   // placement: left,
-  image("../figures/models/static_B0.svg", width:90%)
+  image("../figures/models/static_B0.svg", width: 90%),
 )<fig:static_B0>
 As the magnet is moving forward, we expect a change in the magnetic flux profile, especially at the nose and at the tail of the magnet. The movement induces eddy currents in the rail that counteract the magnet flux change by creating a magnetic field that opposes the change. This phenomenon can be described from the perspective of two different reference frames: from the frame of a static rail and a moving magnet and from the frame of a moving rail and a static magnet.\
-First, we want to discuss the problem in the frame of the rail. Here the electrons in the rail remain stationary without a magnetic field. Since the magnet is moving, it produces a time-variant magnetic field ($pdv(B,t)!=0$) for a fixed point at the rail. Considering Maxwell's third equation @maxwell_E2, this induces a rotational electric field that leads by Ohm's law @ohms_law to an electric current. This current (which is the eddy current) is circular like the electric field, as the electrons follow the electric field lines. The Biot-Savart law @biot-savart states that these currents again induce a magnetic field, which is here the induced magnetic field that opposes the change of magnetic flux. \
-In the frame of a static magnet, the rail moves along it. Here we don't have a time-variant magnetic field ($pdv(B,t)=0$) since the magnet and its field are both static. But the rail and also the free electrons inside it travel with a velocity $v_0$ along the magnet. Thus, a Lorentz force @lorentz_force acts on the electrons that pushes them laterally in y-direction. This results inside the magnet in a shift of the charge distribution until the electric field force balances the Lorentz force. But at the nose and tail edge of the magnet, the electrons can move back to the other side of the rail (in y-direction), which leads to a circular movement of the electrons. This circular movement is again the eddy current, which induces by the Biot-Savart law a magnetic field that opposes the change of magnetic flux. \
+First, we want to discuss the problem in the frame of the rail. Here the electrons in the rail remain stationary without a magnetic field. Since the magnet is moving, it produces a time-variant magnetic field ($pdv(B, t)!=0$) for a fixed point at the rail. Considering Maxwell's third equation @maxwell_E2, this induces a rotational electric field that leads by Ohm's law @ohms_law to an electric current. This current (which is the eddy current) is circular like the electric field, as the electrons follow the electric field lines. The Biot-Savart law @biot-savart states that these currents again induce a magnetic field, which is here the induced magnetic field that opposes the change of magnetic flux. \
+In the frame of a static magnet, the rail moves along it. Here we don't have a time-variant magnetic field ($pdv(B, t)=0$) since the magnet and its field are both static. But the rail and the free electrons inside it travel with a velocity $v_0$ along the magnet. Thus, a Lorentz force @lorentz_force acts on the electrons that pushes them laterally in y-direction. This results inside the magnet in a shift of the charge distribution until the electric field force balances the Lorentz force. But at the nose and tail edge of the magnet, the electrons can move back to the other side of the rail (in y-direction), which leads to a circular movement of the electrons. This circular movement is again the eddy current, which induces by the Biot-Savart law a magnetic field that opposes the change of magnetic flux. \
 In both frames we have a circular movement of the electrons, which is the eddy current, and an induced magnetic field that opposes the change of magnetic flux. Both effects have to be the same in both frames, since they are just different perspectives of the same phenomenon. \
 Therefore, we expect for the magnetic field profile along the x-axis that it mainly changes at the nose and tail of the magnet, where the change of magnetic flux is the highest. But we can also estimate the magnetic field profile along the y-axis: As shown in @biot-savart-curl, the induced field is obtained by integrating the curl of the current density. Therefore, we expect a maximum at the center of the yoke surface ($y=0$) and a decrease towards the sides ($y=plus.minus a$).
 \
@@ -37,14 +38,17 @@ Therefore, we expect for the magnetic field profile along the x-axis that it mai
 In his 1975 paper @yamamura1975, Yamamura proposed an analytical model for describing the velocity characteristics of attracting magnets for magnetic levitation systems. Other works, such as those by Sinha @sinha1987, introduce similar approaches, but are based on the Yamamura model. In the appendix, we show that Sinha's formulation leads to the same differential equation. Therefore, we restrict the discussion here to the original Yamamura model.
 The model of Yamamura is simplified such that rail and magnet core are not bent any more but are straight as shown in @fig:yamamura_simplified.
 
-#figure(caption: [Comparison of the magnetic circuit (a) and the simplified magnetic circuit (b). The blue lines represent the magnetic flux.],
-  grid(columns: 2,
-  column-gutter: 1em,
-  row-gutter: 0.5em,
-  [#image("../figures/models/mag_circuit.svg", width: 100%)],
-  [#image("../figures/models/yamamura_simplified.svg", width: 70%)],
-  [(a) ],[(b) ]
-  )
+#figure(
+  caption: [Comparison of the magnetic circuit (a) and the simplified magnetic circuit (b). The blue lines represent the magnetic flux.],
+  grid(
+    columns: 2,
+    column-gutter: 1em,
+    row-gutter: 0.5em,
+    [#image("../figures/models/mag_circuit.svg", width: 100%)],
+    [#image("../figures/models/yamamura_simplified.svg", width: 70%)],
+
+    [(a) ], [(b) ],
+  ),
 )<fig:yamamura_simplified>
 
 We use the following three equations:
@@ -52,18 +56,21 @@ $ vb(J) = sigma (vb(E) + vb(v) times vb(B)) med, $<eq:current_density>
 $ curl vb(E) = 0 med, $<eq:maxwell_E1>
 $ curl vb(B) = mu vb(J) med. $
 The first one is the generalized Ohm's law as introduced in @chapter:ohms_law, which describes the current density in the conductor generated by an electric field $vb(E)$ and the Lorentz force, which depends on the magnetic field $vb(B)$ and the velocity $vb(v)$.
-The second one is the third Maxwell equation assuming no time derivative of the magnetic field, i.e., $pdv(vb(B),t)=0$.
+The second one is the third Maxwell equation assuming no time derivative of the magnetic field, i.e., $pdv(vb(B), t)=0$.
 The third one is the fourth Maxwell equation without the displacement current, which can be neglected as discussed in @displacement-current.
 The inclusion of the Lorentz term $vb(v) times vb(B)$ in Ohm's law, together with the assumption of a time-independent magnetic field, corresponds to the observer frame of the magnet, i.e., a stationary magnet and a moving rail.
 \
 With the fourth Maxwell equation (or Ampère's law, which can be derived from it), we consider a closed path as shown in @fig:closed_path.
-#figure(caption: [Closed Path in x-z plane. Integrated along the red line.],
+#figure(
+  caption: [Closed Path in x-z plane. Integrated along the red line.],
   // placement: left,
-  image("../figures/models/closed_path.svg", width:30%)
+  image("../figures/models/closed_path.svg", width: 30%),
 )<fig:closed_path>
 Applying Ampère's law results in:
-$ integral.cont vb(B) dot dd(vb(s)) &= mu_0 I med, \
-  -B_z (x) (2d+2g) + B_z (x+dd(x)) (2d+2g) &= mu_0 j_y  2d dot dd(x) med. $
+$
+         integral.cont vb(B) dot dd(vb(s)) & = mu_0 I med, \
+  -B_z (x) (2d+2g) + B_z (x+dd(x)) (2d+2g) & = mu_0 j_y 2d dot dd(x) med.
+$
 
 Here we assume that the current is equally distributed over the whole thickness (in z-direction) of the conductor and in the following, we write $b$ instead of $B_z$. However, Yamamura reduced the height $2d+2g$ of the path to just $2g$.
 In y-direction, we can also apply Ampère's law on a closed path, which then results in the two equations:
@@ -77,8 +84,10 @@ $ pdv(b, x, 2) + pdv(b, y, 2) - K pdv(b, x) = 0 med, $<eq:wave_equation>
 where $K = frac(mu_0 sigma d v, g)$. The magnetic flux density can be split into two parts, the component $b_e$ excited by the coils and the component $b_i$ induced by the eddy currents in the rail
 $ b = b_e + b_i med. $
 So we can write a differential equation for the induced component $b_i$, which is excited by a function $f(x)$:
-$ pdv(b_i, x, 2) + pdv(b_i, y, 2) - K pdv(b_i, x) &= f(x) med, \
- f(x) &= - pdv(b_e, x, 2) - pdv(b_e, y, 2) + K pdv(b_e, x) med. $<eq:wave_equation_induced>
+$
+  pdv(b_i, x, 2) + pdv(b_i, y, 2) - K pdv(b_i, x) & = f(x) med, \
+                                             f(x) & = - pdv(b_e, x, 2) - pdv(b_e, y, 2) + K pdv(b_e, x) med.
+$<eq:wave_equation_induced>
 The assumption is made that the excited component $b_e$ is constant $B_0$ inside the air gap along the magnet and 0 elsewhere:
 $ b_e = B_0 (u (x) - u (x - L)) (u (y + a) - u (y - a)) med. $<eq:solution_b_e>
 $u (x)$ and $u (y)$ are step functions.
@@ -87,7 +96,7 @@ $ pdv(b_i, x, 2) + pdv(b_i, y, 2) - K pdv(b_i, x) = 0 med. $<eq:simplified_wave_
 A separation-of-variables approach is used:
 $ b_i (x , y) = X (x) Y (y) med, $<eq:separated_variables>
 which leads to
-$ X''^(#footnote[$X'' = pdv(X, x, 2)$])/X  - K X'/X + Y''/Y = 0 med, $
+$ X''^(#footnote[$X'' = pdv(X, x, 2)$])/X - K X'/X + Y''/Y = 0 med, $
 $ => X''/X - K X'/X = -Y''/Y = "const." := lambda_n med, $
 $ => dv(Y (y), y, 2) + lambda_n Y (y) = 0 med, $
 $ => dv(X(x), x, 2) - K dv(X(x), x) - lambda_n X(x) = 0 med, $
@@ -100,54 +109,75 @@ The step functions in equation @eq:solution_b_e can be expressed by the followin
 $ u (y + a) - u (y - a) = sum_(n = 1)^oo c_n cos lambda_n y med, $
 $ c_n = frac(4, pi (2 n - 1)) sin frac(2 n - 1, 2) pi med. $
 \
-Regarding the exciting component of equation @eq:wave_equation_induced, neglecting $frac(partial^2 b_e, partial y^2)$ (since motion is only in $x$-direction) and considering $pdv(u(x),x)=delta(x)$, it follows that
-#math.equation([$
-  f(x,y) &= -dv(b_e, x, 2) + K dv(b_e, x) \
-   &= B_0 [- dv((delta (x) - delta (x - L)), x) &+ K (delta (x) - delta (x - L))] dot (sum_(n = 1)^oo c_n cos lambda_n y) med. \ .  $
-], block:true, number-align: top)
+Regarding the exciting component of equation @eq:wave_equation_induced, neglecting $frac(partial^2 b_e, partial y^2)$ (since motion is only in $x$-direction) and considering $pdv(u(x), x)=delta(x)$, it follows that
+#math.equation(
+  [$
+      f(x,y) &= -dv(b_e, x, 2) + K dv(b_e, x) \
+      &= B_0 [- dv((delta (x) - delta (x - L)), x) &+ K (delta (x) - delta (x - L))] dot (sum_(n = 1)^oo c_n cos lambda_n y) med. \ .
+    $
+  ],
+  block: true,
+  number-align: top,
+)
 We assume again an ansatz of separated variables for equation @eq:wave_equation_induced, which yields:
-$ X''Y -K X' Y + Y'' X  = f med. $<separated_variables>
+$ X''Y -K X' Y + Y'' X = f med. $<separated_variables>
 Inserting the solution of Y @eq:solution_z, the following equation results:
-$ & dv(X, x, 2) - K dv(X, x) - lambda_n^2  X \ & = C_n B_0 \( - dv((delta (x) - delta (x - L)), x) + K (delta (x) - delta (x - L))) med. $
+$
+  & dv(X, x, 2) - K dv(X, x) - lambda_n^2 X \
+  & = C_n B_0 \( - dv((delta (x) - delta (x - L)), x) + K (delta (x) - delta (x - L))) med.
+$
 This equation can effectively be solved by Fourier transformation:
 $
--omega^2 tilde(X) - i omega K tilde(X) - lambda_n^2  tilde(X) = C_n B_0  (-(i omega - i omega e^(i omega L)) + K (1-e^(i omega L)) med,
-\
-tilde(X) = C_n B_0 frac(i omega (1-  e^(i omega L)) - K (1-e^(i omega L)), omega^2 + i omega K + lambda_n^2) med.
+  -omega^2 tilde(X) - i omega K tilde(X) - lambda_n^2 tilde(X) = C_n B_0 (-(i omega - i omega e^(i omega L)) + K (1-e^(i omega L)) med,
+  \
+  tilde(X) = C_n B_0 frac(i omega (1- e^(i omega L)) - K (1-e^(i omega L)), omega^2 + i omega K + lambda_n^2) med.
 $
 \
 The solution is
-#math.equation([
-$  & upright("for ") x < 0 : &  & X_n (x) = c_n B_0 frac(alpha_n, alpha_n - beta_n) (exp { - beta_n x } - exp { - beta_n (x - L) }) med, \
- & upright("for ") 0 < x < L : &  & X_n (x) = c_n B_0 frac(1, alpha_n - beta_n) (beta_n exp { - alpha_n x } - alpha_n exp { - beta_n (x - L) }) med, \
- & upright("for ") L < x : &  & X_n (x) = c_n B_0 frac(beta_n, alpha_n - beta_n) (exp { - alpha_n x } - exp { - alpha_n (x - L) }) med. $
-], block:true, number-align: bottom)
+#math.equation(
+  [
+    $
+      & upright("for ") x < 0 : & & X_n (x) = c_n B_0 frac(alpha_n, alpha_n - beta_n) (exp { - beta_n x } - exp { - beta_n (x - L) }) med, \
+      & upright("for ") 0 < x < L : & & X_n (x) = c_n B_0 frac(1, alpha_n - beta_n) (beta_n exp { - alpha_n x } - alpha_n exp { - beta_n (x - L) }) med, \
+      & upright("for ") L < x : & & X_n (x) = c_n B_0 frac(beta_n, alpha_n - beta_n) (exp { - alpha_n x } - exp { - alpha_n (x - L) }) med.
+    $
+  ],
+  block: true,
+  number-align: bottom,
+)
 with the following factors:
 $ alpha_n & = 1 / 2 (- K + sqrt(K^2 + 4 lambda_n^2)) med, $
 $ beta_n & = 1 / 2 (- K - sqrt(K^2 + 4 lambda_n^2)) med. $
 So the solution for the magnetic field is given by
-$  & upright("for ") 0 < x < L : &  & b (x , y) = B_0 + sum_(n = 1)^oo X_n (x) cos lambda_n y med, \
- & upright("for ") L < x : &  & b (x , y) = sum_(n = 1)^oo X_n (x) cos lambda_n y med. $<eq:magnetic_field_solution>
+$
+  & upright("for ") 0 < x < L : && b (x , y) = B_0 + sum_(n = 1)^oo X_n (x) cos lambda_n y med, \
+  & upright("for ") L < x :     && b (x , y) = sum_(n = 1)^oo X_n (x) cos lambda_n y med.
+$<eq:magnetic_field_solution>
 
-As the next step, we visualize the magnetic field profiles. This was achieved by using Python code written as part of this thesis work. We use a rail length of $L = qty("140","mm")$, rail width of $qty("10", "mm")$ ($a=qty("5", "mm")$), a rail thickness of $qty("1", "mm")$ ($d= qty("0.5","mm")$), an air gap of $g = qty("1", "mm")$, and a static magnetic field of $B_0 = qty("1","T")$. The results are shown in @fig:magnetic_profiles_yam_org.
-#figure(caption:[Magnetic Profiles derived from the original Yamamura model.],
-  image("../figures/models/Yamamura_org.svg", width:100%)
-)<fig:magnetic_profiles_yam_org>
+As the next step, we visualize the magnetic field profiles. This was achieved by using Python code written as part of this thesis work. We use a rail length of $L = qty("140", "mm")$, rail width of $qty("10", "mm")$ ($a=qty("5", "mm")$), a rail thickness of $qty("1", "mm")$ ($d= qty("0.5", "mm")$), an air gap of $g = qty("1", "mm")$, and a static magnetic field of $B_0 = qty("1", "T")$. The results are shown in @fig:magnetic_profiles_yam_org.
+#figure(caption: [Magnetic Profiles derived from the original Yamamura model.], image(
+  "../figures/models/Yamamura_org.svg",
+  width: 100%,
+))<fig:magnetic_profiles_yam_org>
 We observe that with increasing velocity, the magnetic field profile changes significantly. The maximum value of each curve remains unaffected by the velocity; however, the overall shape of the curve exhibits a spatial shear deformation opposite to the direction of movement. This deformation leads to a delayed increase of the magnetic field at the nose and to a delayed decrease at the tail. Both the delay in the increase and the delay in the decrease become more pronounced with increasing velocity.
 
 The Yamamura model also allows the calculation of the y-dependence of the magnetic field for different x-slices and the x-dependence of the magnetic field for different y-slices. The results are shown in @fig:yam_org_long_dist.
-#figure(caption: [Magnetic field profiles for different yoke widths (left) and different yoke lengths (right) with the following parameters: $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
-  grid(columns: 2,
-  column-gutter: 1em,
-  row-gutter: 0.5em,
-  [#image("../figures/models/Yam_org_long_dist.svg", width: 100%)],
-  [#image("../figures/models/Yam_org_lat_dist.svg", width: 100%)],
-  [Magnetic field profile along x-axis for different y-slices],[Magnetic field profile along y-axis for different x-slices]
-  )
+#figure(
+  caption: [Magnetic field profiles for different yoke widths (left) and different yoke lengths (right) with the following parameters: $sigma=qty("1e7", "S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
+  grid(
+    columns: 2,
+    column-gutter: 1em,
+    row-gutter: 0.5em,
+    [#image("../figures/models/Yam_org_long_dist.svg", width: 100%)],
+    [#image("../figures/models/Yam_org_lat_dist.svg", width: 100%)],
+
+    [Magnetic field profile along x-axis for different y-slices],
+    [Magnetic field profile along y-axis for different x-slices],
+  ),
 )<fig:yam_org_long_dist>
 As described with the formulas of the Yamamura model, the plots show that in this model the induced field is zero at the y-edges of the rail, so that there the applied field remains undisturbed. At the tail, the magnetic field shifts in the direction of motion; therefore, the induced field at the tail is, similar to the one at the middle, nearly zero.
 
- *Force equations*\
+*Force equations*\
 <force-equations>
 The attracting lift force $F_l$ of the magnet is given by
 $ F_l = 1 / mu_0 integral_(- oo)^oo d x integral_a^a d y (b (x , y))^2 med. $<eq:lift_force>
@@ -157,35 +187,45 @@ By substituting equation @eq:magnetic_field_solution, the losses due to eddy
 current are now incorporated in the force equation
 $ F_l = F_l^0 sum_(n = 1)^oo c_n^2 f (n) med. $
 with
-$ f (n) = & #h(0.5em) frac(1, 2 L) [ L + frac(beta_n ', alpha_n) (2 + beta_n ') (1 - exp(-alpha_n L)) \
-  & + frac(alpha_n ', beta_n) (2 - alpha_n ') ( 1 - exp(beta_n L)) + 2 frac(alpha_n ' beta_n ', alpha_n + beta_n) (exp(-alpha_n L) - exp(beta_n L)) ] med, $
+$
+  f (n) = & #h(0.5em) frac(1, 2 L) [ L + frac(beta_n ', alpha_n) (2 + beta_n ') (1 - exp(-alpha_n L)) \
+    & + frac(alpha_n ', beta_n) (2 - alpha_n ') ( 1 - exp(beta_n L)) + 2 frac(alpha_n ' beta_n ', alpha_n + beta_n) (exp(-alpha_n L) - exp(beta_n L)) ] med,
+$
 where
 $alpha_n ' = frac(alpha_n, alpha_n - beta_n)$
 and
 $beta_n ' = frac(beta_n, alpha_n - beta_n)$. \
 The braking force $F_b$ is given by
-$ F_b & = frac(g, d mu_0) integral_(- oo)^oo d x integral_0^(2 d) d z integral_a^a d y (b_e frac(partial b_i, partial x) + 1 / 2 frac(partial b_i^2, partial x))\
- & = F_l^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp(beta_n L) - 1) + beta_n ' (exp(-alpha_n L) - 1))) med. $
+$
+  F_b & = frac(g, d mu_0) integral_(- oo)^oo d x integral_0^(2 d) d z integral_a^a d y (b_e frac(partial b_i, partial x) + 1 / 2 frac(partial b_i^2, partial x))\
+  & = F_l^0 g / L sum_(n = 1)^oo (c_n^2 (alpha_n ' (exp(beta_n L) - 1) + beta_n ' (exp(-alpha_n L) - 1))) med.
+$
 
 The following plots are generated from the Python implementation of this thesis with the same parameters as in the original paper. \
 In @fig:yam_org_lift_f the lift force reduction for different lengths and rail widths is shown.
-#figure(caption: [Lift force reduction for different lengths (left) and rail widths (right). \ $sigma=qty("1e7","S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
-  grid(columns: 2,
-  column-gutter: 1em,
-  row-gutter: 0.5em,
-  [#image("../figures/models/Yam_org_lift_f_length.svg", width: 100%)],
-  [#image("../figures/models/Yam_org_lift_f_width.svg", width: 100%)],
-  [],[]
-  )
-)<fig:yam_org_lift_f>
-#figure(caption: [Braking force for different lengths in comparison to $F_l^0$(left) and to the lift force (right). \ $sigma=qty("1e7","S/m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
+#figure(
+  caption: [Lift force reduction for different lengths (left) and rail widths (right). \ $sigma=qty("1e7", "S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
+  grid(
+    columns: 2,
+    column-gutter: 1em,
+    row-gutter: 0.5em,
+    [#image("../figures/models/Yam_org_lift_f_length.svg", width: 100%)],
+    [#image("../figures/models/Yam_org_lift_f_width.svg", width: 100%)],
 
-  grid(columns: 2,
-  column-gutter: 1em,
-  row-gutter: 0.5em,
-  [#image("../figures/models/Yam_org_drag_f_length.svg", width: 100%)],
-  [#image("../figures/models/Yam_org_lift-drag_f_length.svg", width: 100%)],
-  [],[]
+    [], [],
+  ),
+)<fig:yam_org_lift_f>
+#figure(
+  caption: [Braking force for different lengths in comparison to $F_l^0$(left) and to the lift force (right). \ $sigma=qty("1e7", "S/m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
+
+  grid(
+    columns: 2,
+    column-gutter: 1em,
+    row-gutter: 0.5em,
+    [#image("../figures/models/Yam_org_drag_f_length.svg", width: 100%)],
+    [#image("../figures/models/Yam_org_lift-drag_f_length.svg", width: 100%)],
+
+    [], [],
   ),
   // placement: bottom
 )<fig:yam_org_braking_f>
@@ -202,31 +242,38 @@ In the original Yamamura model, the undisturbed magnetic field $b_e$ generated b
 In fact, we actually only want to have an arbitrary input for the magnetic field along the x direction profile. The y-component should have the same constraints as in the Yamamura model. So we consider again a function with separated variables:
 $ b_e (x,y) = b_(e, x)(x) b_(e, y)(y) med. $
 As y-component we use the one derived from the original model. That gives the following excitation term $f$:
-$ f(x,y) = -pdv(b_e, x ,2) + K pdv(b_e, x) = (-dv(b_(e, x), x, 2) + K dv(b_(e, x), x)) Y(y) med. $
+$ f(x,y) = -pdv(b_e, x, 2) + K pdv(b_e, x) = (-dv(b_(e, x), x, 2) + K dv(b_(e, x), x)) Y(y) med. $
 Inserting this into equation @separated_variables yields:
-$ dv(X, x, 2) - K dv(X, x) - lambda_n^2  X = C_n (-dv(b_(e, x), x, 2) + K dv(b_(e, x), x)) med. $
+$ dv(X, x, 2) - K dv(X, x) - lambda_n^2 X = C_n (-dv(b_(e, x), x, 2) + K dv(b_(e, x), x)) med. $
 Transforming this equation into the frequency domain yields:
-$ -omega^2 tilde(X) - i omega K tilde(X) - lambda_n^2  tilde(X) = C_n (omega^2 tilde(b)_(e, x) + i omega K tilde(b)_(e, x)) med, $
+$
+  -omega^2 tilde(X) - i omega K tilde(X) - lambda_n^2 tilde(X) = C_n (omega^2 tilde(b)_(e, x) + i omega K tilde(b)_(e, x)) med,
+$
 $ tilde(X) = - C_n (omega^2 + i omega K ) / (omega^2 + i omega K + lambda_n^2) tilde(b)_(e, x) med. $
 So the solution is:
-$ b(x, y) &= b_e + b_i \ &= sum_(n = 1)^oo b_(e, x)(x) c_n cos(lambda_n y) + X_n (x) cos(lambda_n y) med, $
+$
+  b(x, y) & = b_e + b_i \
+          & = sum_(n = 1)^oo b_(e, x)(x) c_n cos(lambda_n y) + X_n (x) cos(lambda_n y) med,
+$
 with
 $ X_n(x) = -C_n cal(F)^(-1)((omega^2 + i omega K ) / (omega^2 + i omega K + lambda_n^2) cal(F)(b_(e, x)(x))) med. $
 \
 This adapted model is also written in Python by the author. Since the Fourier transform cannot be calculated analytically anymore, a numerical approach is used to calculate the Fourier transform. The numerical approach is based on the Fast Fourier Transform (FFT) algorithm, which is a fast and efficient method for calculating the Fourier transform of a signal. The FFT algorithm is implemented in the _scipy_ library in Python.
 For computation the same values for rail thickness and air gap are used as in the Yamamura model, the result is shown in @fig:magnetic_profiles_yam_02.
-#figure(caption:[Magnetic field profiles derived from the adapted Yamamura model.],
-  image("../figures/models/Yamamura_02.svg", width:100%)
-)<fig:magnetic_profiles_yam_02>
+#figure(caption: [Magnetic field profiles derived from the adapted Yamamura model.], image(
+  "../figures/models/Yamamura_02.svg",
+  width: 100%,
+))<fig:magnetic_profiles_yam_02>
 Comparing the magnetic field profiles of the adapted model with the original one (@fig:magnetic_profiles_yam_org), the differences are quite insignificant.\
 To visualize the differences more clearly, the induced magnetic field profiles are plotted in @fig:yam_org_deltaB and @fig:yam_02_deltaB, which show the difference between the total magnetic field and the applied magnetic field.
-#figure(caption:[Induced magnetic field profiles derived from the original Yamamura model.],
-  image("../figures/models/Yam_org_deltaB.svg", width:100%)
-)<fig:yam_org_deltaB>
-#figure(caption:[Induced magnetic field profiles derived from the adapted Yamamura model.],
-  image("../figures/models/Yam_02_deltaB.svg", width:100%),
+#figure(caption: [Induced magnetic field profiles derived from the original Yamamura model.], image(
+  "../figures/models/Yam_org_deltaB.svg",
+  width: 100%,
+))<fig:yam_org_deltaB>
+#figure(
+  caption: [Induced magnetic field profiles derived from the adapted Yamamura model.],
+  image("../figures/models/Yam_02_deltaB.svg", width: 100%),
   // placement: bottom
-
 )<fig:yam_02_deltaB>
 Here we see the same form of the induced magnetic field, but with smaller amplitudes and smoother curves for the adapted model.
 This can be explained by the fact that the adapted model uses a more realistic magnetic field profile, which has a smoother transition at the nose and tail of the magnet, whereas the original model uses a rectangular function which has a sharp transition.
@@ -248,13 +295,19 @@ $ curl vb(J) = - sigma pdv(vb(B), t) med. $
 Now we consider the Biot-Savart law, which states that a current density induces a magnetic field:
 $ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral curl frac(vb(J) \( vb(r)' \), \| vb(r) - vb(r)' \|) dd(r, 3)' med. $
 Here we can insert the curl of the current density from the previous equation to get the induced magnetic field $B_i$ in dependence of the time variant magnetic field:
-$ vb(B)_i \( vb(r) \) = - frac(mu_0 sigma, 4 pi) integral frac(pdv(, t) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 3)' med. $
-For a steady movement of the magnet with a constant velocity $v$ in x-direction we can replace the time derivative by a spatial derivative $pdv(,t) = v pdv(,x)$ and insert this term in the previous equation:
-$ vb(B)_i \( vb(r) \) = - frac(mu_0 sigma, 4 pi) v integral_V_R frac(pdv(, x) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 3)' med. $
+$
+  vb(B)_i \( vb(r) \) = - frac(mu_0 sigma, 4 pi) integral frac(pdv(, t) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 3)' med.
+$
+For a steady movement of the magnet with a constant velocity $v$ in x-direction we can replace the time derivative by a spatial derivative $pdv(, t) = v pdv(, x)$ and insert this term in the previous equation:
+$
+  vb(B)_i \( vb(r) \) = - frac(mu_0 sigma, 4 pi) v integral_V_R frac(pdv(, x) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 3)' med.
+$
 The total magnetic field is the superposition of the applied magnetic field $B_e$ and the induced magnetic field $B_i$, i.e., $vb(B) = vb(B)_i + vb(B)_e$. The boundaries of the integration are the whole rail in x- and y-direction. In z-direction, one has to consider the skin effect, which means that the currents are mostly at the surface of the rail, dependent on the velocity. So the integration in z-direction is only performed over the skin depth, which is a function of the velocity.\
 The skin depth @skin_depth is defined by the material properties of the rail and the frequency of the changing field. Since we don't apply a classical alternating field but a time-variant field due to the movement of the magnet, we can define an effective frequency by the velocity and the length $l_i$ over which the field increases from zero to $B_0$. We can estimate this length considering @fig:static_B0 as about $qty("2", "mm")$, which results for a velocity of $qty("100", "m/s")$ and the material properties of iron in a skin depth of about $qty("1.4", "mm")$.\
 Inserting the skin depth into the previous integral yields:
-$ vb(B)_i \( vb(r) \) = - sqrt(frac(mu_0 sigma , 4 pi^3)) sqrt(v l_i) integral_A_R frac(pdv(, x) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 2)' med. $
+$
+  vb(B)_i \( vb(r) \) = - sqrt(frac(mu_0 sigma, 4 pi^3)) sqrt(v l_i) integral_A_R frac(pdv(, x) vb(B)(vb(r)'), \| vb(r) - vb(r)' \|) dd(r, 2)' med.
+$
 with $A_R$ being the x-y surface of the rail.
 
 With this model, we have an alternative description of the eddy currents and their induced magnetic field in the rail. It illustrates how these are generated in the rail frame model and how they can be calculated. However, the integral is quite complex, which would require a numerical approach to solve it.
@@ -277,7 +330,9 @@ rail
 $ j = I / A = frac(V_(upright(i n d)), R med S) = pdv(B, x) v_0 1 / rho dd(x) med. $
 A volume element can be described by $dd(V) = h med l med dd(x)$, so the
 induced B-field can be expressed by the Biot-Savart law as follows
-$ B_(upright(i)) (x) = frac(mu, 4 pi) frac(h med l, rho) v_0 integral_(- oo)^(+ oo) pdv(B, x)\|_(x') 1 / (x - x ')^2 dd(x, 2)' med. $
+$
+  B_(upright(i)) (x) = frac(mu, 4 pi) frac(h med l, rho) v_0 integral_(- oo)^(+ oo) pdv(B, x)\|_(x') 1 / (x - x ')^2 dd(x, 2)' med.
+$
 Here the magnetic field $B$ is the superposition of applied and induced field, i.e., $B = B_0 + B_i$. Since the induced field depends on itself, an analytical solution is difficult and not yet found by the author.
 
 To solve this equation, the following numerical approach could be used: at a first step, $B$ is calculated only by the external field $B_0$. Then an iteration follows that calculates the magnetic field regarding the induced field from the former step. \
