@@ -8,6 +8,9 @@
 = Theory <chapter:theory>
 In this chapter, we will discuss the theoretical background of the thesis. We will start with the Maxwell equations and their potentials, then we will discuss the forces on electrons and the magnetic field of an electric current. The next section addresses time-variant fields and the transformation of fields.
 Finally, we will discuss eddy currents and magnetic diffusion.
+\
+\
+\
 
 == Maxwell equations
 #label("section: mx_eqn")
@@ -52,7 +55,9 @@ where $vb(P)$ is the polarization of the material. In a linear regime, this can 
 approximated as:
 $ vb(D) = epsilon.alt_0 epsilon.alt_r vb(E) med, $
 where $epsilon.alt_r$ is the relative permittivity of the material.
-
+\
+\
+\
 
 == Potentials of the electromagnetic field
 In this section, we will discuss the potentials of the electromagnetic field and their connection with the electric and magnetic fields. This chapter is mainly based on @brandt1997elektrodynamik.
@@ -135,8 +140,10 @@ Since $mu vb(H)=vb(B)$ and Maxwell's second equation @maxwell_B1, the $vb(H)$ te
 $ div (mu grad Omega_r) = - div (mu T) med. $
 The vector potential $vb(T)$ can be derived from the Biot-Savart law in  @biot-savart-law:
 $ vb(T)(vb(r)) = frac(1, 4 pi) integral frac(vb(J)(vb(r)') times ( vb(r) - vb(r)'), |vb(r) - vb(r)'|^3) dd(r, 3)' med. $
-The magnetic field, which we splitted into two parts, a rotational part $vb(T)$ and a nonrotational part $-grad Omega_r$, can now be composed together again @kuczmann2008finite:
+The magnetic field, which we split into two parts, a rotational part $vb(T)$ and a nonrotational part $-grad Omega_r$, can now be composed together again @kuczmann2008finite:
 $ vb(H) = vb(T) - grad Omega_r med. $<T-Omega_potential>
+
+
 
 == Forces on electrons
 #label("section: F_on_e")
@@ -158,7 +165,7 @@ $ vb(F)_E = q dot vb(E) med. $<electric_force>
 
 === Lorentz force
 <lorentz-force>
-Charged particles can not only experience a force when they are in an electric field but also in a magnetic field $B$ when they are moving. This Lorentz force is given by the following term @demtroeder2:
+Charged particles can experience force not only in an electric field but also in a magnetic field $B$ when they are moving. This Lorentz force is given by the following term @demtroeder2:
 $ vb(F)_L = q dot.op \( vb(v) times vb(B) \) med. $<lorentz_force>
 Together with the electric force we can write the general Lorentz force as:
 $ vb(F) = q dot.op \( vb(E) + vb(v) times vb(B) \) med. $<general_lf>
@@ -173,7 +180,9 @@ $ vb(J)= sigma \( vb(E) + vb(v) times vb(B) \) med. $<general_ohms_law>
 Often, but not in our case, the velocity is small enough that the electric force dominates. Then it is called Ohm's law:
 $ vb(J)= sigma vb(E) med. $<ohms_law>
 But in this thesis, we will usually use the generalized Ohm's law @general_ohms_law, since we deal with non-negligible B fields and velocities.
-
+\
+\
+\
 
 == Magnetic field of an electric current
 <magnetic-field-of-an-electric-current>
@@ -210,6 +219,9 @@ It can be simplified with the identity
 $\| vb(r) - vb(r)' \| = sqrt(\( vb(r) - vb(r)' \)^2) = sqrt(\( x - x' \)^2 + \( y - y' \)^2 + \( z - z' \)^2)$
 to:
 $ vb(B) \( vb(r) \) = frac(mu_0, 4 pi) integral frac(vb(J) \( vb(r)' \) times \( vb(r) - vb(r)' \), \| vb(r) - vb(r)' \|^3) dd(r, 3)' med. $<biot-savart>
+\
+\
+\
 
 == Time variant fields
 <time-variant-fields>
@@ -225,8 +237,8 @@ The electromotive force is also called induced voltage and has units in volts (V
 
 
 === Transformation of Fields
-Even before the development of the special relativity, it was understood that physical laws should be invariant under Galilean transformations @jackson1998classical. This means that physical phenomena are the same regardless from which perspective they are observed. As an example, consider a conductor loop and a magnet moving relative to each other: \
-In the magnet frame the magnet is at rest and the conductor is moving towards the magnet. The electromotive force that induces the current in the conductor can be expressed by Faraday's induction law:
+Even before the development of special relativity, it was understood that physical laws should be invariant under Galilean transformations @jackson1998classical. This means that physical phenomena are the same regardless of the perspective they are observed. As an example, consider a conductor loop and a magnet moving relative to each other: \
+In the magnet frame, the magnet is at rest and the conductor is moving towards the magnet. The electromotive force that induces the current in the conductor can be expressed by Faraday's induction law:
 $ integral.cont_C vb(E)' dot dd(vb(l)) = - dv(,t) integral_S vb(B) dot dd(vb(n)) med. $<induction_law>
 An important note is that $vb(E)'$ is the electric field in the coordinate system in which $dd(vb(l))$ is at rest. The total time derivative $dv(,t)=pdv(,t)+vb(v)dot nabla$ must be taken into account. Applying Stokes' theorem yields:
 $ dv(,t)integral_S vb(B)dot dd(vb(n)) = integral_S pdv(vb(B),t)dot dd(vb(n)) + integral.cont_C (vb(B)times vb(v))dot dd(vb(l)) med. $
@@ -237,18 +249,17 @@ Applying Faraday's law to the fixed conductor in the frame of the conductor yiel
 $ integral.cont_C vb(E) dot dd(vb(l)) = - integral_S pdv(vb(B), t) dd(vb(n)) med. $<induction_conductor_frame>
 Comparing the equations @induction_magnet_frame and @induction_conductor_frame yields:
 $ vb(E)' = vb(E) + (vb(v)times vb(B)) med. $<E_field_transformation>
-So when dealing with different frames which have relative motion to each other, one has to be careful when applying Faraday's law. The correct physics is always given by the two basics laws @feynman1963lectures:
+So when dealing with different frames which have relative motion to each other, one has to be careful when applying Faraday's law. The correct physics is always given by the two basic laws @feynman1963lectures:
 $ vb(F)= q (vb(E) + vb(v)times vb(B)) med, $
 $ curl vb(E) = -pdv(vb(B), t) med. $
-
 
 
 == Eddy Currents
 <eddy-currents>
 Currents that are induced in extended conductors are called eddy currents. They are dependent on the time derivative of the magnetic field $dv(vb(B), t)$ as well as the spatial electrical resistance $R \( x \, y \, z \)$ of the conductor @demtroeder2.\
-In this section, we start with the neglection of the displacement current; then we will discuss the different formulations of eddy current problems, which are based on the Maxwell equations and their potentials. We will also discuss the skin effect, which describes the self-shielding of a conductor from an alternating magnetic field.
+In this section, we start with the neglect of the displacement current; then we will discuss the different formulations of eddy current problems, which are based on the Maxwell equations and their potentials. We will also discuss the skin effect, which describes the self-shielding of a conductor from an alternating magnetic field.
 
-=== Neglection of the displacement current
+=== Neglect of the displacement current
 <displacement-current>
 As stated before the displacement current $pdv(vb(D), t)$ can be neglected for most eddy current cases @kriezis1992eddy @sinha1987 @biro1999edge. This can be easily shown by comparing the conduction current with the displacement current:
 $ (|pdv(D, t)|)/(|J|) = (omega epsilon E)/(sigma E) = (omega epsilon)/(sigma) med. $
@@ -288,8 +299,9 @@ decreases with increasing frequency $omega$:
 $ delta = sqrt(frac(2, omega mu sigma)) med, $<skin_depth>
 where $mu$ is the magnetic permeability and $sigma$ is the electrical conductivity of the
 conductor.
-
-
+\
+\
+\
 
 == Magnetic Diffusion
 To study the magnetic field diffusion, we derive a differential equation from the Maxwell equations and Ohm's law. The derivation is mainly taken from @woodson1968.
@@ -306,6 +318,6 @@ $ 1/(mu sigma) laplacian vb(B) + pdv(vb(B),t) = curl(vb(v)times vb(B)) med. $<ma
 This equation describes the distribution of magnetic field in a conductor. The right-hand side of this equation can be interpreted as the rate of change of magnetic field due to the motion of charges. This change is absorbed by a flux change due to ohmic dissipation ($laplacian vb(B)$) and time derivative of flux density ($pdv(vb(B),t)$). \
 In the absence of material motion, this reduces to the diffusion equation
 $ 1/(mu sigma) laplacian vb(B) = -pdv(vb(B),t) med. $
-This form of equation is often found to describe diffusions, for example in the diffusion of heat in a solid or neutron diffusion.\
+This form of equation is often found to describe diffusions processes, for example in the diffusion of heat in a solid or neutron diffusion.\
 A second simplification of the distribution equation @magnetic_field_distribution is to consider motion but in a steady-state condition:
 $ -1/(mu sigma) laplacian vb(B) = curl (vb(v)times vb(B)) med. $
