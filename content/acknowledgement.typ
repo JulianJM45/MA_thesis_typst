@@ -13,6 +13,6 @@ Next, I want to thank Prof. Dr. Martin S. Brandt for serving as the second exami
 I would also like to thank my advisor, Oliver Kleikemper, for providing this interesting topic, for his general support when I had questions and at the same time giving me the opportunity to develop and pursue my own approaches.\
 My thanks also go to my office mates Matej, Armin and Felix for creating a pleasant working atmosphere in our office.\
 I want to thank Joao for the technical support with our computers and for enabling access to the LRZ cluster.\
-I would also oke to thank the CADFEM support team for their assistance with the Ansys software, as well as the LRZ support team for their help to use the HPC cluster.\
+I would also like to thank the CADFEM support team for their assistance with the Ansys software, as well as the LRZ support team for their help to use the HPC cluster.\
 
 Finally, I want to thank the entire TUM Hyperloop team for the welcoming atmosphere and for giving me the opportunity work on such an interesting project.

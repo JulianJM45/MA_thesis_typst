@@ -1,10 +1,12 @@
 APDL
+Althammer
 Ampère's
 Ansys
 Biot
 Bowyer
 HTP
 Hyperloop
+Kleikemper
 LND
 Lenz's
 MagLev

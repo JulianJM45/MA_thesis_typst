@@ -97,9 +97,9 @@ A separation-of-variables approach is used:
 $ b_i (x , y) = X (x) Y (y) med, $<eq:separated_variables>
 which leads to
 $ X''^(#footnote[$X'' = pdv(X, x, 2)$])/X - K X'/X + Y''/Y = 0 med, $
-$ => X''/X - K X'/X = -Y''/Y = "const." := lambda_n med, $
-$ => dv(Y (y), y, 2) + lambda_n Y (y) = 0 med, $
-$ => dv(X(x), x, 2) - K dv(X(x), x) - lambda_n X(x) = 0 med, $
+$ => X''/X - K X'/X = -Y''/Y = "const." := lambda_n^2 med, $
+$ => dv(Y (y), y, 2) + lambda_n^2 Y (y) = 0 med, $
+$ => dv(X(x), x, 2) - K dv(X(x), x) - lambda_n^2 X(x) = 0 med, $
 where $lambda_n$ is an arbitrary constant. Boundary conditions $b_i = 0$ at $y = plus.minus a$ give the following solution
 $ Y (y) = cos (lambda_n y) med, $<eq:solution_z>
 $ lambda_n = (2 n - 1) frac(pi, 2 a) med. $
@@ -150,11 +150,11 @@ $ alpha_n & = 1 / 2 (- K + sqrt(K^2 + 4 lambda_n^2)) med, $
 $ beta_n & = 1 / 2 (- K - sqrt(K^2 + 4 lambda_n^2)) med. $
 So the solution for the magnetic field is given by
 $
-  & upright("for ") 0 < x < L : && b (x , y) = B_0 + sum_(n = 1)^oo X_n (x) cos lambda_n y med, \
-  & upright("for ") L < x :     && b (x , y) = sum_(n = 1)^oo X_n (x) cos lambda_n y med.
+  & upright("for ") 0 < x < L : wide quad && b (x , y) = B_0 + sum_(n = 1)^oo X_n (x) cos lambda_n y med, \
+  & upright("for ") x<0, L < x :     && b (x , y) = sum_(n = 1)^oo X_n (x) cos lambda_n y med.
 $<eq:magnetic_field_solution>
 
-As the next step, we visualize the magnetic field profiles. This was achieved by using Python code written as part of this thesis work. We use a rail length of $L = qty("140", "mm")$, rail width of $qty("10", "mm")$ ($a=qty("5", "mm")$), a rail thickness of $qty("1", "mm")$ ($d= qty("0.5", "mm")$), an air gap of $g = qty("1", "mm")$, and a static magnetic field of $B_0 = qty("1", "T")$. The results are shown in @fig:magnetic_profiles_yam_org.
+As the next step, we visualize the magnetic field profiles. This was achieved by using Python code written as part of this thesis work. We use a rail length of $L = qty("140", "mm")$, yoke width of $qty("10", "mm")$ ($a=qty("5", "mm")$), a rail thickness of $qty("1", "mm")$ ($d= qty("0.5", "mm")$), an air gap of $g = qty("1", "mm")$, and a static magnetic field of $B_0 = qty("1", "T")$. The results are shown in @fig:magnetic_profiles_yam_org.
 #figure(caption: [Magnetic Profiles derived from the original Yamamura model.], image(
   "../figures/models/Yamamura_org.svg",
   width: 100%,
@@ -202,9 +202,9 @@ $
 $
 
 The following plots are generated from the Python implementation of this thesis with the same parameters as in the original paper. \
-In @fig:yam_org_lift_f the lift force reduction for different lengths and rail widths is shown.
+In @fig:yam_org_lift_f the lift force reduction for different lengths and yoke widths is shown.
 #figure(
-  caption: [Lift force reduction for different lengths (left) and rail widths (right). \ $sigma=qty("1e7", "S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
+  caption: [Lift force reduction for different lengths (left) and yoke widths (right). \ $sigma=qty("1e7", "S/m"), L=qty("2", "m"), d=qty("10", "cm"), a=qty("2", "cm"), g=qty("1.5", "cm"), v=qty("66.6", "m/s")$.],
   grid(
     columns: 2,
     column-gutter: 1em,
@@ -231,7 +231,7 @@ In @fig:yam_org_lift_f the lift force reduction for different lengths and rail w
 )<fig:yam_org_braking_f>
 With increasing length the relative lift force $F_l/F^0_l$ is less reduced for high velocities. The static lift force $F^0_l$ is directly proportional to the length, whereas the reduction only occurs at the nose and the tail, which is quite independent of the length.
 But with increasing width the reduction is more significant, since the eddy currents can flow more easily and with larger circles. \
-In @fig:yam_org_braking_f the braking force $F_b$ for different lengths and rail widths is shown.
+In @fig:yam_org_braking_f the braking force $F_b$ for different lengths and yoke widths is shown.
 As expected, the relative braking force $F_b/F^0_l$ decreases with increasing length, but also with higher velocities after a maximum at around $v=qti("10", "m/s")$. The lift-braking ratio $F_l/F_b$ decreases with increasing velocity, too. But longer magnet lengths lead to higher lift-braking ratios.
 
 For a magnetic levitation system, increasing velocity has two important consequences. First, a higher applied current in the levitation coil is required to compensate for the loss of lift force, which results in increased power consumption in the levitation system. Second, the higher current, and thus a stronger applied magnetic field, leads to a further increase in braking force. Consequently, additional power is required for propulsion to overcome this increased braking force.
@@ -311,7 +311,7 @@ $
 with $A_R$ being the x-y surface of the rail.
 
 With this model, we have an alternative description of the eddy currents and their induced magnetic field in the rail. It illustrates how these are generated in the rail frame model and how they can be calculated. However, the integral is quite complex, which would require a numerical approach to solve it.
-The model also identifies expected relevant parameters for the creation of eddy currents, namely the velocity, the spatial gradient of the magnetic field, the conductivity of the rail and its affected surface, which corresponds to the rail width and the yoke length.
+The model also identifies expected relevant parameters for the creation of eddy currents, namely the velocity, the spatial gradient of the magnetic field, the conductivity of the rail and its affected surface, which corresponds to the yoke width and the yoke length.
 \
 \
 \

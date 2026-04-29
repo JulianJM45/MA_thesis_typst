@@ -8,7 +8,7 @@
 
 = Summary<chapter:summary>
 
-This thesis investigates eddy currents in a magnetic levitation system at high velocities and their influence on the magnetic field. The focus is an EMS system with a homogeneous magnet arrangement used by TUM Hyperloop.
+This thesis investigates eddy currents in a magnetic levitation system at high velocities and their influence on the magnetic field. The focus is an electromagnetic suspension system with a homogeneous magnet arrangement used by TUM Hyperloop.
 
 After introducing the theoretical foundations of electromagnetism and eddy currents in EMS systems, we derived several analytical models. In particular, we used the model by S. Yamamura @yamamura1975, which applies an adapted rail and yoke geometry and provides an analytical solution for the induced magnetic field based on Maxwell's equations.
 

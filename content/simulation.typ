@@ -212,7 +212,7 @@ To get more insight into the magnitude of the induced currents and their spatial
   image("../figures/simulation/B_profile_yam_mc.svg", width: 100%),
   caption: [Magnetic field profile of the Yamamura model along the x-axis in the air gap at velocity $v=qti("100", "m/s")$. Simulated with Ansys Mechanical. Yoke length: $qti("135", "mm")$, yoke width: $qti("10", "mm")$.],
 )<B_profile_yam_mc_y10>
-We can observe that with a rail width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the magnetic field profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). To visualize the change of the magnetic field more clearly, we can plot the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc.
+We can observe that with a yoke width of $qty("10", "mm")$ the relative magnetic flux change is quite moderate with a lowest nose dip (LND) of 4.68% at the front and a highest tail peak (HTP) of 2.99% at the end of the magnet at a speed of $qti("100", "m/s")$. These values are characteristic for the magnetic field profile and depend on the velocity as well as on the geometry of the rail and the yoke (which we will see later). To visualize the change of the magnetic field more clearly, we can plot the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc.
 
 #figure(
   image("../figures/simulation/deltaB_profile_yam_mc.svg", width: 100%),
@@ -268,17 +268,18 @@ In @DeltaB_2Dprofile_yam_mc_y10 we can see that the resolution of the Mechanical
 
 == Yamamura Model
 The simulation using Ansys Mechanical proved to be significantly more efficient than the simulation using Ansys Maxwell. For the geometry parameters used in both analyses described above, the computation time is reduced from approximately three weeks to about five minutes.
-Therefore, we now use Ansys Mechanical to investigate different parameters of the Yamamura model. First, we study the velocity dependence of the model, then the influence of rail/yoke width, and finally the influence of yoke length.
+Therefore, we now use Ansys Mechanical to investigate different parameters of the Yamamura model. First, we study the velocity dependence of the model, then the influence of rail/yoke width, the dependence on the yoke length, and finally the influence of the applied magnetic field.
 Unless stated otherwise, the following parameters are used:
-- velocity: $qti("100", "m/s")$
-- yoke/rail width: $qti("10", "mm")$
-- yoke length: $qti("140", "mm")$
+- velocity: #h(7.4em) $v=qti("100", "m/s")$
+- yoke/rail width: #h(4.05em) $y=qti("10", "mm")$
+- yoke length: #h(6em) $l=qti("140", "mm")$
+- applied magnetic field: #h(0.5em) $B_0=qty("1000", "mT")$
 
 === Velocity dependence
 For the velocity dependence, we run the simulation for several velocities from $qti("0", "m/s")$ to $qti("300", "m/s")$. The resulting induced field profiles along the x-axis in the air gap are shown in @deltaB_profile_yam_mc_vsweep for representative velocities.
 #figure(
   image("../figures/simulation/deltaB_profile_yam_mc_vsweep.svg", width: 100%),
-  caption: [Change in magnetic field profile of the Yamamura model along the x-axis in the air gap at different velocities. Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.],
+  caption: [Change in magnetic field profile of the Yamamura model along the x-axis in the air gap at different velocities. Simulated with Ansys Mechanical. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qty("1000", "mT")$.],
 )<deltaB_profile_yam_mc_vsweep>
 We see that with increasing velocity the induced field becomes stronger, which is expected since the eddy currents are stronger at higher velocities. The amplitudes of both the nose dip and the tail peak increase with increasing velocity. Along the magnet length, we observe a residual induced field that vanishes slowly toward the end of the magnet and grows also with increasing velocity. The values of the lowest nose dips and highest tail peaks for all velocities are given in @table:LND_HTP_yam_mc_y10.
 #figure(
@@ -292,14 +293,14 @@ We see that with increasing velocity the induced field becomes stronger, which i
     [200], [72.30 (7.23%)], [52.61 (5.26%)],
     [300], [95.16 (9.51%)], [74.51 (7.45%)],
   ),
-  caption: [LND and HTP for several velocities in the Yamamura model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("1000", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.],
+  caption: [LND and HTP for several velocities in the Yamamura model with a yoke width of $qty("10", "mm")$, yoke length of $qty("140", "mm")$ and an applied magnetic field of $B_0=qty("1000", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.],
 )<table:LND_HTP_yam_mc_y10>
 
 #figure(
   image("../figures/simulation/F_yam_vfit.svg", width: 100%),
-  caption: [Fit of the braking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.],
+  caption: [Fit of the braking force of the Yamamura model at speeds from $qti("0", "m/s")$ to $qti("300", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$, applied magnetic field: $B_0=qty("1000", "mT")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(v)=a v^b$.],
 )<F_yam_vfit>
-We can also look at the braking force of the model at different velocities, as shown in @F_yam_vfit, where the braking force is plotted against velocity for several yoke widths. We can see that with increasing velocity, the braking force increases as well, which is expected since the eddy currents are stronger at higher velocities. The shape of the curve is similar to a square-root function; therefore, we fit the curves with a model function of the form $F(v)=a v^b$. The fitted curves are shown in @F_yam_vfit as blue lines, where the red dots represent the simulated values. The fit is very good, with $R^2$ values above 0.99 for all curves. The fitting parameters are shown in @table:F_yam_vfit_parameters.
+We can also look at the braking force of the model at different velocities, as shown in @F_yam_vfit, where the braking force is plotted against velocity for several yoke widths. We can see that with increasing velocity, the braking force increases as well, which is expected since the eddy currents are stronger at higher velocities. The shape of the curve is similar to a square-root function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_vfit as blue lines, where the red dots represent the simulated values. The fit is very good, with $R^2$ values above 0.99 for all curves. The fitting parameters are shown in @table:F_yam_vfit_parameters.
 #figure(
   table(
     columns: (auto, auto, auto, auto),
@@ -321,7 +322,7 @@ Indeed, we see the exponent $b$ converges towards 0.5 with increasing yoke width
 For the yoke width dependence, we run the simulation for several yoke widths from $qti("1", "mm")$ to $qti("38", "mm")$. The resulting induced field profiles along the x-axis in the air gap are shown in @deltaB_yam_ysweep for representative yoke widths.
 #figure(
   image("../figures/simulation/deltaB_yam_ysweep.svg", width: 100%),
-  caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$.],
+  caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke widths. Yoke length: $qti("140", "mm")$, applied magnetic field: $B_0=qty("1000", "mT")$.],
 )<deltaB_yam_ysweep>
 We observe a behavior similar to the velocity case: with increasing yoke width, the induced field becomes stronger, which is expected since the eddy currents can flow in larger circles and thus become stronger at larger yoke widths. In contrast to the velocity dependence, however, the curve shape not only shows increased amplitudes but also relaxes much more slowly after the lowest nose dip toward the end of the magnet. This also corresponds to a larger eddy-current loop, with an increased diameter in both the y- and x-directions. The lift and drag forces are now affected not only by the nose and tail regions but also by the middle region of the magnet, which leads to a stronger braking force. The values of the lowest nose dips and highest tail peaks for the representative yoke widths are given in @table:LND_HTP_yam_ysweep.
 
@@ -337,19 +338,19 @@ We observe a behavior similar to the velocity case: with increasing yoke width, 
     [30], [194.64 (19.46%)], [116.53 (11.65%)],
     [35], [233.62 (23.36%)], [137.67 (13.76%)],
   ),
-  caption: [LND and HTP for several yoke widths in the Yamamura model with a velocity of $qti("100", "m/s")$ and an applied magnetic field of $B_0=qty("1000", "mT")$.],
+  caption: [LND and HTP for several yoke widths in the Yamamura model with a velocity of $qti("100", "m/s")$, yoke length of $qti("140", "mm")$ and an applied magnetic field of $B_0=qty("1000", "mT")$.],
 )<table:LND_HTP_yam_ysweep>
 
 The yoke-width dependence of the braking force is shown in @F_yam_yfit, where the braking force is plotted against the yoke width for several velocities. We can see that with increasing yoke width, the braking force increases as well, but with a much stronger dependence than for velocity. The shape of the curve is similar to a square function; therefore, we fit the curves again with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_yfit as blue lines, where the red dots represent the simulated values. The coefficient of determination $R^2$ is above 0.999 for all velocities, which indicates a very good fit. The fitted parameters are shown in @table:F_yam_yfit_parameters. \
 #figure(
   image("../figures/simulation/F_yam_yfit.svg", width: 100%),
-  caption: [Fit of the braking force of the Yamamura model for yoke widths from $qty("10", "mm")$ to $qty("35", "mm")$ at different velocities. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(x)=a x^b$.],
+  caption: [Fit of the braking force of the Yamamura model for yoke widths from $qty("10", "mm")$ to $qty("35", "mm")$ at different velocities. Yoke length: $qti("140", "mm")$. The red dots represent the simulated values, whereas the blue lines represent the fit with the function $F(y)=a y^b$.],
 )<F_yam_yfit>
 #figure(
   table(
     columns: (auto, auto, auto, auto),
     align: horizon,
-    table.header([*Velocity in $unit("m/s")$*], [*a*], [*b*], [*$R^2$*]),
+    table.header([*Velocity in $m/s$*], [*a*], [*b*], [*$R^2$*]),
     [10], [0.0014], [2.3108], [0.9991],
     [30], [0.0029], [2.2400], [0.9996],
     [60], [0.0049], [2.1831], [0.9998],
@@ -357,7 +358,7 @@ The yoke-width dependence of the braking force is shown in @F_yam_yfit, where th
     [200], [0.0160], [2.0190], [0.9998],
     [300], [0.0262], [1.9462], [0.9998],
   ),
-  caption: [Fitted parameters for the braking force of the Yamamura model at different velocities. The fitting is done with the function $F(x)=a x^b$.],
+  caption: [Fitted parameters for the braking force of the Yamamura model at different velocities. The fitting is done with the function $F(y)=a y^b$.],
 )<table:F_yam_yfit_parameters>
 For high velocities the exponent $b$ is converging towards 2, which confirms the square shape of the curve. The prefactor $a$ is increasing with increasing velocity, which is expected since a higher velocity leads to stronger eddy currents and thus a stronger braking force.
 
@@ -366,7 +367,7 @@ For high velocities the exponent $b$ is converging towards 2, which confirms the
 For the yoke length dependence, we run the simulation for several yoke lengths from $qti("100", "mm")$ to $qti("900", "mm")$. The resulting induced field profiles along the x-axis in the air gap are shown in @deltaB_yam_xsweep for representative yoke lengths.
 #figure(
   image("../figures/simulation/deltaB_yam_xsweep.svg", width: 100%),
-  caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke lengths. Yoke width: $qti("10", "mm")$.],
+  caption: [Change in magnetic field profile of the Yamamura model at speed of $qti("100", "m/s")$ for different yoke lengths. Yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qty("1000", "mT")$.],
 )<deltaB_yam_xsweep>
 We observe that with increasing yoke length, no significant change in either the shape or the amplitudes of the induced field profile occurs. This is expected since the eddy currents are mainly induced at the nose and tail of the magnet, so a longer yoke does not lead to stronger eddy currents but only has a larger middle region where the magnetic field is barely affected.
 
@@ -422,7 +423,7 @@ We can see a similar behavior as for the velocity sweep in @deltaB_profile_yam_m
 We see that the values for LND and HTP increase linearly with the applied magnetic field $B_0$ and the relative values are constant at 4.76% and 3.11% respectively, which means that the induced magnetic field is proportional to the applied magnetic field and thus to the applied current density.
 #figure(
   image("../figures/simulation/F_yam_jfit.svg", width: 100%),
-  caption: [Fitting of the braking force of the Yamamura model against the applied magnetic field with the function $F (x) = a dot x^b$. The red dots represent the simulated values, whereas the blue lines represent the fit.],
+  caption: [Fitting of the braking force of the Yamamura model against the applied magnetic field with the function $F(B_0) = a dot B_0^b$. The red dots represent the simulated values, whereas the blue lines represent the fit.],
 )<F_yam_jfit>
 In @F_yam_jfit we can see the braking force of the model for different applied current densities. We could have expected a proportional dependence, since the induced magnetic field is proportional to the applied current density. However, the curve shape is more similar to a square function; therefore, we fit the curves with a model function of the form $F(x)=a x^b$. The fitted curves are shown in @F_yam_jfit as blue lines, where the red dots represent the simulated values. Indeed, we obtain an exponent of $b=2.0000 plus.minus num("6.65e-7")$, which confirms the square dependence of the braking force on the applied current density. The prefactor $a$ is equal to $num("0.956") plus.minus num("1.36e-6")$ and the $R^2$ value of the fit is $1.0000$. The x values for the fit are converted from current density ($unit("A/m^2")$) to magnetic field ($unit("T")$) using their linear relationship, which must be taken into account when interpreting the prefactor $a$.
 
@@ -505,7 +506,7 @@ As in the analysis of the Yamamura model, we simulate the model for different ve
 We can observe a similar behavior as in the Yamamura model: at the nose the induced field points against the applied field which leads to a reduction of the magnetic field, whereas at the tail the induced field points in the same direction as the applied field which leads to an increase of the magnetic field. Compared to the Yamamura model with the same dimensions for yoke length and width, the amplitudes of the nose dip and tail peak are much stronger in the Hyperloop model. This is even more noticeable when comparing the change of the magnetic field compared to the zero speed case, which is shown in @deltaB_profile_yam_mc_vsweep for the Yamamura model and in @deltaB_hurric_x140y10_vsweep for the Hyperloop model.
 #figure(
   image("../figures/simulation/deltaB_hurric_x140y10_vsweep.svg", width: 100%),
-  caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several velocities from 0 to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$.],
+  caption: [Change of magnetic field profile of the TUM Hyperloop model along the x-axis in the air gap at several velocities from 0 to $qti("300", "m/s")$. Yoke length: $qti("140", "mm")$, yoke width: $qti("10", "mm")$, applied magnetic field: $B_0=qti("484", "mT")$.],
 )<deltaB_hurric_x140y10_vsweep>
 The values of the lowest nose dips and highest tail peaks for all velocities are given in @table:LND_HTP_hurric_vsweep and are roughly three times higher than for the Yamamura model (@table:LND_HTP_yam_mc_y10). This can be explained by the fact that in the Hyperloop model the eddy currents can flow in larger circles, because the rail width, which equals the yoke width in the Yamamura model, has to be wider in the Hyperloop model to expose both yoke surfaces to the same side of the rail.
 #figure(
@@ -519,7 +520,7 @@ The values of the lowest nose dips and highest tail peaks for all velocities are
     [200], [113.13 (23.40%)], [80.50 (16.65%)],
     [300], [139.68 (28.89%)], [104.88 (21.69%)],
   ),
-  caption: [LND and HTP for several velocities in the TUM Hyperloop model with a rail width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("480", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.],
+  caption: [LND and HTP for several velocities in the TUM Hyperloop model with a yoke width of $qty("10", "mm")$ and an applied magnetic field of $B_0=qty("480", "mT")$. The values are obtained from the magnetic field profile along the x-axis in the air gap at different velocities.],
 )<table:LND_HTP_hurric_vsweep>
 A further indication that the eddy currents flow in larger circles can be seen when comparing the magnetic field profiles along the x-axis with the ones of the yoke width sweep of the Yamamura model in @deltaB_yam_ysweep. In both cases, the profiles exhibit not only increased amplitudes but also a significantly slower recovery from the lowest nose dip toward the end of the magnet. This behavior is characteristic of increasing yoke width in the Yamamura model, but is now observed even more strongly in the Hyperloop configuration. This suggests that the eddy currents circulate over larger effective diameters, both in the transverse (y) direction and along the direction of motion (x).
 Comparing the relative values of the LND and HTP for the Hyperloop model at a velocity of $qti("100", "m/s")$ with those obtained from the yoke width sweep of the Yamamura model at the same velocity shows that they are similar to the ones for a yoke width of approximately $qty("25", "mm")$ in the Yamamura model.
