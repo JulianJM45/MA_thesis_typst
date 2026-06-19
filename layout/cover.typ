@@ -13,7 +13,8 @@
   )
 
   set text(
-    font: fonts.body,
+    // font: fonts.body,
+    font: "Libertinus Serif",
     size: 12pt,
     lang: "en"
   )
